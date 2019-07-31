@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
+namespace erik_tech.Models
+{
+    public class DbContextApp : DbContext
+    {
+        public DbContextApp (DbContextOptions<DbContextApp> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<erik_tech.Models.Cuenta> cuenta { get; set; }
+        public DbSet<erik_tech.Models.Articulo> articulo {get;set;}
+        public DbSet<erik_tech.Models.linux> linux {get; set;}
+        public DbSet<erik_tech.Models.windows> windows {get;set;}
+        public DbSet<erik_tech.Models.macos> macos {get;set;}
+        public DbSet<erik_tech.Models.android> android {get;set;}
+        public DbSet<erik_tech.Models.desarrollo> desarrollo{get;set;}
+        public DbSet<erik_tech.Models.gaming> gaming {get;set;}
+        public DbSet<erik_tech.Models.hardware> hardware {get;set;}
+        public DbSet<erik_tech.Models.sinCategoria> sin_categoria {get;set;}
+    }
+}

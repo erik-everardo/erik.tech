@@ -1,0 +1,281 @@
+@page
+@model homeModel
+@{
+    ViewData["title"] = "Home";
+    Layout = "LayoutDashboard";
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(HttpContext).RequestToken;
+    }
+}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <div class="dropdown navbar_brand">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown" aria-haspopup="true" ara-expandend="false">
+      <i class="fas fa-user-circle"></i>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item">Perfil</a>
+      <a class="dropdown-item" href="#">Ajustes</a>
+      <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
+    </div>
+  </div>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="abrir_editor()">Redactar</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="abrir_mis_articulos()">Mis articulos</a>
+      </li>
+      <li class="nav-item">
+        <a href="" class="nav-link">Ayuda</a>
+      </li>
+
+    
+    </ul>
+
+  </div>
+</nav>
+<div id="capa_editor">
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    Es obligatorio utilizar html para escribir los articulos. Si no, no se respetarán los saltos de línea, y no podrás definir ningun encabezado.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <ul class="nav nav-tabs" role="tablist" id="nav-tab">
+    <li class="nav-item">
+      <a href="#redactar" class="nav-link active" id="redactar-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">Redactar</a>
+    </li>
+    <li class="nav-item">
+      <a href="#vista_previa" onclick="actualizarVistaPrevia()" class="nav-link" id="vista_previa_tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="false">Vista previa</a>
+    </li>
+    <li class="nav-item">
+      <a href="#publicar" onclick="tabPublicacion()" class="nav-link" id="publicacion_tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="false">Publicación</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" onclick="descartarArticuloEnEdicion();" class="nav-link">Cerrar editor</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="redactar" role="tabpanel" aria-labelledby="nav-redactar-tab">
+      <div class="form-group" id="grupo">
+        <input type="text" class="form-control" id="titulo_text" placeholder="Escribir titulo aquí">
+        <textarea type="text" class="form-control" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html"></textarea>
+      </div>
+    </div>
+    <div class="tab-pane fade show" id="vista_previa"  role="tabpanel" aria-labelledby="nav-previa-tab">
+        <h1>Vista previa</h1>
+    </div>
+    <div class="tab-pane fade show" id="publicar" role="tabpanel" aria-labelledby="nav-publicar-tab">
+      <!--Este formulario se envia al servidor-->
+      <form id="form_publicacion" asp-antiforgery="true"> 
+        <h3>Nombre de la publicación</h3>
+        <p>Este nombre es el nombre de tu publicación. De manera predeterminada será el mismo que se introdujo en el campo de título al editar. Puedes cambiarlo. Será el nombre que identificará tu artículo.
+        <div class="form-group">
+          <input class="form-control" type="text" id="encabezado" name="titulo_publicacion">
+        </div>
+        <!--seleccionar la categoria(s) del articulo-->
+        <h3>Selecciona la(s) categoria(s) de tu artículo.</h3>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="categoria form-check-input" type="checkbox" value="1" name="linux">
+            <label class="form-check-label" for="inlineCheckbox1">Linux</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="categoria form-check-input" type="checkbox" value="1" name="windows">
+            <label class="form-check-label" for="inlineCheckbox1">Windows</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="categoria form-check-input" type="checkbox" value="1" name="macos">
+            <label class="form-check-label" for="inlineCheckbox1">MacOS</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="categoria form-check-input" type="checkbox" value="1" name="android">
+            <label class="form-check-label" for="inlineCheckbox1">Android</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="categoria form-check-input" type="checkbox" value="1" name="desarrollo">
+            <label class="form-check-label" for="inlineCheckbox1">Desarrollo</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="categoria form-check-input" type="checkbox" value="1" name="gaming">
+            <label class="form-check-label" for="inlineCheckbox1">Gaming</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="categoria form-check-input" type="checkbox" value="1" name="hardware">
+            <label class="form-check-label" for="inlineCheckbox1">Hardware</label>
+          </div>
+        </div>
+        <h3>Palabras clave</h3>
+        <p>Introduce palabras clave que ayuden a la busqueda. Separalas con un espacio. Evite escribir frases. No hay diferencia entre mayúsculas y minúsculas.
+        <div class="form-group">
+          <textarea class="form-control" name="palabras_clave" placeholder="Por ejemplo: JAVA Linux Unity"></textarea>
+        </div>
+        <!--campos ocultos (cuerpo, encabezado y autor-->
+        <input type="hidden" name="autor" value="@ViewData["nombre_de_usuario"]">
+        <input type="hidden" name="cuerpo" id="campo_oculto_cuerpo">
+        <input type="hidden" name="encabezado" id="campo_oculto_encabezado">
+        <input type="submit" id="boton_publicar" value="Publicar" class="form-control btn-primary btn">
+      </form>
+    </div>
+  </div>
+
+</div>
+<div id="capa_mis_articulos">
+  <h1>Mis articulos</h1>
+  
+  <div id="mis_articulos"></div>
+</div>
+
+<!--Modales-->
+<div class="modal" tabindex="-1" role="dialog" id="no_texto_modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Falta contenido a su artículo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>No ha escrito texto en ambos campos. Debe empezar a editar para poder subirlo. Puede salir ahora, pero no podrá subir un artículo vacío o sin alguno de los dos campos.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="mandarAEditar()">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    var estaAbiertoEditor = false;
+    var estaAbiertoMisArticulos = false;
+
+    var capa_editor_DOM = document.getElementById("capa_editor");
+    var capa_mis_articulos_DOM = document.getElementById("capa_mis_articulos");
+    capa_editor_DOM.style.display = "none";
+    capa_mis_articulos_DOM.style.display = "none";
+
+    //el input en pestaña publicar que permite cambiar el titulo antes de publicar
+    var encabezado_en_publicar = document.getElementById("encabezado");
+
+    //el encabezado del articulo siendo editado
+    var encabezado_DOM = document.getElementById("titulo_text");
+
+    //textarea del cuerpo del titulo
+    var cuerpo_textarea = document.getElementById("cuerpo_articulo");
+
+    var campo_oculto_cuerpo_DOM = document.getElementById("campo_oculto_cuerpo");
+    var campo_oculto_encabezado_DOM = document.getElementById("campo_oculto_encabezado");
+
+    function abrir_editor(){
+      if(estaAbiertoMisArticulos){
+        cerrar_mis_articulos();
+      }
+      capa_editor_DOM.style.display = "block";
+      ajustarDimensionesCuerpoEditor();
+      estaAbiertoEditor =  true;
+    }
+    function cerrar_editor(){
+      capa_editor_DOM.style.display = "none";
+      estaAbiertoEditor = false
+    }
+    function abrir_mis_articulos(){
+      if(estaAbiertoEditor){
+        cerrar_editor();
+      }
+      capa_mis_articulos_DOM.style.display = "block";
+      solicitarArticulosHechos();
+      estaAbiertoMisArticulos = true;
+    }
+    function cerrar_mis_articulos(){
+      capa_mis_articulos_DOM.style.display = "none";
+    }
+window.addEventListener('beforeunload', function (e) {
+    // Cancel the event
+    
+    // Chrome requires returnValue to be set
+    e.returnValue = '';
+  });
+
+function tabPublicacion(){
+    
+    encabezado_en_publicar.value = encabezado_DOM.value;
+
+    
+
+    //toma los valores del los dos inputs en editar y los guarda
+    //en campos ocultos para enviar al servidor en formulario
+    //en publicar
+    campo_oculto_cuerpo_DOM.value = cuerpo_textarea.value;
+    campo_oculto_encabezado_DOM.value = encabezado_DOM.value;
+
+    //está algun campo vacio? avisa al usuario
+    if(cuerpo_textarea.value == "" || encabezado_DOM.value == ""){
+      $("#no_texto_modal").modal('show');
+    }
+
+}
+function mandarAEditar(){
+    $("#redactar-tab").tab('show');
+    $("#no_texto_modal").modal('hide');
+    
+  }
+function descartarArticuloEnEdicion(){
+    encabezado_en_publicar.value = "";
+    cuerpo_textarea.value = "";
+    encabezado_DOM.value = "";
+    campo_oculto_cuerpo_DOM = "";
+    campor_oculto_encabezado_DOM = "";
+    //elementos del DOM
+
+    //desmarca todas las categorias
+    var categorias_checkboxes = document.getElementsByClassName("categoria");
+    for(var i=0;i<categorias_checkboxes.length;i++){
+        categorias_checkboxes[i].checked = false;
+    }
+    cerrar_editor();
+
+}
+
+function solicitarArticulosHechos(){
+  var mis_articulos_DOM = document.getElementById("mis_articulos");
+  var id_de_usuario = {
+    ID_Usuario:@ViewData["id_usuario"],
+    __RequestVerificationToken:"@GetAntiXsrfRequestToken()"}
+  $.post("/admin/SolicitarArticulos",id_de_usuario,insertar_articulos_DOM);
+}
+
+function insertar_articulos_DOM(respuesta){
+  var mis_articulos_DOM = document.getElementById("mis_articulos");
+  mis_articulos_DOM.innerHTML = respuesta;
+}
+
+function EliminarArticulo(id){
+    console.log("Eliminando articulo con id: " + id);
+    
+    var paquete_con_id = {id_articulo:id,__RequestVerificationToken:"@GetAntiXsrfRequestToken()"}
+    $.post("/admin/borrar",paquete_con_id,HacerDespuesDeEliminar);
+    
+    return false;
+}
+function HacerDespuesDeEliminar(respuesta){
+solicitarArticulosHechos();
+}
+</script>

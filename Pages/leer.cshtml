@@ -1,0 +1,11 @@
+@page
+@model LeerModel
+@{
+    ViewData["title"] = @Model.articulo.titulo_publicacion;
+}
+<article class="container">
+    <h2>@Model.articulo.encabezado</h2>
+    <p>Publicado el: @Convert.ToDateTime(Model.articulo.fecha_publicacion).Date.ToString("dd/MM/yyyy") por @Model.BuscarNombreAutorPorIdArticulo(@Model.articulo.autor_id)</p>
+    <hr>
+    <div>@Html.Raw(Model.articulo.cuerpo)</div>
+</article>

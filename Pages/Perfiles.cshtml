@@ -1,0 +1,30 @@
+@page "{user}"
+@model PerfilModel
+@{
+    ViewData["title"] = "";
+}
+@{
+    if(Model.fuePost){
+        Layout = "";
+        <h2>@Model.usuario.username</h2>
+
+    }
+    else
+    {
+        <p>La imagen</p>
+        <h2>@Model.usuario.username</h2>
+        <h3>Publicaciones de @Model.usuario.username</h3>
+        foreach(var articulos in Model.articulosUsuario)
+        {
+            <div class="card">
+                <div class="card-header">
+                    @articulos.titulo_publicacion
+                </div>
+                <div class="card-body">
+                    
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        }
+    }
+}
