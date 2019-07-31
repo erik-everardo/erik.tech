@@ -5,4 +5,7 @@
 <a href="https://dotnet.microsoft.com/download">Install it</a>
 <p>Clone master from this repository and go to that directory:</p>
 <code>
-git clone 
+git clone https://github.com/erik-everardo/erik.tech.git
+</code>
+<code>cd erik.tech</code>
+<p>Run it by typing <code>dotnet run</code></p>
