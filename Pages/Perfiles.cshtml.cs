@@ -13,6 +13,10 @@ namespace erik_tech.Pages
         public Cuenta usuario;
         public bool fuePost;
         public List<Articulo> articulosUsuario;
+
+        //int => id del articulo
+        //Dictionary => El diccionario que incluye como clave cada categoria y como valor un valor bool que indica si pertenece o no
+        public Dictionary<int,Dictionary<int,bool>> categoriasArticulos = new Dictionary<int,Dictionary<int,bool>>();
         public PerfilModel(DbContextApp contexto)
         {
             this.contexto = contexto;
@@ -23,6 +27,10 @@ namespace erik_tech.Pages
             fuePost = false;
             usuario = contexto.cuenta.Where(u => u.username.Equals(user)).Single();
             articulosUsuario = MetodosEstaticoGeneralesErikTech.ObtenerArticulosAutor(usuario.Id,contexto);
+            foreach(Articulo articulo in articulosUsuario)
+            {
+                categoriasArticulos.Add(articulo.Id,MetodosEstaticoGeneralesErikTech.ObtenerCategoriasDeArticulo(articulo.Id,contexto));
+            }
             return Page();
         }
         /*Cuando se responda un POST se envia codigo para ser renderizado en admin */
@@ -30,6 +38,11 @@ namespace erik_tech.Pages
         {
             fuePost = true;
             usuario = contexto.cuenta.Where(u => u.username.Equals(user)).Single();
+            articulosUsuario = MetodosEstaticoGeneralesErikTech.ObtenerArticulosAutor(usuario.Id,contexto);
+            foreach(Articulo articulo in articulosUsuario)
+            {
+                categoriasArticulos.Add(articulo.Id,MetodosEstaticoGeneralesErikTech.ObtenerCategoriasDeArticulo(articulo.Id,contexto));
+            }
             return Page();
         }
 

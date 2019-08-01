@@ -14,7 +14,7 @@ namespace erik_tech.Clases
             List<Articulo> articulos = contexto.articulo.Where(a => a.autor_id.Equals(id_autor)).ToList();
             return articulos;
         }
-        public Dictionary<int,bool> ObtenerCategoriasDeArticulo(int id_articulo, DbContextApp contexto)
+        public static Dictionary<int,bool> ObtenerCategoriasDeArticulo(int id_articulo, DbContextApp contexto)
         {
 
             /*Las categorias tienen un numero:
@@ -54,9 +54,28 @@ namespace erik_tech.Clases
             }
             if(contexto.macos.Where(m => m.id_articulo.Equals(id_articulo)).Any())
             {
-
+                categorias[3] = true;
             }
-
+            if(contexto.android.Where(a => a.id_articulo.Equals(id_articulo)).Any())
+            {
+                categorias[4] = true;
+            }
+            if(contexto.desarrollo.Where(a => a.id_articulo.Equals(id_articulo)).Any())
+            {
+                categorias[5] = true;
+            }
+            if(contexto.gaming.Where(g => g.id_articulo.Equals(id_articulo)).Any())
+            {
+                categorias[6] = true;
+            }
+            if(contexto.hardware.Where(h => h.id_articulo.Equals(id_articulo)).Any())
+            {
+                categorias[7] = true;
+            }
+            if(contexto.sin_categoria.Where(sc => sc.id_articulo.Equals(id_articulo)).Any())
+            {
+                categorias[8] = true;
+            }
 
             return categorias;
 
