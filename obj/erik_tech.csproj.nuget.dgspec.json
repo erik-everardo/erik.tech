@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/erik/erik_tech/erik_tech.csproj": {}
+    "E:\\erik_tech\\erik_tech.csproj": {}
   },
   "projects": {
-    "/home/erik/erik_tech/erik_tech.csproj": {
+    "E:\\erik_tech\\erik_tech.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/erik/erik_tech/erik_tech.csproj",
+        "projectUniqueName": "E:\\erik_tech\\erik_tech.csproj",
         "projectName": "erik_tech",
-        "projectPath": "/home/erik/erik_tech/erik_tech.csproj",
-        "packagesPath": "/home/erik/.nuget/packages/",
-        "outputPath": "/home/erik/erik_tech/obj/",
+        "projectPath": "E:\\erik_tech\\erik_tech.csproj",
+        "packagesPath": "C:\\Users\\erike\\.nuget\\packages\\",
+        "outputPath": "E:\\erik_tech\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/home/erik/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\erike\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

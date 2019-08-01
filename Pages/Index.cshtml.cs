@@ -17,9 +17,18 @@ namespace erik_tech.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public bool solicitoCategoria;
+        public IActionResult OnGet([FromQuery] string categoria)
         {
-
+            if(categoria == null)
+            {
+                solicitoCategoria = true;
+            }
+            else
+            {
+                solicitoCategoria = true;
+            }
+            return Page();
         }
     }
 }
