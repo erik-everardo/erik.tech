@@ -17,9 +17,17 @@
             @articulo.titulo_publicacion
         </div>
         <div class="card-body">
-            <p class="card-text">Categorias: @Model.BuscarCategoriasDeArticulo(articulo.Id)</p>
+            <p class="card-text">Categorias: 
+                @if(articulo.Linux) {<i class="fab fa-linux"></i>}
+                @if(articulo.Windows) {<i class="fab fa-windows"></i>}
+                @if(articulo.Macos) {<i class="fab fa-apple"></i>}
+                @if(articulo.Android) {<i class="fab fa-android"></i>}
+                @if(articulo.Desarrollo) {<i class="fas fa-code"></i>}
+                @if(articulo.Gaming) {<i class="fas fa-gamepad"></i>}
+                @if(articulo.Hardware) {<i class="fas fa-desktop"></i>}
+                </p>
             <a href="/leer?id=@articulo.Id" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Ver</a>
-            <a href="#" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Editar</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar" data-encabezado=""><i class="fas fa-pencil-alt"></i> Editar</button>
             <a href="#" onclick="EliminarArticulo(@articulo.Id)" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</a>
         </div>
         <div class="card-footer text-muted">@Convert.ToDateTime(articulo.fecha_publicacion).Date.ToString("dd/MM/yyyy")</div>

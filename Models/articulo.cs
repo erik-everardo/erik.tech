@@ -11,5 +11,14 @@ namespace erik_tech.Models
         public int autor_id {get;set;}        
         [DataType(DataType.Date)]
         public DateTime fecha_publicacion {get;set;}
+
+        public bool Linux { get; set; }
+        public bool Windows { get; set; }
+        public bool Macos { get; set; }
+        public bool Android { get; set; }
+        public bool Desarrollo { get; set; }
+        public bool Gaming { get; set; }
+        public bool Hardware { get; set; }
+        public bool Otra { get; set; }
     }
 }

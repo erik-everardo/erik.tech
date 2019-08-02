@@ -12,21 +12,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using erik_tech.Models;
 
 namespace erik_tech.Pages
 {
     public class IndexModel : PageModel
     {
+        private readonly DbContextApp contexto;
+        public string categoria;
+        public List<Articulo> articulos;
         public bool solicitoCategoria;
         public IActionResult OnGet([FromQuery] string categoria)
         {
             if(categoria == null)
             {
-                solicitoCategoria = true;
+                solicitoCategoria = false;
             }
             else
             {
                 solicitoCategoria = true;
+                //TODO: lista de articulos dependiendo de los ids de articulo dados
+                //por la categoria. Utilizar metodo:
+                //"MetodosGeneralesErikTech.ObtenerArticulosPorIdCategoria(int categoria,DbContextApp contexto)"
+
+
+
             }
             return Page();
         }

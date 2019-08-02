@@ -21,6 +21,22 @@ namespace erik_tech.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("Android");
+
+                    b.Property<bool>("Desarrollo");
+
+                    b.Property<bool>("Gaming");
+
+                    b.Property<bool>("Hardware");
+
+                    b.Property<bool>("Linux");
+
+                    b.Property<bool>("Macos");
+
+                    b.Property<bool>("Otra");
+
+                    b.Property<bool>("Windows");
+
                     b.Property<int>("autor_id");
 
                     b.Property<string>("cuerpo");
@@ -50,102 +66,6 @@ namespace erik_tech.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("cuenta");
-                });
-
-            modelBuilder.Entity("erik_tech.Models.android", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("id_articulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("android");
-                });
-
-            modelBuilder.Entity("erik_tech.Models.desarrollo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("id_articulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("desarrollo");
-                });
-
-            modelBuilder.Entity("erik_tech.Models.gaming", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("id_articulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("gaming");
-                });
-
-            modelBuilder.Entity("erik_tech.Models.hardware", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("id_articulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("hardware");
-                });
-
-            modelBuilder.Entity("erik_tech.Models.linux", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("id_articulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("linux");
-                });
-
-            modelBuilder.Entity("erik_tech.Models.macos", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("id_articulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("macos");
-                });
-
-            modelBuilder.Entity("erik_tech.Models.sinCategoria", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("id_articulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("sin_categoria");
-                });
-
-            modelBuilder.Entity("erik_tech.Models.windows", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("id_articulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("windows");
                 });
 #pragma warning restore 612, 618
         }

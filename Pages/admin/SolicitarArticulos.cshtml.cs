@@ -26,45 +26,5 @@ namespace erik_tech.Pages
             
             return Page();
         }
-        public string BuscarCategoriasDeArticulo(int id_articulo)
-        {
-            string stringCategoriasDOM = "";
-
-            if(contexto.linux.Where(cat => cat.id_articulo.Equals(id_articulo)).Any())
-            {
-                stringCategoriasDOM += "Linux ";
-            }
-            if(contexto.windows.Where(cat => cat.id_articulo.Equals(id_articulo)).Any())
-            {
-                stringCategoriasDOM += "Windows ";
-            }
-            if(contexto.macos.Where(cat => cat.id_articulo.Equals(id_articulo)).Any())
-            {
-                stringCategoriasDOM += "MacOS ";
-            }
-            if(contexto.android.Where(cat => cat.id_articulo.Equals(id_articulo)).Any())
-            {
-                stringCategoriasDOM += "Android ";
-            }
-            if(contexto.desarrollo.Where(cat => cat.id_articulo.Equals(id_articulo)).Any())
-            {
-                stringCategoriasDOM += "Desarrollo ";
-            }
-            if(contexto.gaming.Where(cat => cat.id_articulo.Equals(id_articulo)).Any())
-            {
-                stringCategoriasDOM += "Gaming ";
-            }
-            if(contexto.hardware.Where(cat => cat.id_articulo.Equals(id_articulo)).Any())
-            {
-                stringCategoriasDOM += "Hardware ";
-            }
-            if(contexto.sin_categoria.Where(cat => cat.id_articulo.Equals(id_articulo)).Any())
-            {
-                stringCategoriasDOM = "Este artículo fue publicado sin categoría.";
-            }
-
-
-            return stringCategoriasDOM;
-        }
     }
 }

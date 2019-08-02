@@ -3,3 +3,9 @@
 @{
     ViewData["Title"] = "Inicio";
 }
+
+@if(@Model.solicitoCategoria)
+{
+    <p>Solicitó categoria</p>
+    <p>@Model.categoria</p>
+}

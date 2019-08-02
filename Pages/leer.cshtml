@@ -6,6 +6,14 @@
 <article class="container">
     <h2>@Model.articulo.encabezado</h2>
     <p>Publicado el: @Convert.ToDateTime(Model.articulo.fecha_publicacion).Date.ToString("dd/MM/yyyy") por @Model.BuscarNombreAutorPorIdArticulo(@Model.articulo.autor_id)</p>
+    <p>Categorias: 
+        @if(Model.articulo.Linux) {<i class="fab fa-linux"></i>}
+        @if(Model.articulo.Windows) {<i class="fab fa-windows"></i>}
+        @if(Model.articulo.Macos) {<i class="fab fa-apple"></i>}
+        @if(Model.articulo.Android) {<i class="fab fa-android"></i>}
+        @if(Model.articulo.Desarrollo) {<i class="fas fa-code"></i>}
+        @if(Model.articulo.Gaming) {<i class="fas fa-gamepad"></i>}
+        @if(Model.articulo.Hardware) {<i class="fas fa-desktop"></i>}</p>
     <hr>
     <div>@Html.Raw(Model.articulo.cuerpo)</div>
 </article>

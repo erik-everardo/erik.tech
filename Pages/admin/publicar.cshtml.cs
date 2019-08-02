@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using erik_tech.Models;
 using System;
 using System.Linq;
+using erik_tech.Clases;
 
 namespace erik_tech.Pages
 {
@@ -35,24 +36,30 @@ namespace erik_tech.Pages
             string gaming = "0",
             string hardware = "0")
         {
-            Articulo _articulo = new Articulo();
-            _articulo.encabezado = encabezado;
-            _articulo.cuerpo = cuerpo;
-            _articulo.fecha_publicacion = DateTime.Today;
-            _articulo.autor_id = buscarIdAutorPorNombre(autor);
-            _articulo.titulo_publicacion = titulo_publicacion;
+            Articulo articulo = new Articulo();
+            articulo.encabezado = encabezado;
+            articulo.cuerpo = cuerpo;
+            articulo.fecha_publicacion = DateTime.Today;
+            articulo.autor_id = buscarIdAutorPorNombre(autor);
+            articulo.titulo_publicacion = titulo_publicacion;
+            articulo.Linux = MetodosEstaticoGeneralesErikTech.String1O0ABool(linux);
+            articulo.Windows = MetodosEstaticoGeneralesErikTech.String1O0ABool(windows);
+            articulo.Macos = MetodosEstaticoGeneralesErikTech.String1O0ABool(macos);
+            articulo.Android = MetodosEstaticoGeneralesErikTech.String1O0ABool(android);
+            articulo.Desarrollo = MetodosEstaticoGeneralesErikTech.String1O0ABool(desarrollo);
+            articulo.Gaming = MetodosEstaticoGeneralesErikTech.String1O0ABool(gaming);
+            articulo.Hardware = MetodosEstaticoGeneralesErikTech.String1O0ABool(hardware);
+            if (linux == "0" && windows == "0" && 
+                macos == "0" && android == "0" && 
+                desarrollo == "0" && gaming == "0" && hardware == "0") articulo.Otra = true;
+            
 
-
-            contexto.articulo.Add(_articulo);
+            contexto.articulo.Add(articulo);
             contexto.SaveChanges();
-            registrarEnCategorias(buscarIdArticuloPorTitulo(titulo_publicacion),linux,windows,macos,android,desarrollo,gaming,hardware);
+            
 
         }
-        public int buscarIdArticuloPorTitulo(string titulo)
-        {
-            Articulo articuloEncontrado = contexto.articulo.Where(a => a.titulo_publicacion.Equals(titulo)).Single();
-            return articuloEncontrado.Id;
-        }
+        
 
         public int buscarIdAutorPorNombre(string nombre)
         {
@@ -66,74 +73,6 @@ namespace erik_tech.Pages
                 return -1;
             }
         }
-        public void registrarEnCategorias(
-            int id_articulo,
-            string linux = "0",
-            string windows = "0",
-            string macos = "0",
-            string android = "0",
-            string desarrollo = "0",
-            string gaming = "0",
-            string hardware = "0")
-        {
-
-            if(linux=="1")
-            {
-                linux articuloLinux = new linux();
-                articuloLinux.id_articulo = id_articulo;
-                contexto.linux.Add(articuloLinux);
-                contexto.SaveChanges();
-            }
-            if(windows=="1")
-            {
-                windows articuloWindows = new windows();
-                articuloWindows.id_articulo = id_articulo;
-                contexto.windows.Add(articuloWindows);
-                contexto.SaveChanges();
-            }
-            if(macos=="1")
-            {
-                macos articuloMacos = new macos();
-                articuloMacos.id_articulo = id_articulo;
-                contexto.macos.Add(articuloMacos);
-                contexto.SaveChanges();
-
-            }
-            if(android=="1")
-            {
-                android articuloAndroid = new android();
-                articuloAndroid.id_articulo = id_articulo;
-                contexto.android.Add(articuloAndroid);
-                contexto.SaveChanges();
-            }
-            if(desarrollo=="1")
-            {
-                desarrollo articuloDesarrollo = new desarrollo();
-                articuloDesarrollo.id_articulo = id_articulo;
-                contexto.desarrollo.Add(articuloDesarrollo);
-                contexto.SaveChanges();
-            }
-            if(gaming=="1")
-            {
-                gaming articuloGaming = new gaming();
-                articuloGaming.id_articulo = id_articulo;
-                contexto.gaming.Add(articuloGaming);
-                contexto.SaveChanges();
-            }
-            if(hardware=="1")
-            {
-                hardware articuloHardware = new hardware();
-                articuloHardware.id_articulo = id_articulo;
-                contexto.hardware.Add(articuloHardware);
-                contexto.SaveChanges();
-            }
-            if(linux=="0" && windows=="0" && macos=="0" && android=="0" && desarrollo=="0" && gaming=="0" && hardware=="0")
-            {
-                sinCategoria articuloSinCategoria = new sinCategoria();
-                articuloSinCategoria.id_articulo = id_articulo;
-                contexto.sin_categoria.Add(articuloSinCategoria);
-                contexto.SaveChanges();
-            }
-        }
+        
     }
 }
