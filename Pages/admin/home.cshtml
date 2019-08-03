@@ -11,7 +11,7 @@
         return Xsrf.GetAndStoreTokens(HttpContext).RequestToken;
     }
 }
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
 
   <div class="dropdown navbar_brand">
     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown" aria-haspopup="true" ara-expandend="false">
@@ -163,47 +163,50 @@
 
 
 <!--Modal editar-->
-<div class="modal fade modal-xl" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="editar_articulo" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="editar_articulo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" id="modal-dialog-editar" role="document">
+    <div class="modal-content" id="content_modal_editar">
       <div class="modal-header">
-        <h5 class="modal-title" id="titulo_modal_editar">Editar</h5>
+        <h5 class="modal-title" id="titulo_modal_editar"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-labelledby="modalEditar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
-        <form>
+        <form method="post" asp-antiforgery="true" id="form_editar">
           <div class="form-group">
             <label for="nombre_de_la_publicacion" class="col-form-label">Nombre de la publicación:</label>
-            <input type="text" class="form-control" id="nombre_de_la_publicacion"/>
+            <input name="nombre" type="text" class="form-control" id="nombre_de_la_publicacion"/>
             <label for="encabezado_de_la_publicacion" class="col-form-label">Encabezado:</label>
-            <input type="text" class="form-control" id="encabezado_de_la_publicacion"/>
+            <input name="encabezado" type="text" class="form-control" id="encabezado_de_la_publicacion"/>
             <label for="cuerpo_del_articulo" class="col-form-label">Cuerpo (en HTML)</label>
-            <textarea type="text" class="form-control" id="cuerpo_del_articulo">Aqui iria el texto...</textarea>
+            <textarea name="cuerpo" type="text" class="form-control" id="cuerpo_del_articulo">Aqui iria el texto...</textarea>
           </div>
           <div class="form-group">
-            <p>Categorias:</p>
-            <label for="linux_check"><input id="linux_check" type="checkbox"/> Linux</label>
-            <label for="windows_check"><input type="checkbox" id="windows_check"/> Windows</label>
-            <label for="macos_check"><input type="checkbox" id="macos_check"/> MacOs</label>
-            <label for="android_check"><input type="checkbox" id="android_check"/> Android</label>
-            <label for="desarrollo_check"><input type="checkbox" id="desarrollo_check"/> Desarrollo</label>
-            <label for="gaming_check"><input type="checkbox" id="gaming_check"/> Gaming</label>
-            <label for="hardware_check"><input type="checkbox" id="hardware_check"/> Hardware</label>
+            <p id="categorias_titulo">Categorias:</p>
+            <label for="linux_check"><input name="linux" id="linux_check" type="checkbox"/> Linux</label>
+            <label for="windows_check"><input name="windows" type="checkbox" id="windows_check"/> Windows</label>
+            <label for="macos_check"><input name="macos" type="checkbox" id="macos_check"/> MacOs</label>
+            <label for="android_check"><input name="android" type="checkbox" id="android_check"/> Android</label>
+            <label for="desarrollo_check"><input name="desarrollo" type="checkbox" id="desarrollo_check"/> Desarrollo</label>
+            <label for="gaming_check"><input name="gaming" type="checkbox" id="gaming_check"/> Gaming</label>
+            <label for="hardware_check"><input name="hardware"type="checkbox" id="hardware_check"/> Hardware</label>
             
             <div class="form-group">
               <label for="textarea_palabras_clave" class="col-form-label">Palabras clave (no implementado)</label>
-              <textarea type="text" id="textarea_palabras_clave" class="form-control">Aqui van las palabras clave guardadas</textarea>
+              <textarea type="text" id="textarea_palabras_clave" class="form-control">Aqui van las palabras clave guardadas (Proximamente)</textarea>
             </div>
           </div>
           
+        <input name="id" type="hidden" id="id_articulo"/>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
+        <button type="submit" form="form_editar" class="btn btn-primary" id="boton_guardar_cambios">Guardar cambios</button>
       </div>
+      
     </div>
   </div>
 </div>
@@ -213,6 +216,7 @@
 <script>
     var estaAbiertoEditor = false;
     var estaAbiertoMisArticulos = false;
+    
 
     var capa_editor_DOM = document.getElementById("capa_editor");
     var capa_mis_articulos_DOM = document.getElementById("capa_mis_articulos");

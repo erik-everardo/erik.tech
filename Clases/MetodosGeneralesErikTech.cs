@@ -22,12 +22,8 @@ namespace erik_tech.Clases
 
         public static bool String1O0ABool(string valorAEvaluar)
         {
-            if (valorAEvaluar.Equals("1"))
-            {
-                return true;
-            }
 
-            return false;
+            return valorAEvaluar == "1" || valorAEvaluar.ToLower() == "true" || valorAEvaluar.ToLower() == "on";
         }
         
 

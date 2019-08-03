@@ -51,3 +51,19 @@ button.accept-policy {
 #boton_publicar{
   margin-top: 50px;
 }
+#cuerpo_del_articulo{
+  height:400px;
+}
+#content_modal_editar{
+  width:100%;
+}
+#capa_notificaciones {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+}
+#notificacion_articulo_editado{
+  margin:15px;
+}

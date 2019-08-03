@@ -27,7 +27,23 @@
                 @if(articulo.Hardware) {<i class="fas fa-desktop"></i>}
                 </p>
             <a href="/leer?id=@articulo.Id" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Ver</a>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar" data-encabezado=""><i class="fas fa-pencil-alt"></i> Editar</button>
+            
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar"
+                    data-id = "@articulo.Id"
+                    data-encabezado="@articulo.encabezado"
+                    data-titulo = "@articulo.titulo_publicacion"
+                    data-cuerpo = "@articulo.cuerpo"
+                    data-linux = "@articulo.Linux"
+                    data-windows = "@articulo.Windows"
+                    data-macos  = "@articulo.Macos"
+                    data-android = "@articulo.Android"
+                    data-desarrollo = "@articulo.Desarrollo"
+                    data-gaming = "@articulo.Gaming"
+                    data-hardware = "@articulo.Hardware"
+                    data-otra = "@articulo.Otra"
+            
+                    ><i class="fas fa-pencil-alt"></i> Editar</button>
+            
             <a href="#" onclick="EliminarArticulo(@articulo.Id)" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</a>
         </div>
         <div class="card-footer text-muted">@Convert.ToDateTime(articulo.fecha_publicacion).Date.ToString("dd/MM/yyyy")</div>
