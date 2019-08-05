@@ -50,6 +50,7 @@ button.accept-policy {
 }
 #boton_publicar{
   margin-top: 50px;
+  margin-bottom: 20px;
 }
 #cuerpo_del_articulo{
   height:400px;
