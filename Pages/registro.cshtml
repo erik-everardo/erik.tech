@@ -18,14 +18,16 @@
     
     <form id="login" class="text-center" method="post">
         <div class="form-group">
-            <input name="username" id="usuario" type="text" class="form-control entradas_login" placeholder="Nombre de usuario">
+            <input name="username" id="usuario" type="text" class="form-control entradas_login @Model.validacion" required placeholder="Nombre de usuario">
+            <div class="invalid-feedback">El nombre ya está en uso, escoje otro por favor.</div>
         </div>
         
         <div class="form-group">
-            <input name="password" type="password" class="form-control entradas_login" placeholder="Contraseña">
+            <input name="password" type="password" class="form-control entradas_login @Model.validacionPassword" required placeholder="Contraseña">
+            <div class="invalid-feedback">La contraseña es obligatoria. No puede ser un espacio en blanco.</div>
         </div>
         <div class="form-group">
-            <input name="email" type="email" class="form-control entradas_login" placeholder="Correo electrónico">
+            <input name="email" type="email" class="form-control entradas_login" required placeholder="Correo electrónico">
         </div>
         <div class="form-group">
             <input type="submit" class="form-control btn btn-primary" value="Registrar">

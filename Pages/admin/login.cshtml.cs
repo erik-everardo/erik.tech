@@ -25,7 +25,7 @@ namespace erik_tech.Pages
                 !string.IsNullOrWhiteSpace(password) && 
                 !string.IsNullOrEmpty(password))
             {
-                if(contexto.cuenta.Where(c => c.username.Equals(username) && c.password.Equals(password)).Any())
+                if(contexto.cuenta.Any(c => c.username.Equals(username) && c.password.Equals(password)))
                 {
                     return Redirect("/si.html");
                 }
