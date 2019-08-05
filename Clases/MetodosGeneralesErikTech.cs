@@ -25,7 +25,10 @@ namespace erik_tech.Clases
 
             return valorAEvaluar == "1" || valorAEvaluar.ToLower() == "true" || valorAEvaluar.ToLower() == "on";
         }
-        
 
+        public static string ObtenerNombreAutorPorId(int id,DbContextApp contexto)
+        {
+            return contexto.cuenta.Find(id).username;
+        }
     }
 }

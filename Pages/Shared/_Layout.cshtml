@@ -22,13 +22,13 @@
     <div class="container-fluid">
         <partial name="_CookieConsentPartial" />
         <nav class="navbar navbar-expand-sm navbar-light bg-white">
-            <a class="navbar-brand" asp-page="Index">erik.tech</a>
+            <a class="navbar-brand" asp-page="Index" asp-route-categoria="">erik.tech</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navegacion_principal" aria-controls="navegacion_principal" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navegacion_principal">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" asp-page="Index">Inicio <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" asp-page="Index" asp-categoria="">Inicio <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" asp-page="admin/Index">Iniciar sesión</a>
                     <a class="nav-item nav-link" asp-page="registro">Crear cuenta</a>
                     <li class="nav-item dropdown">
@@ -36,13 +36,13 @@
                           Categorias
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#"><i class="fab fa-linux"></i> Linux</a>
-                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> Windows</a>
-                            <a class="dropdown-item" href="#"><i class="fab fa-apple"></i> MacOs</a>
-                            <a class="dropdown-item" href="#"><i class="fab fa-android"></i> Android</a>
-                            <a class="dropdown-item"><i class="fas fa-code"></i> Desarrollo</a>
-                            <a class="dropdown-item"><i class="fas fa-gamepad"></i> Gaming</a>
-                            <a class="dropdown-item"><i class="fas fa-desktop"></i> Hardware</a>
+                            <a class="dropdown-item" asp-route-categoria="Linux"><i class="fab fa-linux"></i> Linux</a>
+                            <a class="dropdown-item" asp-route-categoria="Windows"><i class="fab fa-windows"></i> Windows</a>
+                            <a class="dropdown-item" asp-route-categoria="macOS"><i class="fab fa-apple"></i> macOS</a>
+                            <a class="dropdown-item" asp-route-categoria="Android"><i class="fab fa-android"></i> Android</a>
+                            <a class="dropdown-item" asp-route-categoria="Desarrollo"><i class="fas fa-code"></i> Desarrollo</a>
+                            <a class="dropdown-item" asp-route-categoria="Gaming"><i class="fas fa-gamepad"></i> Gaming</a>
+                            <a class="dropdown-item" asp-route-categoria="Hardware"><i class="fas fa-desktop"></i> Hardware</a>
                         </div>
                     </li>
                 </div>
