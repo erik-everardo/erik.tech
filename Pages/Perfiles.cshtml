@@ -1,7 +1,7 @@
 @page "{user}"
 @model PerfilModel
 @{
-    ViewData["title"] = "";
+    ViewData["title"] = @Model.usuario.username;
 }
 @{
     if(Model.fuePost){
@@ -16,7 +16,7 @@
         <h3>Publicaciones de @Model.usuario.username</h3>
         foreach(var articulos in Model.articulosUsuario)
         {
-            <div class="card">
+            <div class="card card-articulo">
                 <div class="card-header">
                     @articulos.titulo_publicacion
                 </div>
