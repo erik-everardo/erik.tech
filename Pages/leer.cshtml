@@ -5,7 +5,7 @@
 }
 <article class="container">
     <h2>@Model.articulo.encabezado</h2>
-    <p>Publicado el: @Convert.ToDateTime(Model.articulo.fecha_publicacion).Date.ToString("dd/MM/yyyy") por @Model.BuscarNombreAutorPorIdArticulo(@Model.articulo.autor_id)</p>
+    <p>Publicado el: @Convert.ToDateTime(Model.articulo.fecha_publicacion).Date.ToString("dd/MM/yyyy") por <a asp-page="/Perfiles" asp-route-user="@Model.BuscarNombreAutorPorIdArticulo(@Model.articulo.autor_id)">@Model.BuscarNombreAutorPorIdArticulo(@Model.articulo.autor_id)</a></p>
     <p>Categorias: 
         @if(Model.articulo.Linux) {<i class="fab fa-linux"></i>}
         @if(Model.articulo.Windows) {<i class="fab fa-windows"></i>}
