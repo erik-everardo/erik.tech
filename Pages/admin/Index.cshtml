@@ -13,16 +13,42 @@
 <div class="row">
 <div class="col-3"></div>
 <div class="col-6" id="celda_media">
-    <a asp-page="/Index" name><i class="fas fa-arrow-left"></i></a><h1>Iniciar sesión</h1>
+    <a asp-page="/Index"><i class="fas fa-arrow-left"></i></a><h1>Iniciar sesión</h1>
     <p>Inicia sesión para poder redactar. <a href="#">Más información</a></p>
     
-    <form id="login" class="text-center" asp-antiforgery="true">
+    <form id="login" class="text-center" asp-antiforgery="true" action="/admin/home" method="post">
         <div class="form-group">
-            <input name="username" id="usuario" type="text" class="form-control entradas_login" placeholder="Nombre de usuario">
+            @{
+                if (Model.contraIncorrecta)
+                {
+                    <input name="username" id="usuario" type="text" class="form-control entradas_login" value="@Model.textoUsuario" placeholder="Nombre de usuario">
+                }
+                if (Model.usuarioNoExiste)
+                {
+                    <input name="username" id="usuario" type="text" class="form-control entradas_login is-invalid" placeholder="Nombre de usuario">
+                    <div class="invalid-feedback">El usuario no existe</div>
+                }
+                else if(!Model.usuarioNoExiste && !Model.contraIncorrecta)
+                {
+                    <input name="username" id="usuario" type="text" class="form-control entradas_login" placeholder="Nombre de usuario">
+                }
+            }
+            
         </div>
         
         <div class="form-group">
-            <input name="password" type="password" class="form-control entradas_login" placeholder="Contraseña">
+            @{
+                if (Model.contraIncorrecta)
+                {
+                    <input name="password" type="password" class="form-control entradas_login is-invalid" placeholder="Contraseña">
+                    <div class="invalid-feedback">Contraseña incorrecta</div>
+                }
+                else
+                {
+                    <input name="password" type="password" class="form-control entradas_login" placeholder="Contraseña">
+                }
+            }
+            
         </div>
         <div class="form-group">
             <input type="submit" class="form-control btn btn-primary" value="Iniciar sesión">
