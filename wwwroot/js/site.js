@@ -105,5 +105,3 @@ function despuesDeEditar(respuesta){
         
     }
 }
-
-

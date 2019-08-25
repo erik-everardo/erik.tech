@@ -20,7 +20,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
       <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item">Perfil</a>
+      <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
       <a class="dropdown-item" href="#">Ajustes</a>
       <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
     </div>
@@ -139,6 +139,24 @@
   
   <div id="mis_articulos"></div>
 </div>
+<div id="capa_perfil">
+  <!--imagen prototipo-->
+  <img src="img-usuario-proto.jpg" height="60px"/><h4>@ViewData["nombre_de_usuario"]</h4>
+  <hr/>
+    <h5>Información de cuenta</h5>
+  <button class="btn btn-primary btn-sm" id="boton_editar_info_perfil">Editar</button>
+  <button class="btn btn-success btn-sm" id="boton_perfil_info_guardar_cambios" data-target="#confirmarContra_perfil" data-toggle="modal" disabled>Guardar</button>
+  <form id="perfil_info_modificar" asp-antiforgery="true">
+    <div class="form-group">
+      <label for="perfil_nombre">Nombre de usuario</label>
+      <input class="form-control" value="@ViewData["nombre_de_usuario"]" id="perfil_nombre" disabled name="nuevoNombre"/>
+      <label for="perfil_correo">E-mail</label>
+      <input class="form-control" value="@ViewData["correo"]" id="perfil_correo" disabled name="nuevoCorreo"/>
+      <input type="hidden" value="@ViewData["id_usuario"]" name="id"/>
+    </div>
+  </form>
+  <hr/>
+</div>
 
 <!--Modales-->
 <div class="modal" tabindex="-1" role="dialog" id="no_texto_modal">
@@ -211,11 +229,33 @@
   </div>
 </div>
 
-
+<!--Modal perfil, de confirmacion de contraseña, modificacion de nombre de usuario y contraseña-->
+<div class="modal fade" id="confirmarContra_perfil" tabindex="-1" role="dialog" aria-labelledby="Cornfirmacion de contraseña" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ingresa tu contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form><input class="form-control" type="password" id="pass_confirmacion_perfil_info" form="perfil_info_modificar" name="pass"/></form>
+        <div id="alerta_contra_incorrecta_perfil_info" class="alert alert-danger" role="alert">
+          Contraseña incorrecta
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="boton_continuar_confirmacion">Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
     var estaAbiertoEditor = false;
     var estaAbiertoMisArticulos = false;
+    var estaAbiertoPerfil = false;
     
 
     var capa_editor_DOM = document.getElementById("capa_editor");
@@ -236,9 +276,10 @@
     var campo_oculto_encabezado_DOM = document.getElementById("campo_oculto_encabezado");
 
     function abrir_editor(){
-      if(estaAbiertoMisArticulos){
+      if(estaAbiertoMisArticulos)
         cerrar_mis_articulos();
-      }
+      if(estaAbiertoPerfil)
+        cerrarPerfil();
       capa_editor_DOM.style.display = "block";
       ajustarDimensionesCuerpoEditor();
       estaAbiertoEditor =  true;
@@ -248,9 +289,10 @@
       estaAbiertoEditor = false
     }
     function abrir_mis_articulos(){
-      if(estaAbiertoEditor){
+      if(estaAbiertoEditor)
         cerrar_editor();
-      }
+      if(estaAbiertoPerfil)
+        cerrarPerfil();
       capa_mis_articulos_DOM.style.display = "block";
       solicitarArticulosHechos();
       estaAbiertoMisArticulos = true;
@@ -327,6 +369,39 @@ function EliminarArticulo(id){
     return false;
 }
 function HacerDespuesDeEliminar(respuesta){
-solicitarArticulosHechos();
+  solicitarArticulosHechos();
 }
+var capa_perfil = document.getElementById("capa_perfil");
+$('#btn_ver_perfil').on('click',function(ev){
+  capa_perfil.style.display = "block";
+  estaAbiertoPerfil = true;
+  if(estaAbiertoEditor)
+    cerrar_editor();
+  if(estaAbiertoMisArticulos)
+    cerrar_mis_articulos();
+});
+function cerrarPerfil(){
+  capa_perfil.style.display = "none";
+}
+$('#boton_editar_info_perfil').on('click',function(e){
+  $('#perfil_nombre').prop('disabled',false);
+  $('#perfil_correo').prop('disabled',false);
+  $('#boton_perfil_info_guardar_cambios').prop('disabled',false);
+})
+
+var campoContraPerfilInfo = document.getElementById("pass_confirmacion_perfil_info");
+var alertaContraIncorrecta = document.getElementById("alerta_contra_incorrecta_perfil_info");
+
+$('#boton_continuar_confirmacion').on('click',function(e){
+  if(campoContraPerfilInfo.value != "@ViewData["password_usuario"]")
+    alertaContraIncorrecta.style.display = "block";
+  else{
+    alertaContraIncorrecta.style.display = "none";
+    var enviar = $('#perfil_info_modificar').serialize();
+     $.post("/admin/ModificarInfoPerfil",enviar);
+  }
+    
+})
+
+
 </script>

@@ -71,3 +71,10 @@ button.accept-policy {
 .card-articulo{
   margin:10px;
 }
+#capa_perfil{
+  display:none;
+}
+#alerta_contra_incorrecta_perfil_info{
+  display:none;
+  margin-top: 10px;
+}
