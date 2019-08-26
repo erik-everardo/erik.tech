@@ -14,4 +14,14 @@
 
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\editor.css" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\lib\FileSaver.js\FileSaver.js" />
+  </ItemGroup>
+
 </Project>

@@ -56,6 +56,7 @@
                           }
                       </p>
                       <a class="btn btn-primary" asp-page="leer" asp-route-id="@articulo.Id">Leer</a>
+                      <a class="btn btn-primary" asp-page="DescargarArticulo" asp-route-id="@articulo.Id">Descargar</a>
                   </div>
               </div>
           } 
@@ -113,6 +114,7 @@
                           }
                       </p>
                       <a class="btn btn-primary" asp-page="leer" asp-route-id="@articulo.Id">Leer</a>
+                      <a class="btn btn-primary" asp-page="DescargarArticulo" asp-route-id="@articulo.Id" download="@(articulo.titulo_publicacion + ".html")">Descargar</a>
                   </div>
               </div>
           }

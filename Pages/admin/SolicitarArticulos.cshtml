@@ -15,6 +15,7 @@
     <div class="card" style="margin-bottom:10px">
         <div class="card-header" >
             @articulo.titulo_publicacion
+            
         </div>
         <div class="card-body">
             <p class="card-text">Categorias: 
@@ -43,8 +44,9 @@
                     data-otra = "@articulo.Otra"
             
                     ><i class="fas fa-pencil-alt"></i> Editar</button>
-            
+            <a class="btn btn-primary" asp-page="/DescargarArticulo" asp-route-id="@articulo.Id" download="@(articulo.titulo_publicacion + ".html")"><i class="fas fa-download"></i></a>
             <a href="#" onclick="EliminarArticulo(@articulo.Id)" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</a>
+            
         </div>
         <div class="card-footer text-muted">@Convert.ToDateTime(articulo.fecha_publicacion).Date.ToString("dd/MM/yyyy")</div>
     </div>
