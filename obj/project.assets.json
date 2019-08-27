@@ -12505,17 +12505,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/erik/erik_tech/erik_tech.csproj",
+      "projectUniqueName": "/home/erik/erik.tech/erik_tech.csproj",
       "projectName": "erik_tech",
-      "projectPath": "/home/erik/erik_tech/erik_tech.csproj",
+      "projectPath": "/home/erik/erik.tech/erik_tech.csproj",
       "packagesPath": "/home/erik/.nuget/packages/",
-      "outputPath": "/home/erik/erik_tech/obj/",
+      "outputPath": "/home/erik/erik.tech/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/home/erik/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/erik/.config/NuGet/NuGet.Config"
+        "/home/erik/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"

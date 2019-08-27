@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/home/erik/erik_tech/erik_tech.csproj",
+    "projectUniqueName": "/home/erik/erik.tech/erik_tech.csproj",
     "projectName": "erik_tech",
-    "projectPath": "/home/erik/erik_tech/erik_tech.csproj",
-    "outputPath": "/home/erik/erik_tech/obj/",
+    "projectPath": "/home/erik/erik.tech/erik_tech.csproj",
+    "outputPath": "/home/erik/erik.tech/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/home/erik/dotnet/sdk/NuGetFallbackFolder"
