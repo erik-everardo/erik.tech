@@ -2,7 +2,8 @@ $("#form_publicacion").submit(function(){
 
     var publicacion = $(this).serialize();
     $.post("/admin/publicar",publicacion);
-    
+    descartarArticuloEnEdicion();
+    abrir_mis_articulos();
     return false;
 });
 

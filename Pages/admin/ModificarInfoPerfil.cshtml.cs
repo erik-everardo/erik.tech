@@ -16,11 +16,12 @@ namespace erik_tech.Pages
         {
             
         }
-        public void OnPost(string id, string nuevoNombre, string nuevoCorreo, string pass)
+        public void OnPost(string id, string nuevoNombre, string nuevoCorreo, string pass, string descripcion)
         {
             Cuenta usuario = contexto.cuenta.Single(c => c.Id.Equals(int.Parse(id)));
             usuario.username = nuevoNombre;
             usuario.email = nuevoCorreo;
+            usuario.parrafoDescripcion = descripcion;
             contexto.cuenta.Update(usuario);
             contexto.SaveChanges();
         }

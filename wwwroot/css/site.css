@@ -78,3 +78,12 @@ button.accept-policy {
   display:none;
   margin-top: 10px;
 }
+#capa_editor{
+  display: none;
+}
+#capa_mis_articulos{
+  display:none;
+}
+#capa_ajustes{
+  display: none;
+}
