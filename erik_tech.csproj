@@ -24,4 +24,9 @@
     <_ContentIncludedByDefault Remove="wwwroot\lib\FileSaver.js\FileSaver.js" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Migrations" />
+  </ItemGroup>
+
 </Project>

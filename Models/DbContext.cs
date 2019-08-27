@@ -15,6 +15,8 @@ namespace erik_tech.Models
 
         public DbSet<erik_tech.Models.Cuenta> cuenta { get; set; }
         public DbSet<erik_tech.Models.Articulo> articulo {get;set;}
+        public DbSet<erik_tech.Models.urlImagen> Imagenes { get; set; }
+        public DbSet<erik_tech.Models.comentario> Comentarios { get; set; }
         
     }
 }
