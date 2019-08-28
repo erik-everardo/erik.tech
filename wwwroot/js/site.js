@@ -90,10 +90,10 @@ $('#modo_oscuro').on('change',function(ev){
 //modo oscuro
 function cambiarAModoOscuro(){
     modoOscuro = true;
-    if(barra.classList.contains("navbar-clear"))
-        barra.classList.remove("navbar-clear");
-    if(barra.classList.contains("bg-clear"))
-        barra.classList.remove("bg-clear");
+    if(barra.classList.contains("navbar-light"))
+        barra.classList.remove("navbar-light");
+    if(barra.classList.contains("bg-light"))
+        barra.classList.remove("bg-light");
     barra.classList.add("navbar-dark");
     barra.classList.add("bg-dark");
     document.body.style.backgroundColor = "black";
@@ -105,8 +105,8 @@ function cambiarAModoClaro(){
         barra.classList.remove("navbar-dark");
     if(barra.classList.contains("bg-dark"))
         barra.classList.remove("bg-dark");
-    barra.classList.add("navbar-clear");
-    barra.classList.add("bg-clear");
+    barra.classList.add("navbar-light");
+    barra.classList.add("bg-light");
     document.body.style.backgroundColor = "white";
     document.body.style.color = "black";
 }
