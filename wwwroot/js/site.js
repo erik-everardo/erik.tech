@@ -57,12 +57,12 @@ $("#form_editar").submit(function(){
     return false;
 });
 
-
+var capa_notificaciones_tope = document.getElementById("capa_notificaciones");
 function despuesDeEditar(respuesta){
     if(respuesta === "correcto"){
         $("#modalEditar").modal('hide');
         abrir_mis_articulos();
-        var capa_notificaciones_tope = document.getElementById("capa_notificaciones");
+        
         var notificacion = $('#notificacion_articulo_editado');
         capa_notificaciones_tope.style.visibility = "visible";
         
@@ -70,3 +70,45 @@ function despuesDeEditar(respuesta){
         
     }
 }
+
+//funciones para control de ajustes
+
+
+$('#modo_oscuro').on('change',function(ev){
+    if($('#modo_oscuro').prop('checked')){
+        cambiarAModoOscuro();
+        guardarCambiosDeModoOscuro(true);
+    }else{
+        cambiarAModoClaro();
+        guardarCambiosDeModoOscuro(false);
+    }
+        
+    
+});
+
+
+//modo oscuro
+function cambiarAModoOscuro(){
+    modoOscuro = true;
+    if(barra.classList.contains("navbar-clear"))
+        barra.classList.remove("navbar-clear");
+    if(barra.classList.contains("bg-clear"))
+        barra.classList.remove("bg-clear");
+    barra.classList.add("navbar-dark");
+    barra.classList.add("bg-dark");
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "white";
+}
+function cambiarAModoClaro(){
+    modoOscuro = false;
+    if(barra.classList.contains("navbar-dark"))
+        barra.classList.remove("navbar-dark");
+    if(barra.classList.contains("bg-dark"))
+        barra.classList.remove("bg-dark");
+    barra.classList.add("navbar-clear");
+    barra.classList.add("bg-clear");
+    document.body.style.backgroundColor = "white";
+    document.body.style.color = "black";
+}
+
+
