@@ -167,7 +167,7 @@
           </div>
           <div class="form-group">
             <label for="parrafo-descripcion">Descripción</label>
-            <textarea class="form-control" placeholder="Descripción tuya" id="parrafo-descripcion" name="descripcion">@ViewData["descripcion"]</textarea>
+            <textarea class="form-control" placeholder="Descripción tuya" id="parrafo-descripcion" disabled name="descripcion">@ViewData["descripcion"]</textarea>
           </div>
           <input type="hidden" value="@ViewData["id_usuario"]" name="id"/>
         </form>
@@ -455,6 +455,7 @@
     $('#perfil_nombre').prop('disabled',false);
     $('#perfil_correo').prop('disabled',false);
     $('#boton_perfil_info_guardar_cambios').prop('disabled',false);
+    $('#parrafo-descripcion').prop('disabled',false);
   });
       //ve si la contraseña es correcta
   $('#boton_continuar_confirmacion').on('click',function(e){
