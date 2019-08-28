@@ -11,7 +11,7 @@
         return Xsrf.GetAndStoreTokens(HttpContext).RequestToken;
     }
 }
-<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
+<nav id="barra-navegacion-dash" class="navbar navbar-expand-sm sticky-top">
 
   <div class="dropdown navbar_brand">
     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown" aria-haspopup="true" ara-expandend="false">
@@ -144,21 +144,32 @@
         <div id="mis_articulos"></div>
       </div>
       <div id="capa_perfil">
+        <h3>Mi perfil</h3>
+        <hr/>
         <!--imagen prototipo-->
         <img src="/img-usuario-proto.jpg" height="60px"/><h4>@ViewData["nombre_de_usuario"]</h4>
         <hr/>
-        <h5>Información de cuenta</h5>
-        <button class="btn btn-primary btn-sm" id="boton_editar_info_perfil">Editar</button>
-        <button class="btn btn-success btn-sm" id="boton_perfil_info_guardar_cambios" data-target="#confirmarContra_perfil" data-toggle="modal" disabled>Guardar</button>
+        <div class="encabezado-seccion">
+          <h5>Información de cuenta</h5>
+          <button class="btn btn-primary btn-sm" id="boton_editar_info_perfil">Editar</button>
+          <button class="btn btn-success btn-sm" id="boton_perfil_info_guardar_cambios" data-target="#confirmarContra_perfil" data-toggle="modal" disabled>Guardar</button>
+        </div>
+
         <form id="perfil_info_modificar" asp-antiforgery="true">
           <div class="form-group">
             <label for="perfil_nombre">Nombre de usuario</label>
             <input class="form-control" value="@ViewData["nombre_de_usuario"]" id="perfil_nombre" disabled name="nuevoNombre"/>
+
+          </div>
+          <div class="form-group">
             <label for="perfil_correo">E-mail</label>
             <input class="form-control" value="@ViewData["correo"]" id="perfil_correo" disabled name="nuevoCorreo"/>
-            <input type="hidden" value="@ViewData["id_usuario"]" name="id"/>
-            <textarea class="form-control" placeholder="Descripción tuya" name="descripcion"></textarea>
           </div>
+          <div class="form-group">
+            <label for="parrafo-descripcion">Descripción</label>
+            <textarea class="form-control" placeholder="Descripción tuya" id="parrafo-descripcion" name="descripcion">@ViewData["descripcion"]</textarea>
+          </div>
+          <input type="hidden" value="@ViewData["id_usuario"]" name="id"/>
         </form>
         <hr/>
       </div>
@@ -188,14 +199,6 @@
             </div>
           </div>
           <hr/>
-          <div class="form-group">
-            <h4>Preferencias de privacidad</h4>
-            <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="privacidad_mostrar_correo" name="mostrarCorreo"/>
-              <label class="custom-control-label" for="privacidad_mostrar_correo">Mostrar tu correo en tus artículos publicados</label>
-            </div>
-            
-          </div>
           <div class="form-group">
             <button class="form-control btn btn-primary">Guardar ajustes</button>
           </div>
@@ -259,11 +262,6 @@
             <label for="desarrollo_check"><input name="desarrollo" type="checkbox" id="desarrollo_check"/> Desarrollo</label>
             <label for="gaming_check"><input name="gaming" type="checkbox" id="gaming_check"/> Gaming</label>
             <label for="hardware_check"><input name="hardware"type="checkbox" id="hardware_check"/> Hardware</label>
-            
-            <div class="form-group">
-              <label for="textarea_palabras_clave" class="col-form-label">Palabras clave (no implementado)</label>
-              <textarea type="text" id="textarea_palabras_clave" class="form-control">Aqui van las palabras clave guardadas (Proximamente)</textarea>
-            </div>
           </div>
           
         <input name="id" type="hidden" id="id_articulo"/>
@@ -313,6 +311,11 @@
       var capa_mis_articulos_DOM = document.getElementById("capa_mis_articulos");
       var capa_ajustes_DOM = document.getElementById("capa_ajustes");
       var capa_perfil = document.getElementById("capa_perfil");
+      
+      //referencia a barra principal
+      var barra = document.getElementById("barra-navegacion-dash");
+      
+      var modoOscuro = @ViewData["modoOscuro"];
       
       //variable que guarda contraseña al intentar guardar cambios de info de perfil
       var campoContraPerfilInfo = document.getElementById("pass_confirmacion_perfil_info");
@@ -460,9 +463,56 @@
     else{
       alertaContraIncorrecta.style.display = "none";
       var enviar = $('#perfil_info_modificar').serialize();
-       $.post("/admin/ModificarInfoPerfil",enviar);
+       $.post("/admin/ModificarInfoPerfil",enviar,despuesDeModificarInfoPerfil);
     }
       
   })
+  function despuesDeModificarInfoPerfil(respuesta){
+    $('#confirmarContra_perfil').modal('hide');
+    capa_notificaciones_tope.style.visibility = "visible";
+    $('#notificacion_informacion_actualizada_perfil').toast('show');
+  }
+
+    
+      
+      if(modoOscuro) {
+        $('#modo_oscuro').prop('checked','true');
+        cambiarAModoOscuro();
+      }
+      else {
+        $('#modo_oscuro').prop('checked','true');
+        cambiarAModoClaro();
+      }
+    
+  if(!$('#modo_oscuro').prop('checked')){
+
+barra.classList.add("navbar-clear");
+    barra.classList.add("bg-clear");
+    
+  }else{
+    barra.classList.add("navbar-dark");
+        barra.classList.add("bg-dark");
+  }
+  
+  function guardarCambiosDeModoOscuro(esModoOscuro){
+      if(esModoOscuro){
+          var aEnviar = {
+              modoOscuro:"on",
+              __RequestVerificationToken:"@GetAntiXsrfRequestToken()",
+              id:"@ViewData["id_usuario"]",
+              pass:"@ViewData["password_usuario"]"
+          };
+          $.post("/admin/ModificarAjustes",aEnviar);
+      }
+      else if(!esModoOscuro){
+          var aEnviar = {
+              modoOscuro:"off",
+              __RequestVerificationToken:"@GetAntiXsrfRequestToken()",
+              id:"@ViewData["id_usuario"]",
+              pass:"@ViewData["password_usuario"]"
+          };
+          $.post("/admin/ModificarAjustes",aEnviar);
+  }
+  }
   </script>
 }

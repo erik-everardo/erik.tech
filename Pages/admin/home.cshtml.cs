@@ -58,6 +58,16 @@ namespace erik_tech.Pages
                 ViewData["password_usuario"] = password;
                 ViewData["correo"] = usuario.email;
                 ViewData["id_usuario"] = usuario.Id;
+                if (usuario.parrafoDescripcion != null)
+                    ViewData["descripcion"] = usuario.parrafoDescripcion;
+                if (usuario.modoOscuro)
+                {
+                    ViewData["modoOscuro"] = "true";
+                }
+                else
+                {
+                    ViewData["modoOscuro"] = "false";
+                }
             }
             //por alguna razon no es correcta la credencial. CUIDADO
             else
