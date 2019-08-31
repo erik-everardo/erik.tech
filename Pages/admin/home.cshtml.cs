@@ -13,6 +13,7 @@ namespace erik_tech.Pages
     {
 
         private readonly DbContextApp contexto;
+        public Cuenta usuario;
         public homeModel(DbContextApp dbContext)
         {
             contexto = dbContext;
@@ -24,10 +25,28 @@ namespace erik_tech.Pages
         {
             try
             {
-                Cuenta usuario = contexto.cuenta.Single(u => u.username.Equals(username));
+                usuario = contexto.cuenta.Single(u => u.username.Equals(username));
                 if (usuario.password == password)
                 {
-                    RecuperarDatos(username,password);
+                    ViewData["nombre_de_usuario"] = usuario.username;
+                    ViewData["password_usuario"] = usuario.password;
+                    ViewData["correo"] = usuario.email;
+                    ViewData["id_usuario"] = usuario.Id;
+                    if(usuario.modoOscuro) ViewData["modoOscuro"] = "true";
+                    else ViewData["modoOscuro"] = "false";
+                    if (usuario.modoOscuro)
+                    {
+                        ViewData["string_clase_barra_navegacion"] =
+                            "navbar navbar-expand-sm sticky-top navbar-dark bg-dark";
+                        ViewData["string_clase_body"] = "bg-dark text-light";
+                    }
+                    else
+                    {
+                        ViewData["string_clase_barra_navegacion"] =
+                            "navbar navbar-expand-sm sticky-top navbar-light bg-light";
+                        ViewData["string_clase_body"] = "bg-light text-body";
+                    }
+                    if (usuario.parrafoDescripcion != null) ViewData["descripcion"] = usuario.parrafoDescripcion;
                     return Page();
                 }
                 else
@@ -39,42 +58,6 @@ namespace erik_tech.Pages
             {
                 return RedirectToPage("/admin/Index",new {err = "nousuario"});
             }
-            
-            
-            
-
-            
         }
-        //recuperar todos los datos del usuario ademas del nombre y la contraseña
-        public void RecuperarDatos(string name, string password)
-        {
-            //Definitivamente el usuario existe y la contraseña es correcta.
-            //Es la segunda validación, la primera fue hecha directamente por el cliente
-            if(contexto.cuenta.Any(u => u.username.Equals(name) && u.password.Equals(password)))
-            {
-                var usuario = contexto.cuenta.Single(u => u.username.Equals(name) && u.password.Equals(password));
-                
-                ViewData["nombre_de_usuario"] = name;
-                ViewData["password_usuario"] = password;
-                ViewData["correo"] = usuario.email;
-                ViewData["id_usuario"] = usuario.Id;
-                if (usuario.parrafoDescripcion != null)
-                    ViewData["descripcion"] = usuario.parrafoDescripcion;
-                if (usuario.modoOscuro)
-                {
-                    ViewData["modoOscuro"] = "true";
-                }
-                else
-                {
-                    ViewData["modoOscuro"] = "false";
-                }
-            }
-            //por alguna razon no es correcta la credencial. CUIDADO
-            else
-            {
-                RedirectToPage("Index");
-            }
-        }
-
     }
 }

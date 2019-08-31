@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="~/lib/fontaw/css/all.css" />
 
 </head>
-<body onload="ajustarDimensionesCuerpoEditor()">
+<body onload="ajustarDimensionesCuerpoEditor();" class="@ViewData["string_clase_body"]">
     
 <div class="fluid-container">
     <partial name="_CookieConsentPartial" />
@@ -75,6 +75,7 @@
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/editor.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: true)
+    <script src="~/js/modoOscuro.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
