@@ -10,7 +10,7 @@ namespace erik_tech.Pages
     public class SolicitarArticuloModel : PageModel
     {
         private readonly DbContextApp contexto;
-        public List<Articulo> articulos = new List<Articulo>();
+        public List<Articulo> articulos;
         public SolicitarArticuloModel(DbContextApp _contexto)
         {
             contexto = _contexto;
@@ -23,6 +23,9 @@ namespace erik_tech.Pages
         {
             
             articulos = contexto.articulo.Where(a => a.autor_id.Equals(int.Parse(ID_usuario))).ToList();
+            Cuenta usuario = contexto.cuenta.Find(int.Parse(ID_usuario));
+            if(usuario.modoOscuro) ViewData["string_clase_oscuro"] = "bg-dark text-light";
+            else ViewData["string_clase_oscuro"] = "";
             
             return Page();
         }

@@ -1,13 +1,18 @@
-﻿
+﻿//variables de estado de etiquetas del editor grafico
+var parrafoAbierto = false;
+var negritasAbierto = false;
+var subyaradoAbierto = false;
+var italicaAbierto = false;
+
 /*Logica para pagina editor*/
 function calculaAlturaCuerpo(){
     var barra = document.getElementById("nav-tab");
     var input_titulo = document.getElementById("titulo_text");
+    var barraNavegacion = document.getElementById("barra-navegacion-dash");
+    var textareacuerpo  = document.getElementById("cuerpo_articulo");
 
-    var pxArribaCuerpo = barra.offsetHeight + input_titulo.offsetHeight + 20;
-    var altura = innerHeight - pxArribaCuerpo - 20;
-
-    return altura;
+    var pxArribaCuerpo = barra.offsetHeight + input_titulo.offsetHeight + barraNavegacion.offsetHeight;
+    return window.innerHeight - pxArribaCuerpo;
 }
 function ajustarDimensionesCuerpoEditor(){
     var cuerpo = document.getElementById("cuerpo_articulo");
@@ -34,9 +39,3 @@ function actualizarVistaPrevia(){
         
     }
 }
-
-
-/**************************************************************/
-
-//borrar todos los values del articulo que se acaba de publicar
-//Esto permite empezar otro articulo nuevo despues

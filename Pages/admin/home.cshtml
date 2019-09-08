@@ -29,26 +29,11 @@
 
 
 <nav id="barra-navegacion-dash" class="@ViewData["string_clase_barra_navegacion"]">
-  <div class="dropdown navbar_brand">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown" aria-haspopup="true" ara-expandend="false">
-      <i class="fas fa-user-circle"></i>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
-      <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
-      <a class="dropdown-item" href="#" id="boton_ajustes">Ajustes</a>
-      <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
-    </div>
-  </div>
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra" aria-controls="barra" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="navbar-collapse collapse" id="barra">
     <ul class="navbar-nav mr-auto">
-      
       <li class="nav-item">
         <a class="nav-link" href="#" onclick="abrir_editor()">Redactar</a>
       </li>
@@ -58,11 +43,23 @@
       <li class="nav-item">
         <a href="" class="nav-link">Ayuda</a>
       </li>
-
-    
     </ul>
-
+    
+    
   </div>
+  <div class="dropdown navbar_brand mt-2 mt-md-0">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown" aria-haspopup="true" ara-expandend="false">
+      <i class="fas fa-user-circle"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+      <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
+      <a class="dropdown-item" href="#" id="boton_ajustes">Ajustes</a>
+      <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
+      </div>
+    </div>
+  
 </nav>
 
 <div class="row">
@@ -75,7 +72,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <ul class="nav nav-tabs" role="tablist" id="nav-tab">
+        <ul class="nav nav-tabs navbar-dark bg-dark" role="tablist" id="nav-tab">
           <li class="nav-item">
             <a href="#redactar" class="nav-link active" id="redactar-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">Redactar</a>
           </li>
@@ -92,8 +89,16 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="redactar" role="tabpanel" aria-labelledby="nav-redactar-tab">
             <div class="form-group" id="grupo">
-              <input type="text" class="form-control" id="titulo_text" placeholder="Escribir titulo aquí">
-              <textarea type="text" class="form-control" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html"></textarea>
+              <input type="text" class="form-control @ViewData["string_clase_body"]" id="titulo_text" placeholder="Escribir titulo aquí">
+              <div class="form-group form-inline">
+                <button class="form-control btn-sm m-1 btn btn-primary" title="Empezar párrafo">&lt;p&gt;</button>
+                <button class="form-control btn-sm m-1 btn btn-primary" title="Empezar texto en negritas">&lt;strong&gt;</button>
+                <button class="form-control btn-sm m-1 btn btn-primary" title="Empezar texto en itálicas">&lt;em&gt;</button>
+                <button class="form-control btn-sm m-1 btn btn-primary" title="Empezar texto en subrayado">&lt;u&gt;</button>
+                <button class="form-control btn-sm m-1 btn btn-primary" title="Insertar imagen">&lt;img&gt;</button>
+                <button class="form-control btn-sm m-1 btn btn-primary" title="Insertar enlace">&lt;a&gt;</button>
+              </div>
+              <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html"></textarea>
             </div>
           </div>
           <div class="tab-pane fade show" id="vista_previa"  role="tabpanel" aria-labelledby="nav-previa-tab">
@@ -155,7 +160,7 @@
       
       </div>
       <div id="capa_mis_articulos">
-        <h1>Mis articulos</h1>
+        <h1>Mis artículos</h1>
         
         <div id="mis_articulos"></div>
       </div>
@@ -229,7 +234,7 @@
 <!--Modales-->
 <div class="modal" tabindex="-1" role="dialog" id="no_texto_modal">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content @ViewData["string_clase_body"]">
       <div class="modal-header">
         <h5 class="modal-title">Falta contenido a su artículo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -251,7 +256,7 @@
 <!--Modal editar-->
 <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="editar_articulo" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" id="modal-dialog-editar" role="document">
-    <div class="modal-content" id="content_modal_editar">
+    <div class="modal-content @ViewData["string_clase_body"]" id="content_modal_editar">
       <div class="modal-header">
         <h5 class="modal-title" id="titulo_modal_editar"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-labelledby="modalEditar">
@@ -295,7 +300,7 @@
 <!--Modal perfil, de confirmacion de contraseña, modificacion de nombre de usuario y contraseña-->
 <div class="modal fade" id="confirmarContra_perfil" tabindex="-1" role="dialog" aria-labelledby="Cornfirmacion de contraseña" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div class="modal-content @ViewData["string_clase_body"]">
       <div class="modal-header">
         <h5 class="modal-title">Ingresa tu contraseña</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

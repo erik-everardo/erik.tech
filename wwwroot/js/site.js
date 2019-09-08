@@ -42,6 +42,7 @@ $("#form_publicacion").submit(function(){
     $.post("/admin/publicar",publicacion);
     descartarArticuloEnEdicion();
     abrir_mis_articulos();
+    solicitarArticulosHechos();
     return false;
 });
 
@@ -95,17 +96,10 @@ $("#form_editar").submit(function(){
     
     return false;
 });
-
-var capa_notificaciones_tope = document.getElementById("capa_notificaciones");
 function despuesDeEditar(respuesta){
     if(respuesta === "correcto"){
         $("#modalEditar").modal('hide');
-        abrir_mis_articulos();
-        
-        var notificacion = $('#notificacion_articulo_editado');
-        capa_notificaciones_tope.style.visibility = "visible";
-        
-        notificacion.toast("show");
+        solicitarArticulosHechos();
         
     }
 }
@@ -245,6 +239,4 @@ $('#boton_continuar_confirmacion').on('click',function(e){
 });
 function despuesDeModificarInfoPerfil(respuesta){
     $('#confirmarContra_perfil').modal('hide');
-    capa_notificaciones_tope.style.visibility = "visible";
-    $('#notificacion_informacion_actualizada_perfil').toast('show');
 }

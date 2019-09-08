@@ -12,7 +12,7 @@
 @foreach (var articulo in Model.articulos)
 {
     
-    <div class="card" style="margin-bottom:10px">
+    <div class="card @ViewData["string_clase_oscuro"]" style="margin-bottom:10px">
         <div class="card-header" >
             @articulo.titulo_publicacion
             

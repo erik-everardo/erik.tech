@@ -52,8 +52,8 @@ button.accept-policy {
   margin-top: 50px;
   margin-bottom: 20px;
 }
-#cuerpo_del_articulo{
-  height:400px;
+#cuerpo_articulo{
+  height:available;
 }
 #content_modal_editar{
   width:100%;
@@ -89,4 +89,10 @@ button.accept-policy {
 }
 .encabezado-seccion{
   margin-bottom: 10px;
+}
+.resultado-individual-busqueda{
+  margin:30px;
+}
+#boton_modo_oscuro{
+  margin-left: 7px;
 }
