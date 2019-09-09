@@ -19,38 +19,48 @@
     <link rel="stylesheet" href="~/lib/fontaw/css/all.css" />
 </head>
 <body onload="modoOscuroIndex()">
-<nav class="navbar navbar-expand-sm  sticky-top" id="barra_index">
-            <a class="navbar-brand" asp-page="Index" asp-route-categoria="">erik.tech</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navegacion_principal" aria-controls="navegacion_principal" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navegacion_principal">
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link active"asp-page="Index" asp-categoria="">Inicio <span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a class="nav-link" asp-page="admin/Index">Iniciar sesión</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-page="registro">Crear cuenta</a></li>
+<nav class="navbar navbar-expand-lg sticky-top" id="barra_index">
+
+    <a class="navbar-brand" asp-page="Index" asp-route-categoria="">erik.tech</a>
+    <button class="navbar-toggler m-1" type="button" data-toggle="collapse" data-target="#navegacion_principal" aria-controls="navegacion_principal" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            
+        </button>
+    
+    <div class="collapse navbar-collapse" id="navegacion_principal">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link active"asp-page="Index" asp-categoria="">Inicio <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a class="nav-link" asp-page="admin/Index">Iniciar sesión</a></li>
+            <li class="nav-item"><a class="nav-link" asp-page="registro">Crear cuenta</a></li>
                     
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Categorias
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Linux"><i class="fab fa-linux"></i> Linux</a>
-                            <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Windows"><i class="fab fa-windows"></i> Windows</a>
-                            <a class="dropdown-item" asp-page="/Index" asp-route-categoria="macOS"><i class="fab fa-apple"></i> macOS</a>
-                            <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Android"><i class="fab fa-android"></i> Android</a>
-                            <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Desarrollo"><i class="fas fa-code"></i> Desarrollo</a>
-                            <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Gaming"><i class="fas fa-gamepad"></i> Gaming</a>
-                            <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Hardware"><i class="fas fa-desktop"></i> Hardware</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-    <form method="get" action="/buscar" class="form-inline mt-2 mt-md-0 nav-item">
-        <input name="q" type="text" placeholder="Buscar" class="form-control mr-sm-2"/>
-        <input type="submit" value="Buscar" class="btn btn-outline-success my-2 my-sm-0"/>
-    </form>
-    <button class="btn nav-item" id="boton_modo_oscuro" title="Cambiar modo de color"></button>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorias
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Linux"><i class="fab fa-linux"></i> Linux</a>
+                    <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Windows"><i class="fab fa-windows"></i> Windows</a>
+                    <a class="dropdown-item" asp-page="/Index" asp-route-categoria="macOS"><i class="fab fa-apple"></i> macOS</a>
+                    <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Android"><i class="fab fa-android"></i> Android</a>
+                    <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Desarrollo"><i class="fas fa-code"></i> Desarrollo</a>
+                    <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Gaming"><i class="fas fa-gamepad"></i> Gaming</a>
+                    <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Hardware"><i class="fas fa-desktop"></i> Hardware</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <button class="btn" id="boton_modo_oscuro" title="Cambiar modo de color"></button>
+            </li>
+        </ul>
+        <ul class="nav ml-auto">
+            <li class="nav-item flex-fill">
+                <form method="get" action="/buscar" class="nav-item">
+                    <input name="q" type="text" placeholder="Buscar" class="form-control"/>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    
 </nav>
 <div class="container-fluid">
     <partial name="_CookieConsentPartial"/>
