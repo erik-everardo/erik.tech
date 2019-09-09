@@ -4,7 +4,7 @@
     ViewData["title"] = @Model.articulo.titulo_publicacion;
 }
 <article class="container">
-    <h2>@Model.articulo.encabezado</h2><a asp-page="/DescargarArticulo" asp-route-id="@Model.articulo.Id" download="@(Model.articulo.titulo_publicacion + ".html")"><i class="fas fa-download"></i>Descargar</a>
+    <section><h2>@Model.articulo.encabezado</h2><a asp-page="/DescargarArticulo" asp-route-id="@Model.articulo.Id" download="@(Model.articulo.titulo_publicacion + ".html")"><i class="fas fa-download"></i>Descargar</a></section>
     <p>Publicado el: @Convert.ToDateTime(Model.articulo.fecha_publicacion).Date.ToString("dd/MM/yyyy") por <a asp-page="/Perfiles" asp-route-user="@Model.BuscarNombreAutorPorIdArticulo(@Model.articulo.autor_id)">@Model.BuscarNombreAutorPorIdArticulo(@Model.articulo.autor_id)</a></p>
     
     <p>Categorias: 
