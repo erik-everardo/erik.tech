@@ -12,10 +12,12 @@ function calculaAlturaCuerpo(){
     var textareacuerpo  = document.getElementById("cuerpo_articulo");
 
     var pxArribaCuerpo = barra.offsetHeight + input_titulo.offsetHeight + barraNavegacion.offsetHeight;
+    
     return window.innerHeight - pxArribaCuerpo;
 }
 function ajustarDimensionesCuerpoEditor(){
     var cuerpo = document.getElementById("cuerpo_articulo");
+    document.getElementById("cuerpo_del_articulo").style.height = calculaAlturaCuerpo() + "px";
     cuerpo.style.height = calculaAlturaCuerpo() + "px";
 }
 window.addEventListener("resize", function(){
