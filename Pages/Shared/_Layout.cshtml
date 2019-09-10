@@ -84,6 +84,12 @@
 </environment>
 <script src="~/js/site.js" asp-append-version="true"></script>
 <script src="~/js/ajustesIndex.js"></script>
+<script>
+    //si jamas habia sido guardada la variable de modo oscuro, la crea
+    if(!window.localStorage.getItem("oscuro")){
+        window.localStorage.setItem("oscuro","off");
+    }
+</script>
 
 @RenderSection("Scripts", required: false)
 </body>
