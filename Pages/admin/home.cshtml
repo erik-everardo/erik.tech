@@ -28,7 +28,7 @@
 
 
 
-<nav id="barra-navegacion-dash" class="@ViewData["string_clase_barra_navegacion"]">
+<nav id="barra-navegacion-dash" class="navbar navbar-expand-sm sticky-top @ViewData["string_clase_barra_navegacion"]">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra" aria-controls="barra" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -66,13 +66,7 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
       <div id="capa_editor">
-        <div class="alert alert-danger alert-dismissible" role="alert">
-          Es obligatorio utilizar html para escribir los articulos. Si no, no se respetarán los saltos de línea, y no podrás definir ningun encabezado.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <ul class="nav nav-tabs navbar-dark bg-dark" role="tablist" id="nav-tab">
+        <ul class="nav nav-tabs @ViewData["string_clase_body"]" role="tablist" id="nav-tab">
           <li class="nav-item">
             <a href="#redactar" class="nav-link active" id="redactar-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">Redactar</a>
           </li>
@@ -90,7 +84,7 @@
           <div class="tab-pane fade show active" id="redactar" role="tabpanel" aria-labelledby="nav-redactar-tab">
             <div class="form-group" id="grupo">
               <input type="text" class="form-control @ViewData["string_clase_body"]" id="titulo_text" placeholder="Escribir titulo aquí">
-              <div class="form-group inline-block">
+              <div class="form-inline">
                 <button class="form-control btn-sm m-1 btn btn-primary" title="Empezar párrafo">&lt;p&gt;</button>
                 <button class="form-control btn-sm m-1 btn btn-primary" title="Empezar texto en negritas">&lt;strong&gt;</button>
                 <button class="form-control btn-sm m-1 btn btn-primary" title="Empezar texto en itálicas">&lt;em&gt;</button>
@@ -98,7 +92,7 @@
                 <button class="form-control btn-sm m-1 btn btn-primary" title="Insertar imagen">&lt;img&gt;</button>
                 <button class="form-control btn-sm m-1 btn btn-primary" title="Insertar enlace">&lt;a&gt;</button>
               </div>
-              <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html"></textarea>
+              <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html" rows="1"></textarea>
             </div>
           </div>
           <div class="tab-pane fade show" id="vista_previa"  role="tabpanel" aria-labelledby="nav-previa-tab">
@@ -282,7 +276,7 @@
             <label for="android_check"><input name="android" type="checkbox" id="android_check"/> Android</label>
             <label for="desarrollo_check"><input name="desarrollo" type="checkbox" id="desarrollo_check"/> Desarrollo</label>
             <label for="gaming_check"><input name="gaming" type="checkbox" id="gaming_check"/> Gaming</label>
-            <label for="hardware_check"><input name="hardware"type="checkbox" id="hardware_check"/> Hardware</label>
+            <label for="hardware_check"><input name="hardware" type="checkbox" id="hardware_check"/> Hardware</label>
           </div>
           
         <input name="id" type="hidden" id="id_articulo"/>

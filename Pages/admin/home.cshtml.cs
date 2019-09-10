@@ -37,13 +37,13 @@ namespace erik_tech.Pages
                     if (usuario.modoOscuro)
                     {
                         ViewData["string_clase_barra_navegacion"] =
-                            "navbar navbar-expand-lg sticky-top navbar-dark bg-dark";
+                            "navbar-dark bg-dark";
                         ViewData["string_clase_body"] = "bg-dark text-light";
                     }
                     else
                     {
                         ViewData["string_clase_barra_navegacion"] =
-                            "navbar navbar-expand-lg sticky-top navbar-light bg-light";
+                            "navbar-light bg-light";
                         ViewData["string_clase_body"] = "bg-light text-body";
                     }
                     if (usuario.parrafoDescripcion != null) ViewData["descripcion"] = usuario.parrafoDescripcion;

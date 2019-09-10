@@ -4,26 +4,15 @@ var negritasAbierto = false;
 var subyaradoAbierto = false;
 var italicaAbierto = false;
 
-/*Logica para pagina editor*/
-function calculaAlturaCuerpo(){
-    var barra = document.getElementById("nav-tab");
-    var input_titulo = document.getElementById("titulo_text");
-    var barraNavegacion = document.getElementById("barra-navegacion-dash");
-    var textareacuerpo  = document.getElementById("cuerpo_articulo");
 
-    var pxArribaCuerpo = barra.offsetHeight + input_titulo.offsetHeight + barraNavegacion.offsetHeight;
-    
-    return window.innerHeight - pxArribaCuerpo;
-}
+/*Logica para pagina editor*/
 function ajustarDimensionesCuerpoEditor(){
-    var cuerpo = document.getElementById("cuerpo_articulo");
-    document.getElementById("cuerpo_del_articulo").style.height = calculaAlturaCuerpo() + "px";
-    cuerpo.style.height = calculaAlturaCuerpo() + "px";
+    var text = this;
+    setTimeout(function(){
+        cuerpo_textarea.style.height = text.scrollHeight + "px";
+    },0);
 }
-window.addEventListener("resize", function(){
-    var cuerpo = document.getElementById("cuerpo_articulo");
-    cuerpo.style.height = calculaAlturaCuerpo() + "px";
-});
+cuerpo_textarea.addEventListener('keydown',ajustarDimensionesCuerpoEditor);
 
 function actualizarVistaPrevia(){
 

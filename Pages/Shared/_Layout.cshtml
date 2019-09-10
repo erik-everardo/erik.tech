@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:title" content="erik.tech"/>
     <meta property="og:description" content="El blog de Erik"/>
     <title>@ViewData["Title"] - erik.tech</title>
-
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -22,13 +21,10 @@
 </head>
 <body onload="modoOscuroIndex()">
 <nav class="navbar navbar-expand-lg sticky-top" id="barra_index">
-
     <a class="navbar-brand" asp-page="Index" asp-route-categoria="">erik.tech</a>
     <button class="navbar-toggler m-1" type="button" data-toggle="collapse" data-target="#navegacion_principal" aria-controls="navegacion_principal" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            
-        </button>
-    
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navegacion_principal">
         <ul class="nav">
             <li class="nav-item"><a class="nav-link active"asp-page="Index" asp-categoria="">Inicio <span class="sr-only">(current)</span></a></li>
@@ -61,12 +57,9 @@
             </li>
         </ul>
     </div>
-
-    
 </nav>
 <div class="container-fluid">
     <partial name="_CookieConsentPartial"/>
-
     <main role="main">
         @RenderBody()
     </main>

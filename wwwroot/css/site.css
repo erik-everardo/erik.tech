@@ -53,7 +53,8 @@ button.accept-policy {
   margin-bottom: 20px;
 }
 #cuerpo_articulo{
-  height:available;
+  height:auto;
+  overflow: hidden;
 }
 #content_modal_editar{
   width:100%;

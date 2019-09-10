@@ -15,7 +15,10 @@ function cambiarAModoOscuro(){
     if(document.body.classList.contains("text-body")) document.body.classList.remove("text-body");
     document.body.classList.add("bg-dark");
     document.body.classList.add("text-light");
-    
+    if(cuerpo_textarea.classList.contains("bg-light")) cuerpo_textarea.classList.remove("bg-light");
+    if(cuerpo_textarea.classList.contains("text-body")) cuerpo_textarea.classList.remove("text-body");
+    cuerpo_textarea.classList.add("bg-dark");
+    cuerpo_textarea.classList.add("text-light");
 }
 function cambiarAModoClaro(){
     modoOscuro = false;
@@ -29,7 +32,10 @@ function cambiarAModoClaro(){
     if(document.body.classList.contains("text-light")) document.body.classList.remove("text-light");
     document.body.classList.add("bg-light");
     document.body.classList.add("text-body");
-    
+    if(cuerpo_textarea.classList.contains("bg-dark")) cuerpo_textarea.classList.remove("bg-dark");
+    if(cuerpo_textarea.classList.contains("text-light")) cuerpo_textarea.classList.remove("text-light");
+    cuerpo_textarea.classList.add("bg-light");
+    cuerpo_textarea.classList.add("text-body");
 }
 function guardarCambiosDeModoOscuro(esModoOscuro){
     var aEnviar;
