@@ -23,9 +23,9 @@ namespace erik_tech.Pages
         }
         public void OnGet([FromQuery] string q)
         {
-            busqueda = q;
+            busqueda = q.ToLower();
             ArticuloEncontrados = contexto.articulo.Where(
-                articulo => articulo.titulo_publicacion.Contains(q) || articulo.encabezado.Contains(q) || articulo.cuerpo.Contains(q)).ToList();
+                articulo => articulo.titulo_publicacion.ToLower().Contains(busqueda) || articulo.encabezado.ToLower().Contains(busqueda) || articulo.cuerpo.ToLower().Contains(busqueda)).ToList();
             
         }
     }
