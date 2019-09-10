@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace erik_tech.Clases
 {
-    public class MetodosEstaticoGeneralesErikTech
+    public static class MetodosEstaticoGeneralesErikTech
     {
         public static List<Articulo> ObtenerArticulosAutor(int id_autor, DbContextApp contexto)
         {
