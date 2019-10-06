@@ -240,3 +240,15 @@ $('#boton_continuar_confirmacion').on('click',function(e){
 function despuesDeModificarInfoPerfil(respuesta){
     $('#confirmarContra_perfil').modal('hide');
 }
+
+$("#formulario-cambio-password").submit(function(){
+    if($('#nuevaPassword').val !== $('#confirmacionPassword').val){
+        alert("Las contraseñas no coinciden");
+    }else{
+        var paqueteAEnviar = $(this).serialize();
+        $.post("/admin/CambiarPassword",paqueteAEnviar);
+        
+        return false;  
+    }
+    
+});
