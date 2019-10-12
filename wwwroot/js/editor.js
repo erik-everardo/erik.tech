@@ -1,26 +1,29 @@
 ﻿/*Logica para pagina editor*/
+
+//referencias de elementos de editor
+var titulo = document.getElementById("titulo_text");
+var cuerpo_textarea = document.getElementById("cuerpo_articulo");
+var stringhtml = "";
+var vista_p = "";
+
 function ajustarDimensionesCuerpoEditor(){
-    var text = this;
     setTimeout(function(){
-        cuerpo_textarea.style.height = text.scrollHeight + "px";
+        cuerpo_textarea.style.height = this.scrollHeight + "px";
     },0);
 }
 cuerpo_textarea.addEventListener('keydown',ajustarDimensionesCuerpoEditor);
 
 function actualizarVistaPrevia(){
-
     try{
-        var titulo = document.getElementById("titulo_text");
-        var cuerpo_textarea = document.getElementById("cuerpo_articulo");
-        var stringhtml = 
+        
+        stringhtml = 
         "<h2>" + titulo.value + "</h2> " + cuerpo_textarea.value;
         
-        var vista_p = document.getElementById("vista_previa");
+        vista_p = document.getElementById("vista_previa");
         vista_p.innerHTML = stringhtml;
     
     }catch(Exception){
         console.error();
-        
     }
 }
 
