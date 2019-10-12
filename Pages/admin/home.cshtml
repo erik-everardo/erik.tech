@@ -51,17 +51,17 @@
   </div>
   <div class="col-2 d-flex justify-content-center align-items-center">
     <div class="dropdown navbar_brand mt-2 mt-md-0">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown" aria-haspopup="true" ara-expandend="false">
-              <i class="fas fa-user-circle"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" style="z-index: 2000!important;" aria-labelledby="dropdownMenuLink">
-              <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
-              <a class="dropdown-item" href="#" id="boton_ajustes">Ajustes</a>
-              <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
-            </div>
-          </div>
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown" aria-haspopup="true" ara-expandend="false">
+        <i class="fas fa-user-circle"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" style="z-index: 2000!important;" aria-labelledby="dropdownMenuLink">
+        <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
+        <a class="dropdown-item" href="#" id="boton_ajustes">Ajustes</a>
+        <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -198,14 +198,14 @@
         <form id="formulario-cambio-password" asp-antiforgery="true">
           <div class="form-group">
             <label for="password-actual">Contraseña actual</label>
-            <input id="password-actual" class="form-control" name="passwordActual"/>
+            <input type="password" id="password-actual" class="form-control" name="passwordActual"/>
           </div>
           <div class="form-group">
             <input type="hidden" value="@ViewData["id_usuario"]" name="idUsuario"/>
             <label for="nuevaPassword">Nueva contraseña</label>
-            <input id="nuevaPassword" class="form-control" name="nuevaPassword"/>
+            <input type="password" id="nuevaPassword" class="form-control" name="nuevaPassword"/>
             <label for="confirmacionPassword">Confirme contraseña nueva</label>
-            <input id="confirmacionPassword" class="form-control"/>
+            <input type="password" id="confirmacionPassword" class="form-control"/>
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Cambiar contraseña"/>
