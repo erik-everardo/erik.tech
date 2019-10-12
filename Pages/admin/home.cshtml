@@ -70,7 +70,7 @@
       <div id="capa_editor">
         <div class="row">
           <div class="col-11">
-            <ul class="nav nav-tabs @ViewData["string_clase_body"]" role="tablist" id="nav-tab">
+            <ul class="nav nav-tabs @ViewData["string_clase_body"]" role="tablist" id="nav-tab-capa-editor">
               <li class="nav-item">
                 <a href="#redactar" class="nav-link active" id="redactar-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">Redactar</a>
               </li>
@@ -97,7 +97,7 @@
                 <button id="boton_strong" class="btn btn-primary" title="Negritas">&lt;strong&gt;</button>
                 <button id="boton_u" class="btn btn-primary" title="Subrayado">&lt;u&gt;</button>
                 <button id="boton_img" class="btn btn-primary" title="Insertar imagen">&lt;img&gt;</button>
-                <button id="boton_a" class="btn btn-primary" title="Insertar enlace">&lt;a&gt;</button>
+                <button type="button" id="boton_a" class="btn btn-primary" title="Insertar enlace" data-content="some html" data-toggle="popover" data-placement="bottom" data-container="body">&lt;a&gt;</button>
               </div>
               <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html" rows="1"></textarea>
             </div>

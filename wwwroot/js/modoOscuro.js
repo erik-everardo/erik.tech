@@ -3,6 +3,10 @@ Modo oscuro
 Incluye las funciones para cambiar a modo oscuro y claro y asigna el modo al cargar la pagina
 */
 
+//referencias
+var tabsCapaEditor = document.getElementById("nav-tab-capa-editor");
+
+
 function cambiarAModoOscuro(){
     modoOscuro = true;
     if(barra.classList.contains("navbar-light"))
@@ -19,6 +23,12 @@ function cambiarAModoOscuro(){
     if(cuerpo_textarea.classList.contains("text-body")) cuerpo_textarea.classList.remove("text-body");
     cuerpo_textarea.classList.add("bg-dark");
     cuerpo_textarea.classList.add("text-light");
+    if(tabsCapaEditor.classList.contains("bg-light"))
+        tabsCapaEditor.classList.remove("bg-light");
+    tabsCapaEditor.classList.add("bg-dark");
+    if(titulo.classList.contains("bg-light"))
+        titulo.classList.remove("bg-light");
+    titulo.classList.add("bg-dark");
 }
 function cambiarAModoClaro(){
     modoOscuro = false;
@@ -36,6 +46,12 @@ function cambiarAModoClaro(){
     if(cuerpo_textarea.classList.contains("text-light")) cuerpo_textarea.classList.remove("text-light");
     cuerpo_textarea.classList.add("bg-light");
     cuerpo_textarea.classList.add("text-body");
+    if(tabsCapaEditor.classList.contains("bg-dark"))
+        tabsCapaEditor.classList.remove("bg-dark");
+    tabsCapaEditor.classList.add("bg-light");
+    if(titulo.classList.contains("bg-dark"))
+        titulo.classList.remove("bg-dark");
+    titulo.classList.add("bg-light");
 }
 function guardarCambiosDeModoOscuro(esModoOscuro){
     var aEnviar;
