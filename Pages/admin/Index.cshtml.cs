@@ -7,7 +7,8 @@ namespace erik_tech.Pages
         public bool usuarioNoExiste = false;
         public bool contraIncorrecta = false;
         public string textoUsuario = "";
-        public void OnGet(string err="", string usuario = "")
+        public bool redirigido = false;
+        public void OnGet(string err="", string usuario = "", string redirigido = "no")
         {
             switch (err)
             {
@@ -22,6 +23,14 @@ namespace erik_tech.Pages
 
             if (!string.IsNullOrEmpty(usuario))
                 textoUsuario = usuario;
+            
+            switch (redirigido)
+            {
+                case "si": this.redirigido = true;
+                break;
+                case "no": this.redirigido = false;
+                break;
+            }
         }
         
 
