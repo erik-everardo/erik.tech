@@ -52,10 +52,6 @@ button.accept-policy {
   margin-top: 50px;
   margin-bottom: 20px;
 }
-#cuerpo_articulo{
-  height:auto;
-  overflow: hidden;
-}
 #content_modal_editar{
   width:100%;
 }
@@ -97,7 +93,7 @@ button.accept-policy {
 #boton_modo_oscuro{
   margin-left: 7px;
 }
-.botones_formato_editor{
+#botones_formato_editor{
   margin-bottom: 10px;
   margin-top: 20px;
 }

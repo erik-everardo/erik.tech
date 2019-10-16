@@ -1,21 +1,24 @@
 ﻿/*Logica para pagina editor*/
-
 //referencias de elementos de editor
 var titulo = document.getElementById("titulo_text");
 var cuerpo_textarea = document.getElementById("cuerpo_articulo");
 var stringhtml = "";
 var vista_p = "";
 
+//referencia row barra
+var rowBarra = document.getElementById("row-barra");
+var grupoBotonesFormato = document.getElementById("botones_formato_editor");
 function ajustarDimensionesCuerpoEditor(){
-    setTimeout(function(){
-        cuerpo_textarea.style.height = this.scrollHeight + "px";
-    },0);
+    cuerpo_textarea.style.height = 
+        (window.innerHeight - 
+            (rowBarra.offsetHeight + 
+                tabsCapaEditor.offsetHeight + 
+                titulo.offsetHeight + 
+                grupoBotonesFormato.offsetHeight) - 60) + "px";
 }
-cuerpo_textarea.addEventListener('keydown',ajustarDimensionesCuerpoEditor);
-
+window.addEventListener('resize',ajustarDimensionesCuerpoEditor);
 function actualizarVistaPrevia(){
     try{
-        
         stringhtml = 
         "<h2>" + titulo.value + "</h2> " + cuerpo_textarea.value;
         
