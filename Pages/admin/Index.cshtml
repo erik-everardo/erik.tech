@@ -15,6 +15,14 @@
 <div class="col-6" id="celda_media">
     <a asp-page="/Index"><i class="fas fa-arrow-left"></i></a><h1>Iniciar sesión</h1>
     <p>Inicia sesión para poder redactar. <a href="#">Más información</a></p>
+    @if (Model.redirigido)
+    {
+        
+        <div class="alert alert-primary" role="alert">
+        <h4 class="alert-heading">Bienvenido, @Model.textoUsuario</h4><hr/>
+            <p>Tu cuenta ha sido creada exitosamente, ingresa tu contraseña para continuar.</p>
+        </div>
+    }
     
     <form id="login" class="text-center" asp-antiforgery="true" action="/admin/home" method="post">
         <div class="form-group">
@@ -30,7 +38,7 @@
                 }
                 else if(!Model.usuarioNoExiste && !Model.contraIncorrecta)
                 {
-                    <input name="username" id="usuario" type="text" class="form-control entradas_login" placeholder="Nombre de usuario">
+                    <input name="username" id="usuario" type="text" class="form-control entradas_login" value="@Model.textoUsuario" placeholder="Nombre de usuario">
                 }
             }
             
