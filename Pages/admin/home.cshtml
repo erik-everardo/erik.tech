@@ -28,7 +28,7 @@
 
 
 
-<div class="row">
+<div class="row" id="row-barra">
   <div class="col-10">
     <nav id="barra-navegacion-dash" class="navbar navbar-expand-sm sticky-top @ViewData["string_clase_barra_navegacion"]">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra" aria-controls="barra" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,13 +91,17 @@
           <div class="tab-pane fade show active" id="redactar" role="tabpanel" aria-labelledby="nav-redactar-tab">
             <div class="form-group" id="grupo">
               <input type="text" class="@ViewData["string_clase_body"] form-control" id="titulo_text" placeholder="Escribir titulo aquí">
-              <div class="btn-group botones_formato_editor">
-                <button id="boton_p" class="btn btn-primary" title="Párrafo">&lt;p&gt;</button>
-                <button id="boton_em" class="btn btn-primary" title="Itálicas">&lt;em&gt;</button>
-                <button id="boton_strong" class="btn btn-primary" title="Negritas">&lt;strong&gt;</button>
-                <button id="boton_u" class="btn btn-primary" title="Subrayado">&lt;u&gt;</button>
-                <button id="boton_img" class="btn btn-primary" title="Insertar imagen">&lt;img&gt;</button>
-                <button type="button" id="boton_a" class="btn btn-primary" title="Insertar enlace" data-content="some html" data-toggle="popover" data-placement="bottom" data-container="body">&lt;a&gt;</button>
+              <div class="btn-toolbar" id="botones_formato_editor">
+                <div class="btn-group mr-2 btn-group-sm">
+                  <button id="boton_p" class="btn btn-primary" title="Párrafo"><i class="fas fa-paragraph"></i></button>
+                  <button id="boton_em" class="btn btn-primary" title="Itálicas"><em>I</em></button>
+                  <button id="boton_strong" class="btn btn-primary" title="Negritas"><strong>N</strong></button>
+                  <button id="boton_u" class="btn btn-primary" title="Subrayado"><u>S</u></button>
+                </div>
+                <div class="btn-group mr-2 btn-group-sm">
+                  <button id="boton_img" class="btn btn-primary" title="Insertar imagen"><i class="far fa-image"></i></button>
+                  <button type="button" id="boton_a" class="btn btn-primary" title="Insertar enlace" data-content="some html" data-toggle="popover" data-placement="bottom" data-container="body"><i class="fas fa-link"></i></button>
+                </div>
               </div>
               <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html" rows="1"></textarea>
             </div>
