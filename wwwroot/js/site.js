@@ -41,8 +41,9 @@ $("#form_publicacion").submit(function(){
     var publicacion = $(this).serialize();
     $.post("/admin/publicar",publicacion);
     descartarArticuloEnEdicion();
-    abrir_mis_articulos();
     solicitarArticulosHechos();
+    abrir_mis_articulos();
+    
     return false;
 });
 
@@ -246,9 +247,19 @@ $("#formulario-cambio-password").submit(function(){
         alert("Las contraseñas no coinciden");
     }else{
         var paqueteAEnviar = $(this).serialize();
-        $.post("/admin/CambiarPassword",paqueteAEnviar);
+        $.post("/admin/CambiarPassword",paqueteAEnviar, despuesDeCambiarPassword);
         
         return false;  
     }
     
 });
+function despuesDeCambiarPassword(respuesta){
+    if(respuesta === "hecho") {
+        alert("Contraseña actualizada!");
+        console.log("contraseña actualizada");
+    }
+    else if(respuesta === "error") {
+        alert("Asegurarse de que la contraseña actual es correcta!");
+        console.log("error");
+    }
+}

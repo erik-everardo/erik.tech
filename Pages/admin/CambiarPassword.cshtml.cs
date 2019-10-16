@@ -8,6 +8,7 @@ namespace erik_tech.Pages
     public class CambiarPassword : PageModel
     {
         private readonly DbContextApp contexto;
+        public string estado;
 
         public CambiarPassword(DbContextApp contexto)
         {
@@ -23,7 +24,12 @@ namespace erik_tech.Pages
             Cuenta usuario = contexto.cuenta.Find(int.Parse(idUsuario));
             if (usuario.password.Equals(passwordActual))
             {
+                estado = "hecho";
                 usuario.password = nuevaPassword;
+            }
+            else
+            {
+                estado = "error";
             }
 
             contexto.cuenta.Update(usuario);
