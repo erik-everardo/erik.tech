@@ -34,7 +34,7 @@ namespace erik_tech.Pages
             _dbContext.cuenta.Add(cuenta);
 
             _dbContext.SaveChanges();
-            return Page();
+            return RedirectToPage("/admin/Index",new{usuario = username, redirigido = "si"});
         }
     }
 }
