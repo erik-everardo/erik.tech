@@ -20,12 +20,9 @@
 
 </head>
 <body onload="ajustarDimensionesCuerpoEditor();" class="@ViewData["string_clase_body"]">
-    
-<div class="fluid-container">
-    <partial name="_CookieConsentPartial" />
-    <div class="col-12">
-        @RenderBody()
-    </div>
+<partial name="_CookieConsentPartial" />
+<div class="container-fluid">
+    @RenderBody()
 </div>
 <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
