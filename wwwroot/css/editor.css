@@ -11,3 +11,10 @@
     margin:auto!important;
     height:400px!important;
 }
+#vista_previa_tiempo_real{
+    overflow-y: auto;
+}
+#aviso-vista-previa{
+    font-size: large;
+    color: grey;
+}
