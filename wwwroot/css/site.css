@@ -81,7 +81,7 @@ button.accept-policy {
 #capa_mis_articulos{
   display:none;
 }
-#capa_ajustes{
+#capa_ajustes, #capa-galeria{
   display: none;
 }
 .encabezado-seccion{
