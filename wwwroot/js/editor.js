@@ -4,6 +4,7 @@ var titulo = document.getElementById("titulo_text");
 var cuerpo_textarea = document.getElementById("cuerpo_articulo");
 var stringhtml = "";
 var vista_p = "";
+var vista_previa_tiempo_real = document.getElementById("vista_previa_tiempo_real");
 
 //referencia row barra
 var rowBarra = document.getElementById("row-barra");
@@ -15,6 +16,7 @@ function ajustarDimensionesCuerpoEditor(){
                 tabsCapaEditor.offsetHeight + 
                 titulo.offsetHeight + 
                 grupoBotonesFormato.offsetHeight) - 60) + "px";
+    vista_previa_tiempo_real.style.maxHeight = cuerpo_textarea.style.height;
 }
 window.addEventListener('resize',ajustarDimensionesCuerpoEditor);
 function actualizarVistaPrevia(){
@@ -60,10 +62,10 @@ boton_p.on("click",function(){
         for(i=textarea_cuerpo.selectionStart; i<textarea_cuerpo.value.length;i++){
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
-        textarea_cuerpo.value = textoAntesDeSeleccion + "<p></p>" + textoDespuesDeSeleccion;
+        textarea_cuerpo.value = textoAntesDeSeleccion + "<p>\n\n</p>" + textoDespuesDeSeleccion;
         
-        textarea_cuerpo.selectionStart = textoAntesDeSeleccion.length + 3;
-        textarea_cuerpo.selectionEnd = textoAntesDeSeleccion.length + 3;
+        textarea_cuerpo.selectionStart = textoAntesDeSeleccion.length + 4;
+        textarea_cuerpo.selectionEnd = textoAntesDeSeleccion.length + 4;
         textarea_cuerpo.focus();
         
     }else{
@@ -217,7 +219,7 @@ boton_u.on("click", function () {
     reflejarCodigoEnVistaPrevia();
 });
 
-var campoLinkUrl = document.getElementById("link-url");
+var campoLinkUrl = document.getElementById("link_url");
 var campoLinkTexto = document.getElementById("link_texto");
 
 boton_a.on('click',function(){
@@ -242,7 +244,7 @@ function insertarVinculo(){
         for(i=textarea_cuerpo.selectionStart; i<textarea_cuerpo.value.length;i++){
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
-        var a_href = "<a href='https://ejemplo.com'></a>";
+        var a_href = "<a href='" + campoLinkUrl.value + "'>" + campoLinkTexto.value + "</a>";
         textarea_cuerpo.value = textoAntesDeSeleccion + a_href + textoDespuesDeSeleccion;
 
         textarea_cuerpo.selectionStart = textoAntesDeSeleccion.length + (a_href.length-4);
@@ -253,7 +255,7 @@ function insertarVinculo(){
         for(var i=textarea_cuerpo.selectionStart;i<textarea_cuerpo.selectionEnd;i++){
             textoSeleccionado += textarea_cuerpo.value.charAt(i);
         }
-        textoSeleccionadoConEtiquetas = "<a href='https://ejemplo.com'>" + textoSeleccionado + "</a>";
+        textoSeleccionadoConEtiquetas = "<a href='" + campoLinkUrl.value + "'>" + textoSeleccionado + "</a>";
         console.log(textoSeleccionado);
         console.log(textoSeleccionadoConEtiquetas);
         textoAntesDeSeleccion = "";
@@ -272,10 +274,12 @@ function insertarVinculo(){
         textoDespuesDeSeleccion = "";
     }
     reflejarCodigoEnVistaPrevia();
+    campoLinkUrl.value = "";
+    campoLinkTexto.value = "";
 }
 $('#cuerpo_articulo').on('input' ,function(){
     reflejarCodigoEnVistaPrevia();
 });
 function reflejarCodigoEnVistaPrevia(){
-    document.getElementById("vista_previa_tiempo_real").innerHTML = document.getElementById("cuerpo_articulo").value;
+    vista_previa_tiempo_real.innerHTML = document.getElementById("cuerpo_articulo").value;
 }
