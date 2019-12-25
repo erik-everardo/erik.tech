@@ -3,12 +3,14 @@ var estaAbiertoEditor = false;
 var estaAbiertoMisArticulos = false;
 var estaAbiertoPerfil = false;
 var estaAbiertoAjustes = false;
+var estaAbiertoGaleria = false;
 
-//referencias a las 4 pantallas
+//referencias a las 5 pantallas
 var capa_editor_DOM = document.getElementById("capa_editor");
 var capa_mis_articulos_DOM = document.getElementById("capa_mis_articulos");
 var capa_ajustes_DOM = document.getElementById("capa_ajustes");
 var capa_perfil = document.getElementById("capa_perfil");
+var capa_galeria = document.getElementById("capa-galeria");
 
 //referencia a barra principal
 var barra = document.getElementById("barra-navegacion-dash");
@@ -33,7 +35,11 @@ var cuerpo_textarea = document.getElementById("cuerpo_articulo");
 var campo_oculto_cuerpo_DOM = document.getElementById("campo_oculto_cuerpo");
 var campo_oculto_encabezado_DOM = document.getElementById("campo_oculto_encabezado");
 
-
+//referencias a links de la barra principal (4)
+var linkAbrirEditor = document.getElementById("link-abrir-editor");
+var linkAbrirArticulos = document.getElementById("link-abrir-articulos");
+var linkAbrirGaleria = document.getElementById("link-abrir-galeria");
+var linkAbrirAyuda = document.getElementById("link-abrir-ayuda");
 
 //publicar
 $("#form_publicacion").submit(function(){
@@ -124,8 +130,11 @@ function abrir_editor(){
     if(estaAbiertoMisArticulos) cerrar_mis_articulos();
     if(estaAbiertoPerfil) cerrarPerfil();
     if(estaAbiertoAjustes) cerrarAjustes();
+    if(estaAbiertoGaleria) cerrarGaleria();
+    
     capa_editor_DOM.style.display = "block";
     ajustarDimensionesCuerpoEditor();
+    activarLinkDeBarra(1);
     estaAbiertoEditor =  true;
 }
 function cerrar_editor(){
@@ -136,8 +145,10 @@ function abrir_mis_articulos(){
     if(estaAbiertoEditor) cerrar_editor();
     if(estaAbiertoPerfil) cerrarPerfil();
     if(estaAbiertoAjustes) cerrarAjustes();
+    if(estaAbiertoGaleria) cerrarGaleria();
     capa_mis_articulos_DOM.style.display = "block";
     solicitarArticulosHechos();
+    activarLinkDeBarra(2);
     estaAbiertoMisArticulos = true;
 }
 function cerrar_mis_articulos(){
@@ -149,6 +160,7 @@ $('#btn_ver_perfil').on('click',function(ev){
     if(estaAbiertoEditor) cerrar_editor();
     if(estaAbiertoMisArticulos) cerrar_mis_articulos();
     if(estaAbiertoAjustes) cerrarAjustes();
+    if(estaAbiertoGaleria) cerrarGaleria();
 });
 function cerrarPerfil(){
     capa_perfil.style.display = "none";
@@ -158,12 +170,25 @@ $('#boton_ajustes').on('click', function(ev){
     if(estaAbiertoPerfil) cerrarPerfil();
     if(estaAbiertoMisArticulos) cerrar_mis_articulos();
     if(estaAbiertoEditor) cerrar_editor();
+    if(estaAbiertoGaleria) cerrarGaleria();
     capa_ajustes_DOM.style.display = "block";
     if(modoOscuro) $('#modo_oscuro').prop('checked',true);
     else $('#modo_oscuro').prop('checked',false);
 });
 function cerrarAjustes() {
     capa_ajustes_DOM.style.display = "none";
+}
+function abrirGaleria() {
+    estaAbiertoGaleria = true;
+    if(estaAbiertoEditor) cerrar_editor();
+    if(estaAbiertoPerfil) cerrarPerfil();
+    if(estaAbiertoAjustes) cerrarAjustes();
+    if(estaAbiertoMisArticulos) cerrar_mis_articulos();
+    capa_galeria.style.display = "block";
+    activarLinkDeBarra(3);
+}
+function cerrarGaleria(){
+    capa_galeria.style.display = "none";
 }
 function tabPublicacion(){
     encabezado_en_publicar.value = encabezado_DOM.value;
@@ -263,3 +288,38 @@ function despuesDeCambiarPassword(respuesta){
         console.log("error");
     }
 }
+
+//pantalla 1: Redactar
+//pantalla 2: Mis artículos
+//pantalla 3: Galería de imagenes
+//pantalla 4: Ayuda
+function activarLinkDeBarra(pantalla){
+    switch (pantalla){
+        case 1:
+            if(!linkAbrirEditor.classList.contains("active")) linkAbrirEditor.classList.add("active");
+            if(linkAbrirArticulos.classList.contains("active")) linkAbrirArticulos.classList.remove("active");
+            if(linkAbrirGaleria.classList.contains("active")) linkAbrirGaleria.classList.remove("active");
+            if(linkAbrirAyuda.classList.contains("active")) linkAbrirAyuda.classList.remove("active");
+            break;
+        case 2:
+            if(!linkAbrirArticulos.classList.contains("active")) linkAbrirArticulos.classList.add("active");
+            if(linkAbrirEditor.classList.contains("active")) linkAbrirEditor.classList.remove("active");
+            if(linkAbrirGaleria.classList.contains("active")) linkAbrirGaleria.classList.remove("active");
+            if(linkAbrirAyuda.classList.contains("active")) linkAbrirAyuda.classList.remove("active");
+            break;    
+        case 3:
+            if(!linkAbrirGaleria.classList.contains("active")) linkAbrirGaleria.classList.add("active");
+            if(linkAbrirArticulos.classList.contains("active")) linkAbrirArticulos.classList.remove("active");
+            if(linkAbrirEditor.classList.contains("active")) linkAbrirEditor.classList.remove("active");
+            if(linkAbrirAyuda.classList.contains("active")) linkAbrirAyuda.classList.remove("active");
+            break;
+        case 4:
+            if(!linkAbrirAyuda.classList.contains("active")) linkAbrirAyuda.classList.add("active");
+            if(linkAbrirArticulos.classList.contains("active")) linkAbrirArticulos.classList.remove("active");
+            if(linkAbrirGaleria.classList.contains("active")) linkAbrirGaleria.classList.remove("active");
+            if(linkAbrirEditor.classList.contains("active")) linkAbrirEditor.classList.remove("active");
+            break;
+    }
+}
+
+abrir_mis_articulos();
