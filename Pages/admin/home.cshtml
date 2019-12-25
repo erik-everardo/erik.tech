@@ -37,13 +37,16 @@
       <div class="navbar-collapse collapse" id="barra">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="abrir_editor()">Redactar</a>
+            <a class="nav-link" id="link-abrir-articulos" href="#" onclick="abrir_mis_articulos()">Mis artículos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="abrir_mis_articulos()">Mis articulos</a>
+            <a class="nav-link" id="link-abrir-editor" href="#" onclick="abrir_editor()">Redactar</a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">Ayuda</a>
+            <a class="nav-link" id="link-abrir-galeria" href="#" onclick="abrirGaleria()">Galería de imágenes</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" id="link-abrir-ayuda">Ayuda</a>
           </li>
         </ul>
       </div>
@@ -125,9 +128,6 @@
                     </div>
                   </div>
                 </div>
-                  
-
-                <div id="area-imagen-o-link">form</div>
               </div>
               
               <div class="row">
@@ -135,7 +135,10 @@
                   <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html" rows="1"></textarea>
                 </div>
                 <div class="col-6" id="vista_previa_tiempo_real">
-                  Vista previa
+                  <div id="aviso-vista-previa">
+                    <h3>Vista previa</h3>
+                    Comienza a escribir a la izquierda. <a href="#">Más información</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -199,7 +202,7 @@
 
       </div>
       <div id="capa_mis_articulos">
-        <h1>Mis artículos</h1>
+        <h3>Mis artículos</h3>
         
         <div id="mis_articulos"></div>
       </div>
@@ -277,6 +280,9 @@
           </div>
           <hr/>
         </form>
+      </div>
+      <div id="capa-galeria">
+        <h3>Galería de imágenes</h3>
       </div>
     </div>
 </div>
