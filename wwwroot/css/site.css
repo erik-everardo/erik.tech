@@ -103,3 +103,21 @@ button.accept-policy {
 .menu-grande{
   width: 300px;
 }
+
+#login{
+    margin-left:auto;
+}
+.entradas_login{
+    margin:10px;
+}
+#celda_media{
+    margin:auto!important;
+    height:400px!important;
+}
+#vista_previa_tiempo_real{
+    overflow-y: auto;
+}
+#aviso-vista-previa{
+    font-size: large;
+    color: grey;
+}
