@@ -41,6 +41,8 @@ var linkAbrirArticulos = document.getElementById("link-abrir-articulos");
 var linkAbrirGaleria = document.getElementById("link-abrir-galeria");
 var linkAbrirAyuda = document.getElementById("link-abrir-ayuda");
 
+var pantallaPublicar = document.getElementById("publicar");
+
 //publicar
 $("#form_publicacion").submit(function () {
 
@@ -209,9 +211,6 @@ function tabPublicacion() {
     //en publicar
     campo_oculto_cuerpo_DOM.value = cuerpo_textarea.value;
     campo_oculto_encabezado_DOM.value = encabezado_DOM.value;
-    //está algun campo vacio? avisa al usuario
-    if (cuerpo_textarea.value == "" || encabezado_DOM.value == "")
-        $("#no_texto_modal").modal('show');
 }
 
 function mandarAEditar() {
@@ -342,4 +341,11 @@ function activarLinkDeBarra(pantalla) {
     }
 }
 
+function aparecerPantallaPublicar() {
+    pantallaPublicar.style.display = "block";
+    tabPublicacion();
+}
+function desaparecerPantallaPublicar() {
+    pantallaPublicar.style.display = "none";
+}
 abrir_mis_articulos();
