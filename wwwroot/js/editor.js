@@ -14,7 +14,6 @@ function ajustarDimensionesCuerpoEditor() {
     cuerpo_textarea.style.height =
         (window.innerHeight -
             (rowBarra.offsetHeight +
-                tabsCapaEditor.offsetHeight +
                 titulo.offsetHeight +
                 grupoBotonesFormato.offsetHeight) - 60) + "px";
     vista_previa_tiempo_real.style.maxHeight = cuerpo_textarea.style.height;
