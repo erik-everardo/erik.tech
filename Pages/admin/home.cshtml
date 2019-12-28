@@ -67,140 +67,70 @@
 <div class="row">
 <div class="col-12">
 <div id="capa_editor">
-    <div class="row">
-        <div class="col-11">
-            <ul class="nav nav-tabs @ViewData["string_clase_body"]" role="tablist" id="nav-tab-capa-editor">
-                <li class="nav-item">
-                    <a href="#redactar" class="nav-link active" id="redactar-tab" data-toggle="tab" role="tab">Redactar</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#vista_previa" onclick="actualizarVistaPrevia()" class="nav-link" id="vista_previa_tab" data-toggle="tab" role="tab">Vista previa</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#publicar" onclick="tabPublicacion()" class="nav-link" id="publicacion_tab" data-toggle="tab" role="tab">Publicación</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-1 d-flex justify-content-end">
-            <a href="#" onclick="descartarArticuloEnEdicion();" class="nav-link ">&times;</a>
-        </div>
-    </div>
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="redactar" role="tabpanel">
-            <div class="form-group" id="grupo">
-                <input type="text" class="@ViewData["string_clase_body"] form-control" id="titulo_text" placeholder="Escribir titulo aquí">
-                <div class="btn-toolbar" id="botones_formato_editor">
-                    <div class="btn-group mr-2 btn-group-sm">
-                        <button id="boton_p" class="btn btn-primary" title="Párrafo">
-                            <i class="fas fa-paragraph"></i>
+
+    <div id="redactar">
+        <div class="form-group" id="grupo">
+            <input type="text" class="@ViewData["string_clase_body"] form-control" id="titulo_text" placeholder="Escribir titulo aquí">
+            <div class="btn-toolbar" id="botones_formato_editor">
+                <div class="btn-group mr-2 btn-group-sm">
+                    <button id="boton_p" class="btn btn-primary" title="Párrafo">
+                        <i class="fas fa-paragraph"></i>
+                    </button>
+                    <button id="boton_em" class="btn btn-primary" title="Itálicas">
+                        <em>I</em>
+                    </button>
+                    <button id="boton_strong" class="btn btn-primary" title="Negritas">
+                        <strong>N</strong>
+                    </button>
+                    <button id="boton_u" class="btn btn-primary" title="Subrayado">
+                        <u>S</u>
+                    </button>
+                </div>
+                <div class="btn-group mr-2 btn-group-sm">
+                    <div class="btn-group">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="boton_a" data-toggle="dropdown" title="Insertar hipervínculo">
+                            <i class="fas fa-link"></i>
                         </button>
-                        <button id="boton_em" class="btn btn-primary" title="Itálicas">
-                            <em>I</em>
-                        </button>
-                        <button id="boton_strong" class="btn btn-primary" title="Negritas">
-                            <strong>N</strong>
-                        </button>
-                        <button id="boton_u" class="btn btn-primary" title="Subrayado">
-                            <u>S</u>
-                        </button>
-                    </div>
-                    <div class="btn-group mr-2 btn-group-sm">
-                        <div class="btn-group">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="boton_a" data-toggle="dropdown" title="Insertar hipervínculo">
-                                <i class="fas fa-link"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <!--Colocar formulario-->
-                                <div class="form-group p-1 menu-grande">
-                                    <label for="link_url">URL</label>
-                                    <input type="url" id="link_url" class="form-control" placeholder="ej. https://uanl.mx/"/>
-                                    <label for="link_texto">Texto</label>
-                                    <input type="text" id="link_texto" class="form-control" placeholder="ej. mi universidad"/>
-                                    <div class="d-flex w-100 justify-content-end mt-2">
-                                        <button class="btn btn-primary" onclick="insertarVinculo()">Insertar</button>
-                                    </div>
+                        <div class="dropdown-menu">
+                            <!--Colocar formulario-->
+                            <div class="form-group p-1 menu-grande">
+                                <label for="link_url">URL</label>
+                                <input type="url" id="link_url" class="form-control" placeholder="ej. https://uanl.mx/"/>
+                                <label for="link_texto">Texto</label>
+                                <input type="text" id="link_texto" class="form-control" placeholder="ej. mi universidad"/>
+                                <div class="d-flex w-100 justify-content-end mt-2">
+                                    <button class="btn btn-primary" onclick="insertarVinculo()">Insertar</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="btn-group">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="boton_img" data-toggle="dropdown" title="Insertar imagen">
-                                <i class="far fa-image"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <!--Colocar formulario-->
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html" rows="1"></textarea>
-                    </div>
-                    <div class="col-6" id="vista_previa_tiempo_real">
-                        <div id="aviso-vista-previa">
-                            <h3>Vista previa</h3>
-                            Comienza a escribir a la izquierda. <a href="#">Más información</a>
+                    <div class="btn-group">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="boton_img" data-toggle="dropdown" title="Insertar imagen">
+                            <i class="far fa-image"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <!--Colocar formulario-->
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-6">
+                    <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html" rows="1"></textarea>
+                </div>
+                <div class="col-6" id="vista_previa_tiempo_real">
+                    <div id="aviso-vista-previa">
+                        <h3>Vista previa</h3>
+                        Comienza a escribir a la izquierda. <a href="#">Más información</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tab-pane fade show" id="vista_previa" role="tabpanel">
-            <h1>Vista previa</h1>
-        </div>
-        <div class="tab-pane fade show" id="publicar" role="tabpanel">
-            <!--Este formulario se envia al servidor-->
-            <form id="form_publicacion" asp-antiforgery="true">
-                <h3>Nombre de la publicación</h3>
-                <p>Este nombre es el nombre de tu publicación. De manera predeterminada será el mismo que se introdujo en el campo de título al editar. Puedes cambiarlo. Será el nombre que identificará tu artículo.
-                <div class="form-group">
-                    <input class="form-control" type="text" id="encabezado" name="titulo_publicacion">
-                </div>
-                <!--seleccionar la categoria(s) del articulo-->
-                <h3>Selecciona la(s) categoria(s) de tu artículo.</h3>
-                <div class="form-group">
-                    <div class="form-check form-check-inline">
-                        <input class="categoria form-check-input" type="checkbox" value="1" name="linux">
-                        <label class="form-check-label" for="inlineCheckbox1">Linux</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="categoria form-check-input" type="checkbox" value="1" name="windows">
-                        <label class="form-check-label" for="inlineCheckbox1">Windows</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="categoria form-check-input" type="checkbox" value="1" name="macos">
-                        <label class="form-check-label" for="inlineCheckbox1">macOS</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="categoria form-check-input" type="checkbox" value="1" name="android">
-                        <label class="form-check-label" for="inlineCheckbox1">Android</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="categoria form-check-input" type="checkbox" value="1" name="desarrollo">
-                        <label class="form-check-label" for="inlineCheckbox1">Desarrollo</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="categoria form-check-input" type="checkbox" value="1" name="gaming">
-                        <label class="form-check-label" for="inlineCheckbox1">Gaming</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="categoria form-check-input" type="checkbox" value="1" name="hardware">
-                        <label class="form-check-label" for="inlineCheckbox1">Hardware</label>
-                    </div>
-                </div>
-                <h3>Palabras clave</h3>
-                <p>Introduce palabras clave que ayuden a la busqueda. Separalas con un espacio. Evite escribir frases. No hay diferencia entre mayúsculas y minúsculas.
-                <div class="form-group">
-                    <textarea class="form-control" name="palabras_clave" placeholder="Por ejemplo: JAVA Linux Unity"></textarea>
-                </div>
-                <!--campos ocultos (cuerpo, encabezado y autor-->
-                <input type="hidden" name="autor" value="@ViewData["nombre_de_usuario"]">
-                <input type="hidden" name="cuerpo" id="campo_oculto_cuerpo">
-                <input type="hidden" name="encabezado" id="campo_oculto_encabezado">
-                <input type="submit" id="boton_publicar" value="Publicar" class="form-control btn-primary btn">
-            </form>
+        <div id="layout_boton_flotante">
+            <button class="btn btn-lg " id="boton_flotante_publicar" onclick="aparecerPantallaPublicar()"><i class="fas fa-upload"></i></button>
         </div>
     </div>
+    
 </div>
 <div id="capa_mis_articulos">
     <h3>Mis artículos</h3>
@@ -306,7 +236,64 @@
     </div>
 </div>
 
-
+<div id="publicar" class="p-md-5" role="tabpanel">
+<button type="button" class="close" onclick="desaparecerPantallaPublicar()">
+  <span aria-hidden="true" style="color: red">&times;</span>
+</button>
+        <!--Este formulario se envia al servidor-->
+        <form id="form_publicacion" asp-antiforgery="true">
+            <h3>Nombre de la publicación</h3>
+            <p>Este nombre es el nombre de tu publicación. De manera predeterminada será el mismo que se introdujo en el campo de título al editar. Puedes cambiarlo. Será el nombre que identificará tu artículo.
+            <div class="form-group">
+                <input class="form-control" type="text" id="encabezado" name="titulo_publicacion">
+            </div>
+            <!--seleccionar la categoria(s) del articulo-->
+            <h3>Selecciona la(s) categoria(s) de tu artículo.</h3>
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    <input class="categoria form-check-input" type="checkbox" value="1" name="linux">
+                    <label class="form-check-label" for="inlineCheckbox1">Linux</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="categoria form-check-input" type="checkbox" value="1" name="windows">
+                    <label class="form-check-label" for="inlineCheckbox1">Windows</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="categoria form-check-input" type="checkbox" value="1" name="macos">
+                    <label class="form-check-label" for="inlineCheckbox1">macOS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="categoria form-check-input" type="checkbox" value="1" name="android">
+                    <label class="form-check-label" for="inlineCheckbox1">Android</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="categoria form-check-input" type="checkbox" value="1" name="desarrollo">
+                    <label class="form-check-label" for="inlineCheckbox1">Desarrollo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="categoria form-check-input" type="checkbox" value="1" name="gaming">
+                    <label class="form-check-label" for="inlineCheckbox1">Gaming</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="categoria form-check-input" type="checkbox" value="1" name="hardware">
+                    <label class="form-check-label" for="inlineCheckbox1">Hardware</label>
+                </div>
+            </div>
+            <h3>Palabras clave</h3>
+            <p>Introduce palabras clave que ayuden a la busqueda. Separalas con un espacio. Evite escribir frases. No hay diferencia entre mayúsculas y minúsculas.
+            <div class="form-group">
+                <textarea class="form-control" name="palabras_clave" placeholder="Por ejemplo: JAVA Linux Unity"></textarea>
+            </div>
+            <!--campos ocultos (cuerpo, encabezado y autor-->
+            <input type="hidden" name="autor" value="@ViewData["nombre_de_usuario"]">
+            <input type="hidden" name="cuerpo" id="campo_oculto_cuerpo">
+            <input type="hidden" name="encabezado" id="campo_oculto_encabezado">
+            <div class="d-flex justify-content-end align-content-end">
+               <input type="submit" id="boton_publicar" value="Publicar" class="form-control btn-primary btn w-auto"> 
+            </div>
+            
+        </form>
+    </div>
 <!--Modal editar-->
 <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="editar_articulo">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" id="modal-dialog-editar" role="document">
