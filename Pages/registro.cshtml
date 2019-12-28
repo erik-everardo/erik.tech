@@ -8,33 +8,36 @@
 <div class="row">
     <div class="col-12">
         <h2>erik.tech<br>Autores</h2>
-        
+
     </div>
 </div>
 <div class="row">
-<div class="col-3"></div>
-<div class="col-6">
-    <a asp-page="/Index" ><i class="fas fa-arrow-left"></i></a><h1>Registrarse</h1>
-    
-    <form id="login" class="text-center" method="post">
-        <div class="form-group">
-            <input name="username" id="usuario" type="text" class="form-control entradas_login @Model.validacion" required placeholder="Nombre de usuario">
-            <div class="invalid-feedback">El nombre ya está en uso, escoje otro por favor.</div>
-        </div>
-        
-        <div class="form-group">
-            <input name="password" type="password" class="form-control entradas_login @Model.validacionPassword" required placeholder="Contraseña">
-            <div class="invalid-feedback">La contraseña es obligatoria. No puede ser un espacio en blanco.</div>
-        </div>
-        <div class="form-group">
-            <input name="email" type="email" class="form-control entradas_login" required placeholder="Correo electrónico">
-        </div>
-        <div class="form-group">
-            <input type="submit" class="form-control btn btn-primary" value="Registrar">
-        </div>
-    </form>
-    <p>Se te enviará a tu correo un codigo de verificación (no implementado)</p>
-    <p>Si ya estás registrdo <a asp-page="/admin/Index">inicia sesión</a></p>
-</div>
-<div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-6">
+        <a asp-page="/Index">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>Registrarse</h1>
+
+        <form id="login" class="text-center" method="post">
+            <div class="form-group">
+                <input name="username" id="usuario" type="text" class="form-control entradas_login @Model.validacion" required placeholder="Nombre de usuario">
+                <div class="invalid-feedback">El nombre ya está en uso, escoje otro por favor.</div>
+            </div>
+
+            <div class="form-group">
+                <input name="password" type="password" class="form-control entradas_login @Model.validacionPassword" required placeholder="Contraseña">
+                <div class="invalid-feedback">La contraseña es obligatoria. No puede ser un espacio en blanco.</div>
+            </div>
+            <div class="form-group">
+                <input name="email" type="email" class="form-control entradas_login" required placeholder="Correo electrónico">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="form-control btn btn-primary" value="Registrar">
+            </div>
+        </form>
+        <p>Se te enviará a tu correo un codigo de verificación (no implementado)</p>
+        <p>Si ya estás registrdo <a asp-page="/admin/Index">inicia sesión</a></p>
+    </div>
+    <div class="col-3"></div>
 </div>

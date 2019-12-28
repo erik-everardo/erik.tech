@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta property="og:title" content="erik.tech"/>
     <meta property="og:description" content="El blog de Erik"/>
     <title>@ViewData["Title"] - erik.tech</title>
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -16,8 +16,8 @@
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
     </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/lib/fontaw/css/all.css" />
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/lib/fontaw/css/all.css"/>
 </head>
 <body onload="modoOscuroIndex()">
 <nav class="navbar navbar-expand-lg sticky-top" id="barra_index">
@@ -27,10 +27,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navegacion_principal">
         <ul class="nav">
-            <li class="nav-item"><a class="nav-link active"asp-page="Index" asp-categoria="">Inicio <span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" asp-page="admin/Index">Iniciar sesión</a></li>
-            <li class="nav-item"><a class="nav-link" asp-page="registro">Crear cuenta</a></li>
-                    
+            <li class="nav-item">
+                <a class="nav-link active"asp-page="Index" asp-categoria="">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="admin/Index">Iniciar sesión</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="registro">Crear cuenta</a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Categorias

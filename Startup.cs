@@ -33,7 +33,7 @@ namespace erik_tech
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDbContext<DbContextApp>(options =>
-        options.UseSqlite(Configuration.GetConnectionString("Database")));
+                options.UseSqlite(Configuration.GetConnectionString("Database")));
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

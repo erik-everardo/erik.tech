@@ -1,12 +1,4 @@
-﻿/*
-Hay que traer los articulos más recientes y
-traer la capacidad de mostrar artículos de cada categoria
-
-Tambien hay que agregar la busqueda
-
-Todo eso será en esta pagina
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +22,6 @@ namespace erik_tech.Pages
         {
             return MetodosEstaticoGeneralesErikTech.ObtenerNombreAutorPorId(id, contexto);
         }
-
         public IndexModel(DbContextApp contexto)
         {
             this.contexto = contexto;
@@ -40,8 +31,6 @@ namespace erik_tech.Pages
             if(categoria == null)
             {
                 solicitoCategoria = false;
-
-                
                 articulos = contexto.articulo.ToList();
                 articulos = (from art in articulos orderby art.Id descending select art).ToList();
             }
@@ -83,9 +72,6 @@ namespace erik_tech.Pages
                         categoriaErronea = true;
                         return Page();
                 }
-
-
-
             }
             return Page();
         }

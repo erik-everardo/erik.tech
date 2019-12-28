@@ -5,15 +5,17 @@
     Layout = "LayoutDashboard";
 }
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
 @functions{
+
     public string GetAntiXsrfRequestToken()
     {
         return Xsrf.GetAndStoreTokens(HttpContext).RequestToken;
     }
+
 }
 
-
-  <script>
+<script>
   //variables de DataView[]
   var tokenDeVerificacion = "@GetAntiXsrfRequestToken()";
   var passwordActual = "@ViewData["password_usuario"]";
@@ -22,358 +24,352 @@
   var descripcion = "@ViewData["descripcion"]";
   var idUsuario = "@ViewData["id_usuario"]";
   var modoOscuro = @ViewData["modoOscuro"];
-  </script>
-
- 
-
-
-
+</script>
 <div class="row" id="row-barra">
-  <div class="col-10">
-    <nav id="barra-navegacion-dash" class="navbar navbar-expand-sm sticky-top @ViewData["string_clase_barra_navegacion"]">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra" aria-controls="barra" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse" id="barra">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" id="link-abrir-articulos" href="#" onclick="abrir_mis_articulos()">Mis artículos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="link-abrir-editor" href="#" onclick="abrir_editor()">Redactar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="link-abrir-galeria" href="#" onclick="abrirGaleria()">Galería de imágenes</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" id="link-abrir-ayuda">Ayuda</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div class="col-2 d-flex justify-content-center align-items-center">
-    <div class="dropdown navbar_brand mt-2 mt-md-0">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown" aria-haspopup="true" ara-expandend="false">
-        <i class="fas fa-user-circle"></i>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" style="z-index: 2000!important;" aria-labelledby="dropdownMenuLink">
-        <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
-        <a class="dropdown-item" href="#" id="boton_ajustes">Ajustes</a>
-        <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-      <div id="capa_editor">
-        <div class="row">
-          <div class="col-11">
-            <ul class="nav nav-tabs @ViewData["string_clase_body"]" role="tablist" id="nav-tab-capa-editor">
-              <li class="nav-item">
-                <a href="#redactar" class="nav-link active" id="redactar-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">Redactar</a>
-              </li>
-              <li class="nav-item">
-                <a href="#vista_previa" onclick="actualizarVistaPrevia()" class="nav-link" id="vista_previa_tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="false">Vista previa</a>
-              </li>
-              <li class="nav-item">
-                <a href="#publicar" onclick="tabPublicacion()" class="nav-link" id="publicacion_tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="false">Publicación</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-1 d-flex justify-content-end">
-            <a href="#" onclick="descartarArticuloEnEdicion();" class="nav-link ">&times;</a>
-          </div>
-        </div>
-
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="redactar" role="tabpanel" aria-labelledby="nav-redactar-tab">
-            <div class="form-group" id="grupo">
-              <input type="text" class="@ViewData["string_clase_body"] form-control" id="titulo_text" placeholder="Escribir titulo aquí">
-              <div class="btn-toolbar" id="botones_formato_editor">
-                <div class="btn-group mr-2 btn-group-sm">
-                  <button id="boton_p" class="btn btn-primary" title="Párrafo"><i class="fas fa-paragraph"></i></button>
-                  <button id="boton_em" class="btn btn-primary" title="Itálicas"><em>I</em></button>
-                  <button id="boton_strong" class="btn btn-primary" title="Negritas"><strong>N</strong></button>
-                  <button id="boton_u" class="btn btn-primary" title="Subrayado"><u>S</u></button>
-                </div>
-                <div class="btn-group mr-2 btn-group-sm">
-                  <div class="btn-group">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="boton_a" data-toggle="dropdown" title="Insertar hipervínculo">
-                      <i class="fas fa-link"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                      <!--Colocar formulario-->
-                      <div class="form-group p-1 menu-grande">
-                        <label for="link_url">URL</label>
-                        <input type="url" id="link_url" class="form-control" placeholder="ej. https://uanl.mx/"/>
-                        <label for="link_texto">Texto</label>
-                        <input type="text" id="link_texto" class="form-control" placeholder="ej. mi universidad"/>
-                        <div class="d-flex w-100 justify-content-end mt-2">
-                          <button class="btn btn-primary" onclick="insertarVinculo()">Insertar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="btn-group">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="boton_img" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Insertar imagen">
-                      <i class="far fa-image"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                      <!--Colocar formulario-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="col-6">
-                  <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html" rows="1"></textarea>
-                </div>
-                <div class="col-6" id="vista_previa_tiempo_real">
-                  <div id="aviso-vista-previa">
-                    <h3>Vista previa</h3>
-                    Comienza a escribir a la izquierda. <a href="#">Más información</a>
-                  </div>
-                </div>
-              </div>
+    <div class="col-10">
+        <nav id="barra-navegacion-dash" class="navbar navbar-expand-sm sticky-top @ViewData["string_clase_barra_navegacion"]">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="barra">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" id="link-abrir-articulos" href="#" onclick="abrir_mis_articulos()">Mis artículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="link-abrir-editor" href="#" onclick="abrir_editor()">Redactar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="link-abrir-galeria" href="#" onclick="abrirGaleria()">Galería de imágenes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="link-abrir-ayuda">Ayuda</a>
+                    </li>
+                </ul>
             </div>
-          </div>
-          <div class="tab-pane fade show" id="vista_previa" role="tabpanel" aria-labelledby="nav-previa-tab">
+        </nav>
+    </div>
+    <div class="col-2 d-flex justify-content-center align-items-center">
+        <div class="dropdown navbar_brand mt-2 mt-md-0">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown">
+                <i class="fas fa-user-circle"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" style="z-index: 2000!important;">
+                <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
+                <a class="dropdown-item" href="#" id="boton_ajustes">Ajustes</a>
+                <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+<div class="col-12">
+<div id="capa_editor">
+    <div class="row">
+        <div class="col-11">
+            <ul class="nav nav-tabs @ViewData["string_clase_body"]" role="tablist" id="nav-tab-capa-editor">
+                <li class="nav-item">
+                    <a href="#redactar" class="nav-link active" id="redactar-tab" data-toggle="tab" role="tab">Redactar</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#vista_previa" onclick="actualizarVistaPrevia()" class="nav-link" id="vista_previa_tab" data-toggle="tab" role="tab">Vista previa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#publicar" onclick="tabPublicacion()" class="nav-link" id="publicacion_tab" data-toggle="tab" role="tab">Publicación</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-1 d-flex justify-content-end">
+            <a href="#" onclick="descartarArticuloEnEdicion();" class="nav-link ">&times;</a>
+        </div>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="redactar" role="tabpanel">
+            <div class="form-group" id="grupo">
+                <input type="text" class="@ViewData["string_clase_body"] form-control" id="titulo_text" placeholder="Escribir titulo aquí">
+                <div class="btn-toolbar" id="botones_formato_editor">
+                    <div class="btn-group mr-2 btn-group-sm">
+                        <button id="boton_p" class="btn btn-primary" title="Párrafo">
+                            <i class="fas fa-paragraph"></i>
+                        </button>
+                        <button id="boton_em" class="btn btn-primary" title="Itálicas">
+                            <em>I</em>
+                        </button>
+                        <button id="boton_strong" class="btn btn-primary" title="Negritas">
+                            <strong>N</strong>
+                        </button>
+                        <button id="boton_u" class="btn btn-primary" title="Subrayado">
+                            <u>S</u>
+                        </button>
+                    </div>
+                    <div class="btn-group mr-2 btn-group-sm">
+                        <div class="btn-group">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="boton_a" data-toggle="dropdown" title="Insertar hipervínculo">
+                                <i class="fas fa-link"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <!--Colocar formulario-->
+                                <div class="form-group p-1 menu-grande">
+                                    <label for="link_url">URL</label>
+                                    <input type="url" id="link_url" class="form-control" placeholder="ej. https://uanl.mx/"/>
+                                    <label for="link_texto">Texto</label>
+                                    <input type="text" id="link_texto" class="form-control" placeholder="ej. mi universidad"/>
+                                    <div class="d-flex w-100 justify-content-end mt-2">
+                                        <button class="btn btn-primary" onclick="insertarVinculo()">Insertar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="boton_img" data-toggle="dropdown" title="Insertar imagen">
+                                <i class="far fa-image"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <!--Colocar formulario-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <textarea type="text" class="form-control @ViewData["string_clase_body"]" id="cuerpo_articulo" placeholder="Zona de redactar. Formatee con html" rows="1"></textarea>
+                    </div>
+                    <div class="col-6" id="vista_previa_tiempo_real">
+                        <div id="aviso-vista-previa">
+                            <h3>Vista previa</h3>
+                            Comienza a escribir a la izquierda. <a href="#">Más información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show" id="vista_previa" role="tabpanel">
             <h1>Vista previa</h1>
-          </div>
-          <div class="tab-pane fade show" id="publicar" role="tabpanel" aria-labelledby="nav-publicar-tab">
+        </div>
+        <div class="tab-pane fade show" id="publicar" role="tabpanel">
             <!--Este formulario se envia al servidor-->
             <form id="form_publicacion" asp-antiforgery="true">
-              <h3>Nombre de la publicación</h3>
-              <p>Este nombre es el nombre de tu publicación. De manera predeterminada será el mismo que se introdujo en el campo de título al editar. Puedes cambiarlo. Será el nombre que identificará tu artículo.
-              <div class="form-group">
-                <input class="form-control" type="text" id="encabezado" name="titulo_publicacion">
-              </div>
-              <!--seleccionar la categoria(s) del articulo-->
-              <h3>Selecciona la(s) categoria(s) de tu artículo.</h3>
-              <div class="form-group">
-                <div class="form-check form-check-inline">
-                  <input class="categoria form-check-input" type="checkbox" value="1" name="linux">
-                  <label class="form-check-label" for="inlineCheckbox1">Linux</label>
+                <h3>Nombre de la publicación</h3>
+                <p>Este nombre es el nombre de tu publicación. De manera predeterminada será el mismo que se introdujo en el campo de título al editar. Puedes cambiarlo. Será el nombre que identificará tu artículo.
+                <div class="form-group">
+                    <input class="form-control" type="text" id="encabezado" name="titulo_publicacion">
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="categoria form-check-input" type="checkbox" value="1" name="windows">
-                  <label class="form-check-label" for="inlineCheckbox1">Windows</label>
+                <!--seleccionar la categoria(s) del articulo-->
+                <h3>Selecciona la(s) categoria(s) de tu artículo.</h3>
+                <div class="form-group">
+                    <div class="form-check form-check-inline">
+                        <input class="categoria form-check-input" type="checkbox" value="1" name="linux">
+                        <label class="form-check-label" for="inlineCheckbox1">Linux</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="categoria form-check-input" type="checkbox" value="1" name="windows">
+                        <label class="form-check-label" for="inlineCheckbox1">Windows</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="categoria form-check-input" type="checkbox" value="1" name="macos">
+                        <label class="form-check-label" for="inlineCheckbox1">macOS</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="categoria form-check-input" type="checkbox" value="1" name="android">
+                        <label class="form-check-label" for="inlineCheckbox1">Android</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="categoria form-check-input" type="checkbox" value="1" name="desarrollo">
+                        <label class="form-check-label" for="inlineCheckbox1">Desarrollo</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="categoria form-check-input" type="checkbox" value="1" name="gaming">
+                        <label class="form-check-label" for="inlineCheckbox1">Gaming</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="categoria form-check-input" type="checkbox" value="1" name="hardware">
+                        <label class="form-check-label" for="inlineCheckbox1">Hardware</label>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="categoria form-check-input" type="checkbox" value="1" name="macos">
-                  <label class="form-check-label" for="inlineCheckbox1">macOS</label>
+                <h3>Palabras clave</h3>
+                <p>Introduce palabras clave que ayuden a la busqueda. Separalas con un espacio. Evite escribir frases. No hay diferencia entre mayúsculas y minúsculas.
+                <div class="form-group">
+                    <textarea class="form-control" name="palabras_clave" placeholder="Por ejemplo: JAVA Linux Unity"></textarea>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="categoria form-check-input" type="checkbox" value="1" name="android">
-                  <label class="form-check-label" for="inlineCheckbox1">Android</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="categoria form-check-input" type="checkbox" value="1" name="desarrollo">
-                  <label class="form-check-label" for="inlineCheckbox1">Desarrollo</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="categoria form-check-input" type="checkbox" value="1" name="gaming">
-                  <label class="form-check-label" for="inlineCheckbox1">Gaming</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="categoria form-check-input" type="checkbox" value="1" name="hardware">
-                  <label class="form-check-label" for="inlineCheckbox1">Hardware</label>
-                </div>
-              </div>
-              <h3>Palabras clave</h3>
-              <p>Introduce palabras clave que ayuden a la busqueda. Separalas con un espacio. Evite escribir frases. No hay diferencia entre mayúsculas y minúsculas.
-              <div class="form-group">
-                <textarea class="form-control" name="palabras_clave" placeholder="Por ejemplo: JAVA Linux Unity"></textarea>
-              </div>
-              <!--campos ocultos (cuerpo, encabezado y autor-->
-              <input type="hidden" name="autor" value="@ViewData["nombre_de_usuario"]">
-              <input type="hidden" name="cuerpo" id="campo_oculto_cuerpo">
-              <input type="hidden" name="encabezado" id="campo_oculto_encabezado">
-              <input type="submit" id="boton_publicar" value="Publicar" class="form-control btn-primary btn">
+                <!--campos ocultos (cuerpo, encabezado y autor-->
+                <input type="hidden" name="autor" value="@ViewData["nombre_de_usuario"]">
+                <input type="hidden" name="cuerpo" id="campo_oculto_cuerpo">
+                <input type="hidden" name="encabezado" id="campo_oculto_encabezado">
+                <input type="submit" id="boton_publicar" value="Publicar" class="form-control btn-primary btn">
             </form>
-          </div>
         </div>
-
-      </div>
-      <div id="capa_mis_articulos">
-        <h3>Mis artículos</h3>
-        
-        <div id="mis_articulos"></div>
-      </div>
-      <div id="capa_perfil">
-        <h3>Mi perfil</h3>
-        <hr/>
-        <!--imagen prototipo-->
-        <img src="/img-usuario-proto.jpg" height="60px"/><h4>@ViewData["nombre_de_usuario"]</h4>
-        <hr/>
-        <div class="encabezado-seccion">
-          <h5>Información de cuenta</h5>
-          <button class="btn btn-primary btn-sm" id="boton_editar_info_perfil">Editar</button>
-          <button class="btn btn-success btn-sm" id="boton_perfil_info_guardar_cambios" data-target="#confirmarContra_perfil" data-toggle="modal" disabled>Guardar</button>
-        </div>
-
-        <form id="perfil_info_modificar" asp-antiforgery="true">
-          <div class="form-group">
+    </div>
+</div>
+<div id="capa_mis_articulos">
+    <h3>Mis artículos</h3>
+    <div id="mis_articulos"></div>
+</div>
+<div id="capa_perfil">
+    <h3>Mi perfil</h3>
+    <hr/>
+    <!--imagen prototipo-->
+    <img src="/img-usuario-proto.jpg" height="60px"/><h4>@ViewData["nombre_de_usuario"]</h4>
+    <hr/>
+    <div class="encabezado-seccion">
+        <h5>Información de cuenta</h5>
+        <button class="btn btn-primary btn-sm" id="boton_editar_info_perfil">Editar</button>
+        <button class="btn btn-success btn-sm" id="boton_perfil_info_guardar_cambios" data-target="#confirmarContra_perfil" data-toggle="modal" disabled>Guardar</button>
+    </div>
+    <form id="perfil_info_modificar" asp-antiforgery="true">
+        <div class="form-group">
             <label for="perfil_nombre">Nombre de usuario</label>
             <input class="form-control" value="@ViewData["nombre_de_usuario"]" id="perfil_nombre" disabled name="nuevoNombre"/>
-
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group">
             <label for="perfil_correo">E-mail</label>
             <input class="form-control" value="@ViewData["correo"]" id="perfil_correo" disabled name="nuevoCorreo"/>
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group">
             <label for="parrafo-descripcion">Descripción</label>
             <textarea class="form-control" placeholder="Descripción tuya" id="parrafo-descripcion" disabled name="descripcion">@ViewData["descripcion"]</textarea>
-          </div>
-          <input type="hidden" value="@ViewData["id_usuario"]" name="id"/>
-        </form>
-        <hr/>
-        <h5>Cambiar contraseña</h5>
-        <form id="formulario-cambio-password" asp-antiforgery="true">
-          <div class="form-group">
+        </div>
+        <input type="hidden" value="@ViewData["id_usuario"]" name="id"/>
+    </form>
+    <hr/>
+    <h5>Cambiar contraseña</h5>
+    <form id="formulario-cambio-password" asp-antiforgery="true">
+        <div class="form-group">
             <label for="password-actual">Contraseña actual</label>
             <input type="password" id="password-actual" class="form-control" name="passwordActual"/>
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group">
             <input type="hidden" value="@ViewData["id_usuario"]" name="idUsuario"/>
             <label for="nuevaPassword">Nueva contraseña</label>
             <input type="password" id="nuevaPassword" class="form-control" name="nuevaPassword"/>
             <label for="confirmacionPassword">Confirme contraseña nueva</label>
             <input type="password" id="confirmacionPassword" class="form-control"/>
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Cambiar contraseña"/>
-          </div>
-        </form>
-      </div>
-      
-      <div id="capa_ajustes">
-        <h3>Ajustes</h3>
-        <hr/>
-        <form asp-antiforgery="true">
-          <div class="form-group">
-            <h4>Modo oscuro</h4>
-            <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="modo_oscuro" name="oscuro">
-              <label class="custom-control-label" for="modo_oscuro">Modo oscuro</label>
-            </div>
-          </div>
-          <hr/>
-          <div class="form-group">
-            <h4>Temas de color</h4>
-            <div class="btn-group-vertical">
-              <a href="#" class="btn btn-light">Predeterminado</a>
-              <a href="#" class="btn btn-primary">Azul</a>
-              <a href="#" class="btn btn-dark">Oscuro</a>
-              <a href="#" class="btn btn-success">Verde</a>
-              <a href="#" class="btn btn-info">Aqua</a>
-              <a href="#" class="btn btn-danger">Rojo</a>
-              <a href="#" class="btn btn-warning">Amarillo</a>
-            </div>
-          </div>
-          <hr/>
-        </form>
-      </div>
-      <div id="capa-galeria">
-        <h3>Galería de imágenes</h3>
-      </div>
-    </div>
+        </div>
+    </form>
 </div>
 
-
+<div id="capa_ajustes">
+    <h3>Ajustes</h3>
+    <hr/>
+    <form asp-antiforgery="true">
+        <div class="form-group">
+            <h4>Modo oscuro</h4>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="modo_oscuro" name="oscuro">
+                <label class="custom-control-label" for="modo_oscuro">Modo oscuro</label>
+            </div>
+        </div>
+        <hr/>
+        <div class="form-group">
+            <h4>Temas de color</h4>
+            <div class="btn-group-vertical">
+                <a href="#" class="btn btn-light">Predeterminado</a>
+                <a href="#" class="btn btn-primary">Azul</a>
+                <a href="#" class="btn btn-dark">Oscuro</a>
+                <a href="#" class="btn btn-success">Verde</a>
+                <a href="#" class="btn btn-info">Aqua</a>
+                <a href="#" class="btn btn-danger">Rojo</a>
+                <a href="#" class="btn btn-warning">Amarillo</a>
+            </div>
+        </div>
+        <hr/>
+    </form>
+</div>
+<div id="capa-galeria">
+    <h3>Galería de imágenes</h3>
+</div>
+</div>
+</div>
 
 <!--Modales-->
 <div class="modal" tabindex="-1" role="dialog" id="no_texto_modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content @ViewData["string_clase_body"]">
-      <div class="modal-header">
-        <h5 class="modal-title">Falta contenido a su artículo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>No ha escrito texto en ambos campos. Debe empezar a editar para poder subirlo. Puede salir ahora, pero no podrá subir un artículo vacío o sin alguno de los dos campos.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="mandarAEditar()">Editar</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content @ViewData["string_clase_body"]">
+            <div class="modal-header">
+                <h5 class="modal-title">Falta contenido a su artículo</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>No ha escrito texto en ambos campos. Debe empezar a editar para poder subirlo. Puede salir ahora, pero no podrá subir un artículo vacío o sin alguno de los dos campos.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="mandarAEditar()">Editar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
 <!--Modal editar-->
-<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="editar_articulo" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" id="modal-dialog-editar" role="document">
-    <div class="modal-content @ViewData["string_clase_body"]" id="content_modal_editar">
-      <div class="modal-header">
-        <h5 class="modal-title" id="titulo_modal_editar"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-labelledby="modalEditar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <div class="modal-body">
-        <form method="post" asp-antiforgery="true" id="form_editar">
-          <div class="form-group">
-            <label for="nombre_de_la_publicacion" class="col-form-label">Nombre de la publicación:</label>
-            <input name="nombre" type="text" class="form-control" id="nombre_de_la_publicacion"/>
-            <label for="encabezado_de_la_publicacion" class="col-form-label">Encabezado:</label>
-            <input name="encabezado" type="text" class="form-control" id="encabezado_de_la_publicacion"/>
-            <label for="cuerpo_del_articulo" class="col-form-label">Cuerpo (en HTML)</label>
-            <textarea name="cuerpo" type="text" class="form-control" id="cuerpo_del_articulo">Aqui iria el texto...</textarea>
-          </div>
-          <div class="form-group">
-            <p id="categorias_titulo">Categorias:</p>
-            <label for="linux_check"><input name="linux" id="linux_check" type="checkbox"/> Linux</label>
-            <label for="windows_check"><input name="windows" type="checkbox" id="windows_check"/> Windows</label>
-            <label for="macos_check"><input name="macos" type="checkbox" id="macos_check"/> macOS</label>
-            <label for="android_check"><input name="android" type="checkbox" id="android_check"/> Android</label>
-            <label for="desarrollo_check"><input name="desarrollo" type="checkbox" id="desarrollo_check"/> Desarrollo</label>
-            <label for="gaming_check"><input name="gaming" type="checkbox" id="gaming_check"/> Gaming</label>
-            <label for="hardware_check"><input name="hardware" type="checkbox" id="hardware_check"/> Hardware</label>
-          </div>
-          
-        <input name="id" type="hidden" id="id_articulo"/>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" form="form_editar" class="btn btn-primary" id="boton_guardar_cambios">Guardar cambios</button>
-      </div>
-      
+<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="editar_articulo">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" id="modal-dialog-editar" role="document">
+        <div class="modal-content @ViewData["string_clase_body"]" id="content_modal_editar">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titulo_modal_editar"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-labelledby="modalEditar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-antiforgery="true" id="form_editar">
+                    <div class="form-group">
+                        <label for="nombre_de_la_publicacion" class="col-form-label">Nombre de la publicación:</label>
+                        <input name="nombre" type="text" class="form-control" id="nombre_de_la_publicacion"/>
+                        <label for="encabezado_de_la_publicacion" class="col-form-label">Encabezado:</label>
+                        <input name="encabezado" type="text" class="form-control" id="encabezado_de_la_publicacion"/>
+                        <label for="cuerpo_del_articulo" class="col-form-label">Cuerpo (en HTML)</label>
+                        <textarea name="cuerpo" type="text" class="form-control" id="cuerpo_del_articulo">Aqui iria el texto...</textarea>
+                    </div>
+                    <div class="form-group">
+                        <p id="categorias_titulo">Categorias:</p>
+                        <label for="linux_check"><input name="linux" id="linux_check" type="checkbox"/> Linux</label>
+                        <label for="windows_check"><input name="windows" type="checkbox" id="windows_check"/> Windows</label>
+                        <label for="macos_check"><input name="macos" type="checkbox" id="macos_check"/> macOS</label>
+                        <label for="android_check"><input name="android" type="checkbox" id="android_check"/> Android</label>
+                        <label for="desarrollo_check"><input name="desarrollo" type="checkbox" id="desarrollo_check"/> Desarrollo</label>
+                        <label for="gaming_check"><input name="gaming" type="checkbox" id="gaming_check"/> Gaming</label>
+                        <label for="hardware_check"><input name="hardware" type="checkbox" id="hardware_check"/> Hardware</label>
+                    </div>
+
+                    <input name="id" type="hidden" id="id_articulo"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" form="form_editar" class="btn btn-primary" id="boton_guardar_cambios">Guardar cambios</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!--Modal perfil, de confirmacion de contraseña, modificacion de nombre de usuario y contraseña-->
-<div class="modal fade" id="confirmarContra_perfil" tabindex="-1" role="dialog" aria-labelledby="Cornfirmacion de contraseña" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content @ViewData["string_clase_body"]">
-      <div class="modal-header">
-        <h5 class="modal-title">Ingresa tu contraseña</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form><input class="form-control" type="password" id="pass_confirmacion_perfil_info" form="perfil_info_modificar" name="pass"/></form>
-        <div id="alerta_contra_incorrecta_perfil_info" class="alert alert-danger" role="alert">
-          Contraseña incorrecta
+<div class="modal fade" id="confirmarContra_perfil" tabindex="-1" role="dialog" aria-labelledby="Cornfirmacion de contraseña">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content @ViewData["string_clase_body"]">
+            <div class="modal-header">
+                <h5 class="modal-title">Ingresa tu contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input class="form-control" type="password" id="pass_confirmacion_perfil_info" form="perfil_info_modificar" name="pass"/>
+                </form>
+                <div id="alerta_contra_incorrecta_perfil_info" class="alert alert-danger" role="alert">
+                    Contraseña incorrecta
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="boton_continuar_confirmacion">Continuar</button>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="boton_continuar_confirmacion">Continuar</button>
-      </div>
     </div>
-  </div>
 </div>

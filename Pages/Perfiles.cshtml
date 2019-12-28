@@ -4,58 +4,59 @@
     ViewData["title"] = @Model.usuario.username;
 }
 @{
-    if(Model.fuePost){
+    if (Model.fuePost)
+    {
         Layout = "";
         <h2>@Model.usuario.username</h2>
-
     }
     else
     {
         <p>La imagen</p>
         <h2>@Model.usuario.username</h2>
         <h3>Publicaciones de @Model.usuario.username</h3>
-        foreach(var articulos in Model.articulosUsuario)
+        foreach (var articulos in Model.articulosUsuario)
         {
             <div class="card card-articulo">
                 <div class="card-header">
                     @articulos.titulo_publicacion
                 </div>
                 <div class="card-body">
-                    <p>Categorias:
-                    
-                        @if(articulos.Linux)
+                    <p>
+                        Categorias:
+
+                        @if (articulos.Linux)
                         {
                             <i class="fab fa-linux"></i>
                         }
-                        @if(articulos.Windows)
+                        @if (articulos.Windows)
                         {
                             <i class="fab fa-windows"></i>
                         }
-                        @if(articulos.Macos)
+                        @if (articulos.Macos)
                         {
                             <i class="fab fa-apple"></i>
                         }
-                        @if(articulos.Android)
+                        @if (articulos.Android)
                         {
                             <i class="fab fa-android"></i>
                         }
-                        @if(articulos.Desarrollo)
+                        @if (articulos.Desarrollo)
                         {
                             <i class="fas fa-code"></i>
                         }
-                        @if(articulos.Gaming)
+                        @if (articulos.Gaming)
                         {
                             <i class="fas fa-gamepad"></i>
                         }
-                        @if(articulos.Hardware)
+                        @if (articulos.Hardware)
                         {
                             <i class="fas fa-desktop"></i>
                         }
-                        @if(articulos.Otra)
+                        @if (articulos.Otra)
                         {
                             <i class="fas fa-question"></i>
                         }
-        
+
                     </p>
                     <a asp-page="/leer" asp-route-id="@articulos.Id">Leer</a>
                 </div>

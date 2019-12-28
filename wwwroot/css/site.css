@@ -2,122 +2,143 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
-  height: 100%;
+    font-size: 14px;
+    height: 100%;
 }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 
 
-
-#titulo{
-  font-family: Arial, Helvetica, sans-serif
-}
-#header{
-  padding-top:12px;
-}
-#titulo_text{
-  margin-top: 10px;
-  margin-bottom: 10px;
+#titulo {
+    font-family: Arial, Helvetica, sans-serif
 }
 
-#publicar{
-  margin-top:40px;
+#header {
+    padding-top: 12px;
 }
-#boton_publicar{
-  margin-top: 50px;
-  margin-bottom: 20px;
+
+#titulo_text {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
-#content_modal_editar{
-  width:100%;
+
+#publicar {
+    margin-top: 40px;
 }
+
+#boton_publicar {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+#content_modal_editar {
+    width: 100%;
+}
+
 #capa_notificaciones {
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  visibility: hidden;
-}
-#notificacion_articulo_editado{
-  margin:15px;
-}
-.card-articulo{
-  margin:10px;
-}
-#capa_perfil{
-  display:none;
-}
-#alerta_contra_incorrecta_perfil_info{
-  display:none;
-  margin-top: 10px;
-}
-#capa_editor{
-  display: none;
-}
-#capa_mis_articulos{
-  display:none;
-}
-#capa_ajustes, #capa-galeria{
-  display: none;
-}
-.encabezado-seccion{
-  margin-bottom: 10px;
-}
-.resultado-individual-busqueda{
-  margin:30px;
-}
-#boton_modo_oscuro{
-  margin-left: 7px;
-}
-#botones_formato_editor{
-  margin-bottom: 10px;
-  margin-top: 20px;
-}
-#area-imagen-o-link{
-  display:none;
-}
-.menu-grande{
-  width: 300px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
 }
 
-#login{
-    margin-left:auto;
+#notificacion_articulo_editado {
+    margin: 15px;
 }
-.entradas_login{
-    margin:10px;
+
+.card-articulo {
+    margin: 10px;
 }
-#celda_media{
-    margin:auto!important;
-    height:400px!important;
+
+#capa_perfil {
+    display: none;
 }
-#vista_previa_tiempo_real{
+
+#alerta_contra_incorrecta_perfil_info {
+    display: none;
+    margin-top: 10px;
+}
+
+#capa_editor {
+    display: none;
+}
+
+#capa_mis_articulos {
+    display: none;
+}
+
+#capa_ajustes, #capa-galeria {
+    display: none;
+}
+
+.encabezado-seccion {
+    margin-bottom: 10px;
+}
+
+.resultado-individual-busqueda {
+    margin: 30px;
+}
+
+#boton_modo_oscuro {
+    margin-left: 7px;
+}
+
+#botones_formato_editor {
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+#area-imagen-o-link {
+    display: none;
+}
+
+.menu-grande {
+    width: 300px;
+}
+
+#login {
+    margin-left: auto;
+}
+
+.entradas_login {
+    margin: 10px;
+}
+
+#celda_media {
+    margin: auto !important;
+    height: 400px !important;
+}
+
+#vista_previa_tiempo_real {
     overflow-y: auto;
 }
-#aviso-vista-previa{
+
+#aviso-vista-previa {
     font-size: large;
     color: grey;
 }

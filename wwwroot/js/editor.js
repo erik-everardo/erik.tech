@@ -9,25 +9,28 @@ var vista_previa_tiempo_real = document.getElementById("vista_previa_tiempo_real
 //referencia row barra
 var rowBarra = document.getElementById("row-barra");
 var grupoBotonesFormato = document.getElementById("botones_formato_editor");
-function ajustarDimensionesCuerpoEditor(){
-    cuerpo_textarea.style.height = 
-        (window.innerHeight - 
-            (rowBarra.offsetHeight + 
-                tabsCapaEditor.offsetHeight + 
-                titulo.offsetHeight + 
+
+function ajustarDimensionesCuerpoEditor() {
+    cuerpo_textarea.style.height =
+        (window.innerHeight -
+            (rowBarra.offsetHeight +
+                tabsCapaEditor.offsetHeight +
+                titulo.offsetHeight +
                 grupoBotonesFormato.offsetHeight) - 60) + "px";
     vista_previa_tiempo_real.style.maxHeight = cuerpo_textarea.style.height;
 }
-window.addEventListener('resize',ajustarDimensionesCuerpoEditor);
-function actualizarVistaPrevia(){
-    try{
-        stringhtml = 
-        "<h2>" + titulo.value + "</h2> " + cuerpo_textarea.value;
-        
+
+window.addEventListener('resize', ajustarDimensionesCuerpoEditor);
+
+function actualizarVistaPrevia() {
+    try {
+        stringhtml =
+            "<h2>" + titulo.value + "</h2> " + cuerpo_textarea.value;
+
         vista_p = document.getElementById("vista_previa");
         vista_p.innerHTML = stringhtml;
-    
-    }catch(Exception){
+
+    } catch (Exception) {
         console.error();
     }
 }
@@ -50,26 +53,26 @@ var textoSeleccionado = "";
 var textoSeleccionadoConEtiquetas = "";
 var textoAntesDeSeleccion = "";
 var textoDespuesDeSeleccion = "";
-boton_p.on("click",function(){
-    if(textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd){
+boton_p.on("click", function () {
+    if (textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd) {
         textoDespuesDeSeleccion = "";
         textoAntesDeSeleccion = "";
-        
-        for(i=0;i<textarea_cuerpo.selectionStart;i++){
+
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
 
         }
-        for(i=textarea_cuerpo.selectionStart; i<textarea_cuerpo.value.length;i++){
+        for (i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + "<p>\n\n</p>" + textoDespuesDeSeleccion;
-        
+
         textarea_cuerpo.selectionStart = textoAntesDeSeleccion.length + 4;
         textarea_cuerpo.selectionEnd = textoAntesDeSeleccion.length + 4;
         textarea_cuerpo.focus();
-        
-    }else{
-        for(var i=textarea_cuerpo.selectionStart;i<textarea_cuerpo.selectionEnd;i++){
+
+    } else {
+        for (var i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.selectionEnd; i++) {
             textoSeleccionado += textarea_cuerpo.value.charAt(i);
         }
         textoSeleccionadoConEtiquetas = "<p>" + textoSeleccionado + "</p>";
@@ -77,11 +80,11 @@ boton_p.on("click",function(){
         console.log(textoSeleccionadoConEtiquetas);
         textoAntesDeSeleccion = "";
         textoDespuesDeSeleccion = "";
-        
-        for(i = 0;i<textarea_cuerpo.selectionStart;i++){
+
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
-        for(i = textarea_cuerpo.selectionEnd; i<textarea_cuerpo.value.length; i++){
+        for (i = textarea_cuerpo.selectionEnd; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + textoSeleccionadoConEtiquetas + textoDespuesDeSeleccion;
@@ -92,16 +95,16 @@ boton_p.on("click",function(){
     }
     reflejarCodigoEnVistaPrevia();
 });
-boton_strong.on("click",function(){
-    if(textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd){
+boton_strong.on("click", function () {
+    if (textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd) {
         textoDespuesDeSeleccion = "";
         textoAntesDeSeleccion = "";
 
-        for(i=0;i<textarea_cuerpo.selectionStart;i++){
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
 
         }
-        for(i=textarea_cuerpo.selectionStart; i<textarea_cuerpo.value.length;i++){
+        for (i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + "<strong></strong>" + textoDespuesDeSeleccion;
@@ -110,8 +113,8 @@ boton_strong.on("click",function(){
         textarea_cuerpo.selectionEnd = textoAntesDeSeleccion.length + 8;
         textarea_cuerpo.focus();
 
-    }else{
-        for(var i=textarea_cuerpo.selectionStart;i<textarea_cuerpo.selectionEnd;i++){
+    } else {
+        for (var i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.selectionEnd; i++) {
             textoSeleccionado += textarea_cuerpo.value.charAt(i);
         }
         textoSeleccionadoConEtiquetas = "<strong>" + textoSeleccionado + "</strong>";
@@ -120,10 +123,10 @@ boton_strong.on("click",function(){
         textoAntesDeSeleccion = "";
         textoDespuesDeSeleccion = "";
 
-        for(i = 0;i<textarea_cuerpo.selectionStart;i++){
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
-        for(i = textarea_cuerpo.selectionEnd; i<textarea_cuerpo.value.length; i++){
+        for (i = textarea_cuerpo.selectionEnd; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + textoSeleccionadoConEtiquetas + textoDespuesDeSeleccion;
@@ -135,15 +138,15 @@ boton_strong.on("click",function(){
     reflejarCodigoEnVistaPrevia();
 });
 boton_em.on("click", function () {
-    if(textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd){
+    if (textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd) {
         textoDespuesDeSeleccion = "";
         textoAntesDeSeleccion = "";
 
-        for(i=0;i<textarea_cuerpo.selectionStart;i++){
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
 
         }
-        for(i=textarea_cuerpo.selectionStart; i<textarea_cuerpo.value.length;i++){
+        for (i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + "<em></em>" + textoDespuesDeSeleccion;
@@ -152,8 +155,8 @@ boton_em.on("click", function () {
         textarea_cuerpo.selectionEnd = textoAntesDeSeleccion.length + 4;
         textarea_cuerpo.focus();
 
-    }else{
-        for(var i=textarea_cuerpo.selectionStart;i<textarea_cuerpo.selectionEnd;i++){
+    } else {
+        for (var i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.selectionEnd; i++) {
             textoSeleccionado += textarea_cuerpo.value.charAt(i);
         }
         textoSeleccionadoConEtiquetas = "<em>" + textoSeleccionado + "</em>";
@@ -162,10 +165,10 @@ boton_em.on("click", function () {
         textoAntesDeSeleccion = "";
         textoDespuesDeSeleccion = "";
 
-        for(i = 0;i<textarea_cuerpo.selectionStart;i++){
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
-        for(i = textarea_cuerpo.selectionEnd; i<textarea_cuerpo.value.length; i++){
+        for (i = textarea_cuerpo.selectionEnd; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + textoSeleccionadoConEtiquetas + textoDespuesDeSeleccion;
@@ -177,15 +180,15 @@ boton_em.on("click", function () {
     reflejarCodigoEnVistaPrevia();
 });
 boton_u.on("click", function () {
-    if(textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd){
+    if (textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd) {
         textoDespuesDeSeleccion = "";
         textoAntesDeSeleccion = "";
 
-        for(i=0;i<textarea_cuerpo.selectionStart;i++){
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
 
         }
-        for(i=textarea_cuerpo.selectionStart; i<textarea_cuerpo.value.length;i++){
+        for (i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + "<u></u>" + textoDespuesDeSeleccion;
@@ -194,8 +197,8 @@ boton_u.on("click", function () {
         textarea_cuerpo.selectionEnd = textoAntesDeSeleccion.length + 3;
         textarea_cuerpo.focus();
 
-    }else{
-        for(var i=textarea_cuerpo.selectionStart;i<textarea_cuerpo.selectionEnd;i++){
+    } else {
+        for (var i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.selectionEnd; i++) {
             textoSeleccionado += textarea_cuerpo.value.charAt(i);
         }
         textoSeleccionadoConEtiquetas = "<u>" + textoSeleccionado + "</u>";
@@ -204,10 +207,10 @@ boton_u.on("click", function () {
         textoAntesDeSeleccion = "";
         textoDespuesDeSeleccion = "";
 
-        for(i = 0;i<textarea_cuerpo.selectionStart;i++){
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
-        for(i = textarea_cuerpo.selectionEnd; i<textarea_cuerpo.value.length; i++){
+        for (i = textarea_cuerpo.selectionEnd; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + textoSeleccionadoConEtiquetas + textoDespuesDeSeleccion;
@@ -222,37 +225,38 @@ boton_u.on("click", function () {
 var campoLinkUrl = document.getElementById("link_url");
 var campoLinkTexto = document.getElementById("link_texto");
 
-boton_a.on('click',function(){
-   //ver si hay texto seleccionado o no
-   if(textarea_cuerpo.selectionStart !== textarea_cuerpo.selectionEnd){
-       for(var i=textarea_cuerpo.selectionStart;i<textarea_cuerpo.selectionEnd;i++){
-           textoSeleccionado += textarea_cuerpo.value.charAt(i);
-       }
-       campoLinkTexto.value = textoSeleccionado;
-       textoSeleccionado = "";
-   }
+boton_a.on('click', function () {
+    //ver si hay texto seleccionado o no
+    if (textarea_cuerpo.selectionStart !== textarea_cuerpo.selectionEnd) {
+        for (var i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.selectionEnd; i++) {
+            textoSeleccionado += textarea_cuerpo.value.charAt(i);
+        }
+        campoLinkTexto.value = textoSeleccionado;
+        textoSeleccionado = "";
+    }
 });
-function insertarVinculo(){
-    if(textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd){
+
+function insertarVinculo() {
+    if (textarea_cuerpo.selectionStart === textarea_cuerpo.selectionEnd) {
         textoDespuesDeSeleccion = "";
         textoAntesDeSeleccion = "";
 
-        for(i=0;i<textarea_cuerpo.selectionStart;i++){
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
 
         }
-        for(i=textarea_cuerpo.selectionStart; i<textarea_cuerpo.value.length;i++){
+        for (i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         var a_href = "<a href='" + campoLinkUrl.value + "'>" + campoLinkTexto.value + "</a>";
         textarea_cuerpo.value = textoAntesDeSeleccion + a_href + textoDespuesDeSeleccion;
 
-        textarea_cuerpo.selectionStart = textoAntesDeSeleccion.length + (a_href.length-4);
-        textarea_cuerpo.selectionEnd = textoAntesDeSeleccion.length + (a_href.length-4);
+        textarea_cuerpo.selectionStart = textoAntesDeSeleccion.length + (a_href.length - 4);
+        textarea_cuerpo.selectionEnd = textoAntesDeSeleccion.length + (a_href.length - 4);
         textarea_cuerpo.focus();
 
-    }else{
-        for(var i=textarea_cuerpo.selectionStart;i<textarea_cuerpo.selectionEnd;i++){
+    } else {
+        for (var i = textarea_cuerpo.selectionStart; i < textarea_cuerpo.selectionEnd; i++) {
             textoSeleccionado += textarea_cuerpo.value.charAt(i);
         }
         textoSeleccionadoConEtiquetas = "<a href='" + campoLinkUrl.value + "'>" + textoSeleccionado + "</a>";
@@ -261,10 +265,10 @@ function insertarVinculo(){
         textoAntesDeSeleccion = "";
         textoDespuesDeSeleccion = "";
 
-        for(i = 0;i<textarea_cuerpo.selectionStart;i++){
+        for (i = 0; i < textarea_cuerpo.selectionStart; i++) {
             textoAntesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
-        for(i = textarea_cuerpo.selectionEnd; i<textarea_cuerpo.value.length; i++){
+        for (i = textarea_cuerpo.selectionEnd; i < textarea_cuerpo.value.length; i++) {
             textoDespuesDeSeleccion += textarea_cuerpo.value.charAt(i);
         }
         textarea_cuerpo.value = textoAntesDeSeleccion + textoSeleccionadoConEtiquetas + textoDespuesDeSeleccion;
@@ -277,9 +281,11 @@ function insertarVinculo(){
     campoLinkUrl.value = "";
     campoLinkTexto.value = "";
 }
-$('#cuerpo_articulo').on('input' ,function(){
+
+$('#cuerpo_articulo').on('input', function () {
     reflejarCodigoEnVistaPrevia();
 });
-function reflejarCodigoEnVistaPrevia(){
+
+function reflejarCodigoEnVistaPrevia() {
     vista_previa_tiempo_real.innerHTML = document.getElementById("cuerpo_articulo").value;
 }
