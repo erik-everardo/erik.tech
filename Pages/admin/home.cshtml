@@ -25,13 +25,13 @@
   var idUsuario = "@ViewData["id_usuario"]";
   var modoOscuro = @ViewData["modoOscuro"];
 </script>
-<div class="row" id="row-barra">
-    <div class="col-10">
+<div class="d-flex justify-content-between" id="row-barra">
+ 
         <nav id="barra-navegacion-dash" class="navbar navbar-expand-sm sticky-top @ViewData["string_clase_barra_navegacion"]">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse" id="barra">
+            <div class="navbar-collapse collapse mr-auto" id="barra">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" id="link-abrir-articulos" href="#" onclick="abrir_mis_articulos()">Mis artículos</a>
@@ -48,9 +48,8 @@
                 </ul>
             </div>
         </nav>
-    </div>
-    <div class="col-2 d-flex justify-content-center align-items-center">
-        <div class="dropdown navbar_brand mt-2 mt-md-0">
+    
+        <div class="dropdown navbar_brand mt-2 mt-md-2">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown">
                 <i class="fas fa-user-circle"></i>
             </a>
@@ -62,7 +61,7 @@
                 <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
             </div>
         </div>
-    </div>
+    
 </div>
 <div class="row">
 <div class="col-12">
