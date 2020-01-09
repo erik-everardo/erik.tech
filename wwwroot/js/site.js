@@ -51,6 +51,8 @@ $("#form_publicacion").submit(function () {
     descartarArticuloEnEdicion();
     solicitarArticulosHechos();
     abrir_mis_articulos();
+    desaparecerPantallaPublicar();
+    reflejarCodigoEnVistaPrevia();
 
     return false;
 });
@@ -153,7 +155,7 @@ function abrir_mis_articulos() {
     if (estaAbiertoAjustes) cerrarAjustes();
     if (estaAbiertoGaleria) cerrarGaleria();
     capa_mis_articulos_DOM.style.display = "block";
-    solicitarArticulosHechos();
+    setTimeout(solicitarArticulosHechos(),1000);
     activarLinkDeBarra(2);
     estaAbiertoMisArticulos = true;
 }
@@ -234,7 +236,6 @@ function descartarArticuloEnEdicion() {
 }
 
 function solicitarArticulosHechos() {
-    var mis_articulos_DOM = document.getElementById("mis_articulos");
     var id_de_usuario = {
         ID_Usuario: idUsuario,
         __RequestVerificationToken: tokenDeVerificacion
