@@ -56,9 +56,10 @@
             </li>
         </ul>
         <ul class="nav ml-auto">
-            <li class="nav-item flex-fill">
-                <form method="get" action="/buscar" class="nav-item">
+            <li class="nav-item">
+                <form method="get" action="/buscar" class="nav-item d-inline-flex">
                     <input name="q" type="text" placeholder="Buscar" class="form-control"/>
+                    <input type="submit" class="btn btn-success form-control ml-1" value="Buscar">
                 </form>
             </li>
         </ul>
@@ -88,7 +89,6 @@
             integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
         </script>
 </environment>
-<script src="~/js/site.js" asp-append-version="true"></script>
 <script src="~/js/ajustesIndex.js"></script>
 <script>
     //si jamas habia sido guardada la variable de modo oscuro, la crea
