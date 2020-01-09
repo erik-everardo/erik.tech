@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using erik_tech.Clases;
@@ -23,10 +24,17 @@ namespace erik_tech.Pages
         }
         public void OnGet([FromQuery] string q)
         {
-            busqueda = q.ToLower();
-            ArticuloEncontrados = contexto.articulo.Where(
-                articulo => articulo.titulo_publicacion.ToLower().Contains(busqueda) || articulo.encabezado.ToLower().Contains(busqueda) || articulo.cuerpo.ToLower().Contains(busqueda)).ToList();
-            
+
+            try
+            {
+                busqueda = q.ToLower();
+                ArticuloEncontrados = contexto.articulo.Where(
+                    articulo => articulo.titulo_publicacion.ToLower().Contains(busqueda) || articulo.encabezado.ToLower().Contains(busqueda) || articulo.cuerpo.ToLower().Contains(busqueda)).ToList();
+            }
+            catch (NullReferenceException)
+            {
+                ArticuloEncontrados = new List<Articulo>();
+            }
         }
     }
 }
