@@ -349,4 +349,12 @@ function aparecerPantallaPublicar() {
 function desaparecerPantallaPublicar() {
     pantallaPublicar.style.display = "none";
 }
+function solicitarVistaPrevia(){
+    var titulo = document.getElementById("titulo_text").value;
+    document.getElementById("idUsuarioFormVP").value = idUsuario;
+    document.getElementById("tituloFormVP").value = titulo;
+    document.getElementById("encabezadoFormVP").value = titulo;
+    document.getElementById("cuerpoFormVP").value = document.getElementById("cuerpo_articulo").value;
+    $('#formularioVistaPrevia').submit();
+}
 abrir_mis_articulos();

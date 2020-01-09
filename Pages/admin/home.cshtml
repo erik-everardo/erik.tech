@@ -126,11 +126,20 @@
                     </div>
                 </div>
                 <div id="layout_boton_flotante">
+                    <button class="btn btn-lg " id="boton_flotante_vista_previa" onclick="solicitarVistaPrevia()">
+                        <i class="fas fa-eye"></i>
+                    </button>
                     <button class="btn btn-lg " id="boton_flotante_publicar" onclick="aparecerPantallaPublicar()">
                         <i class="fas fa-upload"></i>
                     </button>
                 </div>
             </div>
+            <form target="_blank" action="/admin/VistaPrevia" asp-antiforgery="true" method="post" id="formularioVistaPrevia">
+                <input type="hidden" name="idUsuario" id="idUsuarioFormVP"/>
+                <input type="hidden" name="nombrePublicacion" id="tituloFormVP"/>
+                <input type="hidden" name="encabezadoPublicacion" id="encabezadoFormVP"/>
+                <input type="hidden" name="cuerpo" id="cuerpoFormVP"/>
+            </form>
 
         </div>
         <div id="capa_mis_articulos">

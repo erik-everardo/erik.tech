@@ -171,3 +171,14 @@ button.accept-policy {
     margin-left: 5px;
     
 }
+#boton_flotante_vista_previa{
+    background-color: rgba(15, 102, 116,0.5);
+    border-radius: 10px;
+}
+#boton_flotante_vista_previa:hover{
+    background-color: rgb(15, 102, 116);
+}
+#boton_flotante_vista_previa:hover::after{
+    content: "Vista previa";
+    margin-left: 5px;
+}
