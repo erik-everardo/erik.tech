@@ -71,6 +71,15 @@
                 <div class="form-group" id="grupo">
                     <input type="text" class="@ViewData["string_clase_body"] form-control" id="titulo_text" placeholder="Escribir titulo aquí">
                     <div class="btn-toolbar" id="botones_formato_editor">
+                        <div class="btn-group mr-2" id="botones_articulo_modificar">
+                            <button id="boton_save" class="btn btn-success" title="Guardar cambios">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button id="boton_quit" class="btn btn-danger" title="Descartar">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                        </div>
+                        
                         <div class="btn-group mr-2 btn-group-sm">
                             <button id="boton_p" class="btn btn-primary" title="Párrafo">
                                 <i class="fas fa-paragraph"></i>
@@ -112,6 +121,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                     <div class="row">
                         <div class="col-6">
