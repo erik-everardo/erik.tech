@@ -19,36 +19,35 @@ namespace erik_tech.Pages
             this.contexto = contexto;
         }
         public IActionResult OnPost(
-            string id,
+            int id,
             string nombre,
             string encabezado,
             string cuerpo,
-            string linux = "off",
-            string windows = "off",
-            string macos = "off",
-            string android = "off",
-            string desarrollo = "off",
-            string gaming = "off",
-            string hardware = "off"
+            bool linux = false,
+            bool windows = false,
+            bool macos = false,
+            bool android = false,
+            bool desarrollo = false,
+            bool gaming = false,
+            bool hardware = false
             )
         {
-
             try
             {
-                Articulo articuloAModificar = contexto.articulo.Find(int.Parse(id));
+                Articulo articuloAModificar = contexto.articulo.Find(id);
             
                 //Asignar todas las propiedades
 
                 articuloAModificar.titulo_publicacion = nombre;
                 articuloAModificar.encabezado = encabezado;
                 articuloAModificar.cuerpo = cuerpo;
-                articuloAModificar.Linux = linux.Equals("on");
-                articuloAModificar.Windows = windows.Equals("on");
-                articuloAModificar.Macos = macos.Equals("on");
-                articuloAModificar.Android = android.Equals("on");
-                articuloAModificar.Desarrollo = desarrollo.Equals("on");
-                articuloAModificar.Gaming = gaming.Equals("on");
-                articuloAModificar.Hardware = hardware.Equals("on");
+                articuloAModificar.Linux = linux;
+                articuloAModificar.Windows = windows;
+                articuloAModificar.Macos = macos;
+                articuloAModificar.Android = android;
+                articuloAModificar.Desarrollo = desarrollo;
+                articuloAModificar.Gaming = gaming;
+                articuloAModificar.Hardware = hardware;
 
                 contexto.articulo.Update(articuloAModificar);
                 contexto.SaveChanges();
