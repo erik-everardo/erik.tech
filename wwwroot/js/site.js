@@ -157,6 +157,7 @@ function abrir_mis_articulos() {
             descartarArticuloEnEdicion();
             document.getElementById("botones_articulo_modificar").classList.add("oculto");
             document.getElementById("boton_flotante_publicar").classList.remove("oculto");
+            document.getElementById("mensajeDeGuardado").innerText = "";
             reflejarCodigoEnVistaPrevia();
             estaArticuloEnEdicion = false;
         }

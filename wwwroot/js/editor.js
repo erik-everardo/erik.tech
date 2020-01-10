@@ -323,7 +323,7 @@ $('#boton_quit').on('click',function(){
         document.getElementById("botones_articulo_modificar").classList.add("oculto");
         document.getElementById("boton_flotante_publicar").classList.remove("oculto");
         reflejarCodigoEnVistaPrevia();
-        document.getElementById("mensajeDeGuardado").value = "";
+        document.getElementById("mensajeDeGuardado").innerText = "";
         document.getElementById("mensajeDeGuardado").classList.add("oculto");
         clearInterval(idTimer);
         estaArticuloEnEdicion = false;
