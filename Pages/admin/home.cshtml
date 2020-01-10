@@ -71,12 +71,15 @@
                 <div class="form-group" id="grupo">
                     <input type="text" class="@ViewData["string_clase_body"] form-control" id="titulo_text" placeholder="Escribir titulo aquí">
                     <div class="btn-toolbar" id="botones_formato_editor">
-                        <div class="btn-group mr-2" id="botones_articulo_modificar">
+                        <div class="btn-group mr-2 oculto" id="botones_articulo_modificar">
                             <button id="boton_save" class="btn btn-success" title="Guardar cambios">
                                 <i class="fas fa-save"></i>
                             </button>
                             <button id="boton_quit" class="btn btn-danger" title="Descartar">
                                 <i class="fas fa-times-circle"></i>
+                            </button>
+                            <button id="boton_editar_informacion" class="btn btn-primary" title="Modificar información de artículo" onclick="aparecerPantallaPublicar()">
+                                <i class="fas fa-edit"></i>
                             </button>
                         </div>
                         
@@ -311,50 +314,10 @@
         <input type="hidden" name="encabezado" id="campo_oculto_encabezado">
         <div class="d-flex justify-content-end align-content-end">
             <input type="submit" id="boton_publicar" value="Publicar" class="form-control btn-primary btn w-auto">
+            <button type="button" class="btn btn-primary form-control w-auto"><i class="fas fa-save"></i></button>
         </div>
 
     </form>
-</div>
-<!--Modal editar-->
-<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="editar_articulo">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" id="modal-dialog-editar" role="document">
-        <div class="modal-content @ViewData["string_clase_body"]" id="content_modal_editar">
-            <div class="modal-header">
-                <h5 class="modal-title" id="titulo_modal_editar"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-labelledby="modalEditar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" asp-antiforgery="true" id="form_editar">
-                    <div class="form-group">
-                        <label for="nombre_de_la_publicacion" class="col-form-label">Nombre de la publicación:</label>
-                        <input name="nombre" type="text" class="form-control" id="nombre_de_la_publicacion"/>
-                        <label for="encabezado_de_la_publicacion" class="col-form-label">Encabezado:</label>
-                        <input name="encabezado" type="text" class="form-control" id="encabezado_de_la_publicacion"/>
-                        <label for="cuerpo_del_articulo" class="col-form-label">Cuerpo (en HTML)</label>
-                        <textarea name="cuerpo" type="text" class="form-control" id="cuerpo_del_articulo">Aqui iria el texto...</textarea>
-                    </div>
-                    <div class="form-group">
-                        <p id="categorias_titulo">Categorias:</p>
-                        <label for="linux_check"><input name="linux" id="linux_check" type="checkbox"/> Linux</label>
-                        <label for="windows_check"><input name="windows" type="checkbox" id="windows_check"/> Windows</label>
-                        <label for="macos_check"><input name="macos" type="checkbox" id="macos_check"/> macOS</label>
-                        <label for="android_check"><input name="android" type="checkbox" id="android_check"/> Android</label>
-                        <label for="desarrollo_check"><input name="desarrollo" type="checkbox" id="desarrollo_check"/> Desarrollo</label>
-                        <label for="gaming_check"><input name="gaming" type="checkbox" id="gaming_check"/> Gaming</label>
-                        <label for="hardware_check"><input name="hardware" type="checkbox" id="hardware_check"/> Hardware</label>
-                    </div>
-
-                    <input name="id" type="hidden" id="id_articulo"/>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" form="form_editar" class="btn btn-primary" id="boton_guardar_cambios">Guardar cambios</button>
-            </div>
-        </div>
-    </div>
 </div>
 
 <!--Modal perfil, de confirmacion de contraseña, modificacion de nombre de usuario y contraseña-->

@@ -182,3 +182,6 @@ button.accept-policy {
     content: "Vista previa";
     margin-left: 5px;
 }
+.oculto{
+    display:none;
+}

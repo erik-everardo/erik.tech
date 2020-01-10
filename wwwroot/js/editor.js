@@ -21,18 +21,7 @@ function ajustarDimensionesCuerpoEditor() {
 
 window.addEventListener('resize', ajustarDimensionesCuerpoEditor);
 
-function actualizarVistaPrevia() {
-    try {
-        stringhtml =
-            "<h2>" + titulo.value + "</h2> " + cuerpo_textarea.value;
 
-        vista_p = document.getElementById("vista_previa");
-        vista_p.innerHTML = stringhtml;
-
-    } catch (Exception) {
-        console.error();
-    }
-}
 
 //editor grafico
 //variables de estado de etiquetas del editor grafico
@@ -287,4 +276,30 @@ $('#cuerpo_articulo').on('input', function () {
 
 function reflejarCodigoEnVistaPrevia() {
     vista_previa_tiempo_real.innerHTML = document.getElementById("cuerpo_articulo").value;
+}
+function editar(idArticulo){
+    abrir_editor();
+    document.getElementById("botones_articulo_modificar").classList.remove("oculto");
+    document.getElementById("boton_flotante_publicar").classList.add("oculto");
+    document.getElementById("boton_publicar").classList.add("oculto");
+    //solicita titulo de publicacion
+    $.get("/admin/SolicitarInfoArticulo",{id:idArticulo,dato:1},function(respuesta){
+       titulo.value = respuesta;
+    });
+    
+    //solicita encabezado de publicacion
+    $.get("/admin/SolicitarInfoArticulo",{id:idArticulo,dato:2},function(respuesta){
+        encabezado_DOM.value = respuesta;
+    });
+    
+    //solicita cuerpo de publicacion
+    $.get("/admin/SolicitarInfoArticulo",{id:idArticulo,dato:3},function(respuesta){
+        cuerpo_textarea.value = respuesta;
+        reflejarCodigoEnVistaPrevia();
+    });
+    
+    //solicita categorias de publicacion
+    $.get("/admin/SolicitarInfoArticulo",{id:idArticulo,dato:4},function(respuesta){
+
+    });
 }

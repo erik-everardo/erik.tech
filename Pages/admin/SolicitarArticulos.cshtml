@@ -48,19 +48,8 @@
                 }
             </p>
             <a href="/leer?id=@articulo.Id" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Ver</a>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar"
-                    data-id="@articulo.Id"
-                    data-encabezado="@articulo.encabezado"
-                    data-titulo="@articulo.titulo_publicacion"
-                    data-cuerpo="@articulo.cuerpo"
-                    data-linux="@articulo.Linux"
-                    data-windows="@articulo.Windows"
-                    data-macos="@articulo.Macos"
-                    data-android="@articulo.Android"
-                    data-desarrollo="@articulo.Desarrollo"
-                    data-gaming="@articulo.Gaming"
-                    data-hardware="@articulo.Hardware"
-                    data-otra="@articulo.Otra">
+            <button type="button" class="btn btn-primary" onclick="editar(@articulo.Id)">
+
                 <i class="fas fa-pencil-alt"></i> Editar
             </button>
             <a class="btn btn-primary" asp-page="/DescargarArticulo" asp-route-id="@articulo.Id" download="@(articulo.titulo_publicacion + ".html")">
