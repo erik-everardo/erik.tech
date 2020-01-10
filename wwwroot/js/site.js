@@ -43,6 +43,8 @@ var linkAbrirAyuda = document.getElementById("link-abrir-ayuda");
 
 var pantallaPublicar = document.getElementById("publicar");
 
+//variables de estado
+var estaArticuloEnEdicion = false;
 //publicar
 $("#form_publicacion").submit(function () {
 
@@ -150,6 +152,15 @@ function cerrar_editor() {
 }
 
 function abrir_mis_articulos() {
+    if(estaArticuloEnEdicion){
+        if(confirm("¿Estás seguro? Perderás todos los cambios")){
+            descartarArticuloEnEdicion();
+            document.getElementById("botones_articulo_modificar").classList.add("oculto");
+            document.getElementById("boton_flotante_publicar").classList.remove("oculto");
+            reflejarCodigoEnVistaPrevia();
+            estaArticuloEnEdicion = false;
+        }
+    }
     if (estaAbiertoEditor) cerrar_editor();
     if (estaAbiertoPerfil) cerrarPerfil();
     if (estaAbiertoAjustes) cerrarAjustes();
@@ -232,7 +243,6 @@ function descartarArticuloEnEdicion() {
     //desmarca todas las categorias
     var categorias_checkboxes = document.getElementsByClassName("categoria");
     for (var i = 0; i < categorias_checkboxes.length; i++) categorias_checkboxes[i].checked = false;
-    cerrar_editor();
 }
 
 function solicitarArticulosHechos() {

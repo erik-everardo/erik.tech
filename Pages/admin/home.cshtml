@@ -83,6 +83,7 @@
                             </button>
                         </div>
                         
+                        
                         <div class="btn-group mr-2 btn-group-sm">
                             <button id="boton_p" class="btn btn-primary" title="Párrafo">
                                 <i class="fas fa-paragraph"></i>
@@ -124,6 +125,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="oculto" id="mensajeDeGuardado"></div>
 
 
                     </div>
@@ -275,31 +277,31 @@
         <h3>Selecciona la(s) categoria(s) de tu artículo.</h3>
         <div class="form-group">
             <div class="form-check form-check-inline">
-                <input class="categoria form-check-input" type="checkbox" value="1" name="linux">
+                <input class="categoria form-check-input" type="checkbox" value="1" name="linux" id="linux_check">
                 <label class="form-check-label" for="inlineCheckbox1">Linux</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="categoria form-check-input" type="checkbox" value="1" name="windows">
+                <input class="categoria form-check-input" type="checkbox" value="1" name="windows" id="windows_check">
                 <label class="form-check-label" for="inlineCheckbox1">Windows</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="categoria form-check-input" type="checkbox" value="1" name="macos">
+                <input class="categoria form-check-input" type="checkbox" value="1" name="macos" id="macos_check">
                 <label class="form-check-label" for="inlineCheckbox1">macOS</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="categoria form-check-input" type="checkbox" value="1" name="android">
+                <input class="categoria form-check-input" type="checkbox" value="1" name="android" id="android_check">
                 <label class="form-check-label" for="inlineCheckbox1">Android</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="categoria form-check-input" type="checkbox" value="1" name="desarrollo">
+                <input class="categoria form-check-input" type="checkbox" value="1" name="desarrollo" id="desarrollo_check">
                 <label class="form-check-label" for="inlineCheckbox1">Desarrollo</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="categoria form-check-input" type="checkbox" value="1" name="gaming">
+                <input class="categoria form-check-input" type="checkbox" value="1" name="gaming" id="gaming_check">
                 <label class="form-check-label" for="inlineCheckbox1">Gaming</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="categoria form-check-input" type="checkbox" value="1" name="hardware">
+                <input class="categoria form-check-input" type="checkbox" value="1" name="hardware" id="hardware_check">
                 <label class="form-check-label" for="inlineCheckbox1">Hardware</label>
             </div>
         </div>
@@ -314,7 +316,7 @@
         <input type="hidden" name="encabezado" id="campo_oculto_encabezado">
         <div class="d-flex justify-content-end align-content-end">
             <input type="submit" id="boton_publicar" value="Publicar" class="form-control btn-primary btn w-auto">
-            <button type="button" class="btn btn-primary form-control w-auto"><i class="fas fa-save"></i></button>
+            
         </div>
 
     </form>

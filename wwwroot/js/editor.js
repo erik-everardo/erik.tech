@@ -277,8 +277,12 @@ $('#cuerpo_articulo').on('input', function () {
 function reflejarCodigoEnVistaPrevia() {
     vista_previa_tiempo_real.innerHTML = document.getElementById("cuerpo_articulo").value;
 }
+var idArt,idTimer;
 function editar(idArticulo){
+    idArt = idArticulo;
     abrir_editor();
+    document.getElementById("mensajeDeGuardado").classList.remove("oculto");
+    estaArticuloEnEdicion = true;
     document.getElementById("botones_articulo_modificar").classList.remove("oculto");
     document.getElementById("boton_flotante_publicar").classList.add("oculto");
     document.getElementById("boton_publicar").classList.add("oculto");
@@ -301,5 +305,76 @@ function editar(idArticulo){
     //solicita categorias de publicacion
     $.get("/admin/SolicitarInfoArticulo",{id:idArticulo,dato:4},function(respuesta){
 
+        for(var i=0;i<7;i++){
+            document.getElementsByClassName("categoria")[i].checked = respuesta[i] === "1";
+        }
+        
     });
+    idTimer = setInterval(function(){
+        if(estaArticuloEnEdicion){
+            save();
+        }
+    },5000);
+}
+
+$('#boton_quit').on('click',function(){
+    if(confirm("¿Estás seguro? Perderás todos los cambios")){
+        descartarArticuloEnEdicion();
+        document.getElementById("botones_articulo_modificar").classList.add("oculto");
+        document.getElementById("boton_flotante_publicar").classList.remove("oculto");
+        reflejarCodigoEnVistaPrevia();
+        document.getElementById("mensajeDeGuardado").value = "";
+        document.getElementById("mensajeDeGuardado").classList.add("oculto");
+        clearInterval(idTimer);
+        estaArticuloEnEdicion = false;
+    }
+});
+
+$('#boton_save').on('click',function(){
+    save();
+});
+function save(){
+    $.post("/admin/editar",{
+        id:idArt,
+        nombre:titulo.value,
+        encabezado:encabezado_DOM.value,
+        cuerpo:cuerpo_textarea.value,
+        linux:$('#linux_check').is(":checked"),
+        windows: $('#windows_check').is(":checked"),
+        macos: $('#macos_check').is(":checked"),
+        android: $('#android_check').is(":checked"),
+        desarrollo: $('#desarrollo_check').is(":checked"),
+        gaming: $('#gaming_check').is(":checked"),
+        hardare: $('#hardware_check').is(":checked"),
+        __RequestVerificationToken:tokenDeVerificacion
+    },function(){
+        var fecha = new Date();
+        document.getElementById("mensajeDeGuardado").innerText = "Guardado por ultima vez: " + obtenerHoraEnFormato12(fecha.getHours(),fecha.getMinutes(),fecha.getSeconds());
+    });
+}
+function obtenerHoraEnFormato12(horas24,minutos24,segundos24){
+    var horas, minutos,segundos;
+    if(horas24<=9){
+        horas = "0" + horas24;
+    }else{
+        horas = horas24-12;
+    }
+    if(minutos24<=9){
+        minutos = "0" + minutos24;
+    }else{
+        minutos = minutos24;
+    }
+    if(segundos24<=9){
+        segundos = "0" + segundos24;
+    }else{
+        segundos = segundos24;
+    }
+    if(horas==="00"){
+        horas = "12";
+    }
+    if(horas24>11){
+        return horas + ":" + minutos + ":" + segundos + " p.m.";
+    }else{
+        return horas + ":" + minutos + ":" + segundos + " a.m.";
+    }
 }
