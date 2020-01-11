@@ -185,3 +185,13 @@ button.accept-policy {
 .oculto{
     display:none;
 }
+.desplegable-grande{
+    width:25rem;
+}
+#vista_previa_imagen_carga_externa{
+    max-height: 200px;
+    overflow: auto;
+}
+#lista_imagenes{
+    overflow: auto;
+}

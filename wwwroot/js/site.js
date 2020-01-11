@@ -213,6 +213,7 @@ function abrirGaleria() {
     if (estaAbiertoMisArticulos) cerrar_mis_articulos();
     capa_galeria.style.display = "block";
     activarLinkDeBarra(3);
+    solicitarImagenesGaleria();
 }
 
 function cerrarGaleria() {

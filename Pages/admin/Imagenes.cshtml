@@ -1,0 +1,35 @@
+@page
+@using Microsoft.EntityFrameworkCore
+@model erik_tech.Pages.admin.Imagen
+@{
+    Layout = null;
+}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Origen</th>
+        <th>Descargar</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var imagen in Model.ListaImagenes)
+    {
+        <tr>
+            <td>@imagen.nombre</td>
+            @if (imagen.externa)
+            {
+                <td><i class="fas fa-external-link-square-alt"></i></td>
+            }
+            else
+            {
+                <td><i class="fas fa-server"></i></td>
+            }
+            <td>
+                <a href="@imagen.url" download="true"><i class="fas fa-download"></i></a>
+            </td>
+        </tr>
+    }
+    </tbody>
+    
+</table>
