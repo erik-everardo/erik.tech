@@ -205,23 +205,19 @@
             <div class="d-flex flex-wrap">
                 <div class="card w-100 my-2 mx-sm-2">
                     <div class="card-header">
-                        <i class="far fa-image"></i> Agregar imagen
+                        Agrega imagen a tu galería
                     </div>
-                    <div class="card-body d-flex justify-content-center">
-                        <div class="dropdown mx-2">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="boton_agregar_imagen_externa_a_galeria" data-toggle="dropdown" title="Agregar imagen a galería">
-                                <i class="fas fa-plus-square"></i>
-                            </button>
-                            <div class="dropdown-menu desplegable-grande">
+                    <div class="card-body">
+                        <div id="botones_de_desplegables_agregar_imagen_galeria" class="m-2 d-flex justify-content-center">
+                            <button class="w-auto mx-2 btn btn-primary" data-toggle="collapse" data-target="#collapse_imagen_externa">img propia</button>
+                            <button class="w-auto mx-2 btn btn-primary" data-toggle="collapse" data-target="#collapse_imagen_propia">img externa</button>
+                        </div>
+                        <div id="desplegables_agregar_imagen_galeria">
+                            <div class="collapse" id="collapse_imagen_externa" data-parent="#desplegables_agregar_imagen_galeria">
                                 <h5 class="m-2">Agrega URL de imagen externa</h5>
                                 <div class="form-group m-2">
-                                    
                                     <input type="url" class="form-control" id="url_imagen_externa" placeholder="Ej. https://upload.wikimedia.org/wikipedia/commons/c/c7/Roadrunner_supercomputer_HiRes.jpg"/>
-
-                                    
                                     <div id="vista_previa_imagen_carga_externa" class="my-2"></div>
-                                    
-
                                 </div>
                                 <div class="form-group m-2">
                                     <label for="nombre_imagen_externa">Nombre</label>
@@ -230,15 +226,8 @@
                                 <div class="d-flex justify-content-end">
                                     <button type="button" class="btn btn-primary m-2" id="btn_agregar_imagen_externa">Agregar</button>
                                 </div>
-                                
                             </div>
-                        </div>
-                        <div class="dropdown mx-2">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="boton_agregar_imagen_externa_a_galeria" data-toggle="dropdown" title="Subir imagen propia a galería">
-                                <i class="fas fa-upload"></i>
-                            </button>
-
-                            <div class="dropdown-menu desplegable-grande">
+                            <div class="collapse" id="collapse_imagen_propia" data-parent="#desplegables_agregar_imagen_galeria">
                                 <h5 class="m-2">Sube imagen</h5>
                                 <div class="form-group m-2">
                                     <div class="custom-file">
@@ -254,12 +243,10 @@
                                 <div class="d-flex justify-content-end m-2">
                                     <button type="button" class="btn btn-primary my-2" id="btn_subir_imagen_propia">Agregar</button>
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
+                    
                 </div>
                 <div class="card w-100 my-2 mx-sm-2 ocultable-sm">
                     <div class="card-header"><i class="far fa-eye"></i> Vista previa</div>
@@ -300,7 +287,7 @@
     </div>
 </div>
 
-<div id="publicar" class="p-md-5" role="tabpanel">
+<div id="publicar" class="p-md-5 p-3" role="tabpanel">
     <button type="button" class="close" onclick="desaparecerPantallaPublicar()">
         <span aria-hidden="true" style="color: red">&times;</span>
     </button>

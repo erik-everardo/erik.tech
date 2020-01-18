@@ -64,42 +64,6 @@ function trueOFalseABool(valor) {
     return valor === "True";
 }
 
-$("#modalEditar").on('show.bs.modal', function (evento) {
-    //boton que desencadeno este modal
-    var boton = $(evento.relatedTarget);
-    //traer datos del boton editar que desencadeno este modal
-    var id = boton.data("id");
-    var encabezado = boton.data("encabezado");
-    var titulo = boton.data("titulo");
-    var cuerpo = boton.data("cuerpo");
-    var linux = trueOFalseABool(boton.data("linux"));
-    var windows = trueOFalseABool(boton.data("windows"));
-    var macos = trueOFalseABool(boton.data("macos"));
-    var android = trueOFalseABool(boton.data("android"));
-    var desarrollo = trueOFalseABool(boton.data("desarrollo"));
-    var gaming = trueOFalseABool(boton.data("gaming"));
-    var hardware = trueOFalseABool(boton.data("hardware"));
-    var otra = trueOFalseABool(boton.data("otra"));
-
-    //se colocan los datos actuales del articulo en el modal "editar"
-    var modal = $(this);
-    modal.find('#titulo_modal_editar').text('Editando ' + titulo);
-    modal.find('#nombre_de_la_publicacion').val(titulo);
-    modal.find('#encabezado_de_la_publicacion').val(encabezado);
-    modal.find('#cuerpo_del_articulo').text(cuerpo);
-    modal.find('#linux_check').prop('checked', linux);
-    modal.find('#windows_check').prop('checked', windows);
-    modal.find('#macos_check').prop('checked', macos);
-    modal.find('#android_check').prop('checked', android);
-    modal.find('#desarrollo_check').prop('checked', desarrollo);
-    modal.find('#gaming_check').prop('checked', gaming);
-    modal.find('#hardware_check').prop('checked', hardware);
-    modal.find('#id_articulo').val(id);
-
-    if (otra) {
-        modal.find('#categorias_titulo').text('Categorias (articulo actualmente sin categoria)');
-    }
-});
 
 
 $("#form_editar").submit(function () {
@@ -144,6 +108,7 @@ function abrir_editor() {
     capa_editor_DOM.style.display = "block";
     ajustarDimensionesCuerpoEditor();
     activarLinkDeBarra(1);
+    document.title = "Nuevo artículo - erik.tech";
     estaAbiertoEditor = true;
 }
 
@@ -171,6 +136,7 @@ function abrir_mis_articulos() {
     capa_mis_articulos_DOM.style.display = "block";
     setTimeout(solicitarArticulosHechos(),1000);
     activarLinkDeBarra(2);
+    document.title = "Mis artículos - erik.tech";
     estaAbiertoMisArticulos = true;
 }
 
@@ -185,6 +151,7 @@ $('#btn_ver_perfil').on('click', function (ev) {
     if (estaAbiertoMisArticulos) cerrar_mis_articulos();
     if (estaAbiertoAjustes) cerrarAjustes();
     if (estaAbiertoGaleria) cerrarGaleria();
+    document.title = "Perfil - erik.tech";
 });
 
 function cerrarPerfil() {
@@ -200,6 +167,7 @@ $('#boton_ajustes').on('click', function (ev) {
     capa_ajustes_DOM.style.display = "block";
     if (modoOscuro) $('#modo_oscuro').prop('checked', true);
     else $('#modo_oscuro').prop('checked', false);
+    document.title = "Ajustes - erik.tech";
 });
 
 function cerrarAjustes() {
@@ -216,6 +184,7 @@ function abrirGaleria() {
     activarLinkDeBarra(3);
     definirAlturaListaDeImagenes();
     solicitarImagenesGaleria();
+    document.title = "Galería - erik.tech";
 }
 
 function cerrarGaleria() {

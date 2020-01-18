@@ -289,6 +289,7 @@ function editar(idArticulo){
     //solicita titulo de publicacion
     $.get("/admin/SolicitarInfoArticulo",{id:idArticulo,dato:1},function(respuesta){
        titulo.value = respuesta;
+       document.title = "Editando: " + respuesta + " - erik.tech";
     });
     
     //solicita encabezado de publicacion
@@ -328,6 +329,7 @@ $('#boton_quit').on('click',function(){
         document.getElementById("boton_publicar").classList.remove("oculto");
         clearInterval(idTimer);
         estaArticuloEnEdicion = false;
+        abrir_editor();
     }
 });
 
