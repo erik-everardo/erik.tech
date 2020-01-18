@@ -25,44 +25,7 @@
   var idUsuario = "@ViewData["id_usuario"]";
   var modoOscuro = @ViewData["modoOscuro"];
 </script>
-<div class="d-flex justify-content-between" id="row-barra">
 
-    <nav id="barra-navegacion-dash" class="navbar navbar-expand-sm sticky-top @ViewData["string_clase_barra_navegacion"]">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse mr-auto" id="barra">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" id="link-abrir-articulos" href="#" onclick="abrir_mis_articulos()">Mis artículos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="link-abrir-editor" href="#" onclick="abrir_editor()">Redactar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="link-abrir-galeria" href="#" onclick="abrirGaleria()">Galería de imágenes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" id="link-abrir-ayuda">Ayuda</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="dropdown navbar_brand mt-2 mt-md-2">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown">
-            <i class="fas fa-user-circle"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" style="z-index: 2000!important;">
-            <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
-            <a class="dropdown-item" href="#" id="boton_ajustes">Ajustes</a>
-            <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
-        </div>
-    </div>
-
-</div>
 <div class="row">
 <div class="col-12">
 <div id="capa_editor">
@@ -238,65 +201,80 @@
 <div id="capa-galeria">
     <h3 id="header_galeria_imagenes">Galería de imágenes</h3>
     <div class="row">
-        <div class="col-md-3">
-            <div class="d-flex justify-content-between">
-                    <div class="card w-auto">
-                        <div class="card-header">
-                            <i class="far fa-image"></i> Agregar imagen
-                        </div>
-                        <div class="card-body d-flex justify-content-center">
-                            <div class="dropdown mx-2">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="boton_agregar_imagen_externa_a_galeria" data-toggle="dropdown" title="Agregar imagen a galería">
-                                    <i class="fas fa-plus-square"></i>
-                                </button>
-                                
-                                <div class="dropdown-menu desplegable-grande">
-                                    <div class="form-group m-2">
-                                        <label for="url_imagen_externa">URL de imagen</label>
-                                        <input type="url" class="form-control" id="url_imagen_externa" placeholder="Ej. https://upload.wikimedia.org/wikipedia/commons/c/c7/Roadrunner_supercomputer_HiRes.jpg"/>
-                                
-                                        <label for="nombre_imagen_externa">Nombre</label>
-                                        <input type="text" id="nombre_imagen_externa" class="form-control" placeholder="Ej. Roadrunner"/>
-                                        <div id="vista_previa_imagen_carga_externa" class="my-2"></div>
-                                        <div class="d-flex justify-content-end">
-                                            <button type="button" class="btn btn-primary my-2" id="btn_agregar_imagen_externa">Agregar</button>
-                                        </div>
-                                        
-                                    </div>
+        <div class="col-md-3" id="cuadro_izq_galeria">
+            <div class="d-flex flex-wrap">
+                <div class="card w-100 my-2 mx-sm-2">
+                    <div class="card-header">
+                        <i class="far fa-image"></i> Agregar imagen
+                    </div>
+                    <div class="card-body d-flex justify-content-center">
+                        <div class="dropdown mx-2">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="boton_agregar_imagen_externa_a_galeria" data-toggle="dropdown" title="Agregar imagen a galería">
+                                <i class="fas fa-plus-square"></i>
+                            </button>
+                            <div class="dropdown-menu desplegable-grande">
+                                <h5 class="m-2">Agrega URL de imagen externa</h5>
+                                <div class="form-group m-2">
+                                    
+                                    <input type="url" class="form-control" id="url_imagen_externa" placeholder="Ej. https://upload.wikimedia.org/wikipedia/commons/c/c7/Roadrunner_supercomputer_HiRes.jpg"/>
+
+                                    
+                                    <div id="vista_previa_imagen_carga_externa" class="my-2"></div>
+                                    
+
                                 </div>
-                            </div>
-                            <div class="dropdown mx-2">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="boton_agregar_imagen_externa_a_galeria" data-toggle="dropdown" title="Subir imagen propia a galería">
-                                    <i class="fas fa-upload"></i>
-                                </button>
-                                
-                                <div class="dropdown-menu desplegable-grande">
-                                    <div class="form-group m-2">
-                                        
-                                            
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="archivo_imagen_propia">
-                                            <label class="custom-file-label" for="archivo_imagen_propia"  data-browse="Cargar">Carga un archivo de imagen</label>
-                                        </div>
-                                        
-                                        
-                                        <label for="nombre_imagen_propia">Nombre</label>
-                                        <input type="text" id="nombre_imagen_propia" class="form-control"/>
-                                        
-                                        <button type="button" class="btn btn-primary" id="btn_subir_imagen_propia">Agregar</button>
-                                    </div>
+                                <div class="form-group m-2">
+                                    <label for="nombre_imagen_externa">Nombre</label>
+                                    <input type="text" id="nombre_imagen_externa" class="form-control" placeholder="Ej. Roadrunner"/>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary m-2" id="btn_agregar_imagen_externa">Agregar</button>
                                 </div>
                                 
                             </div>
-            
                         </div>
+                        <div class="dropdown mx-2">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="boton_agregar_imagen_externa_a_galeria" data-toggle="dropdown" title="Subir imagen propia a galería">
+                                <i class="fas fa-upload"></i>
+                            </button>
+
+                            <div class="dropdown-menu desplegable-grande">
+                                <h5 class="m-2">Sube imagen</h5>
+                                <div class="form-group m-2">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="archivo_imagen_propia" accept="image/*">
+                                        <label class="custom-file-label" for="archivo_imagen_propia" data-browse="Cargar">Carga un archivo de imagen</label>
+                                    </div>
+                                    <div id="vista_previa_imagen_subir" class="my-2"></div>
+                                </div>
+                                <div class="form-group m-2">
+                                    <label for="nombre_imagen_propia">Nombre</label>
+                                    <input type="text" id="nombre_imagen_propia" class="form-control"/>
+                                </div>
+                                <div class="d-flex justify-content-end m-2">
+                                    <button type="button" class="btn btn-primary my-2" id="btn_subir_imagen_propia">Agregar</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
+                <div class="card w-100 my-2 mx-sm-2 ocultable-sm">
+                    <div class="card-header"><i class="far fa-eye"></i> Vista previa</div>
+                    <div class="card-body d-flex flex-wrap" id="vista_previa_imagen_galeria">
+                        <p class="card-text">
+                            Haz clic en un elemento de la derecha
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="lista_imagenes" class="col-md-9"></div>
     </div>
-    
-    
+
+
 </div>
 </div>
 </div>

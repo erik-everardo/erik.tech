@@ -21,7 +21,42 @@
 </head>
 <body onload="ajustarDimensionesCuerpoEditor();" class="@ViewData["string_clase_body"]">
 <partial name="_CookieConsentPartial"/>
-<div class="container-fluid">
+<div id="barra-navegacion" class="fluid-container sticky-top @ViewData["string_clase_barra_navegacion"]">
+    <nav  class="navbar navbar-expand container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse mr-auto" id="barra">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="link-abrir-articulos" href="#" onclick="abrir_mis_articulos()"><i class="fas fa-book"></i> <span class="ocultable-sm">Mis artículos</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="link-abrir-editor" href="#" onclick="abrir_editor()"><i class="fas fa-feather"></i> <span class="ocultable-sm">Redactar</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="link-abrir-galeria" href="#" onclick="abrirGaleria()"><i class="fas fa-images"></i> <span class="ocultable-sm">Galería de imágenes</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="link-abrir-ayuda"><i class="fas fa-question"></i> <span class="ocultable-sm">Ayuda</span></a>
+                </li>
+            </ul>
+            <div class="dropdown navbar_brand">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="boton_perfil" data-toggle="dropdown">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" style="z-index: 2000!important;">
+                    <h6 class="dropdown-header">@ViewData["nombre_de_usuario"]</h6>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" id="btn_ver_perfil">Perfil</a>
+                    <a class="dropdown-item" href="#" id="boton_ajustes">Ajustes</a>
+                    <a class="dropdown-item" asp-page="/Index" tabindex="-1" aria-disabled="true">Salir</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container">
     @RenderBody()
 </div>
 <environment include="Development">

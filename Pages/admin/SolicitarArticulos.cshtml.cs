@@ -24,9 +24,15 @@ namespace erik_tech.Pages
             
             articulos = contexto.articulo.Where(a => a.autor_id.Equals(int.Parse(ID_usuario))).ToList();
             Cuenta usuario = contexto.cuenta.Find(int.Parse(ID_usuario));
-            if(usuario.modoOscuro) ViewData["string_clase_oscuro"] = "bg-dark text-light";
-            else ViewData["string_clase_oscuro"] = "";
+            /* mejorar esto del modo oscuro...
+            if(usuario.modoOscuro) 
+                ViewData["string_clase_oscuro"] = "bg-dark text-light";
+            else 
+                ViewData["string_clase_oscuro"] = "";
+            */
             
+            // corregir
+            ViewData["string_clase_oscuro"] = "";
             return Page();
         }
     }

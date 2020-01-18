@@ -32,8 +32,11 @@ namespace erik_tech.Pages
                     ViewData["password_usuario"] = usuario.password;
                     ViewData["correo"] = usuario.email;
                     ViewData["id_usuario"] = usuario.Id;
-                    if(usuario.modoOscuro) ViewData["modoOscuro"] = "true";
-                    else ViewData["modoOscuro"] = "false";
+                    /*
+                    if(usuario.modoOscuro) 
+                        ViewData["modoOscuro"] = "true";
+                    else 
+                        ViewData["modoOscuro"] = "false";
                     if (usuario.modoOscuro)
                     {
                         ViewData["string_clase_barra_navegacion"] =
@@ -46,6 +49,14 @@ namespace erik_tech.Pages
                             "navbar-light bg-light";
                         ViewData["string_clase_body"] = "bg-light text-body";
                     }
+                    */
+                    
+                    //corregir, por mientras asi esta bien
+                    ViewData["string_clase_barra_navegacion"] =
+                        "navbar-light bg-light";
+                    ViewData["string_clase_body"] = "bg-light text-body";
+                    ViewData["modoOscuro"] = "false";
+                    
                     if (usuario.parrafoDescripcion != null) ViewData["descripcion"] = usuario.parrafoDescripcion;
                     return Page();
                 }

@@ -52,15 +52,17 @@
                     <a class="dropdown-item" asp-page="/Index" asp-route-categoria="Hardware"><i class="fas fa-desktop"></i> Hardware</a>
                 </div>
             </li>
+            
+        </ul>
+        <ul class="nav ml-auto d-flex justify-content-center">
             <li class="nav-item">
                 <button class="btn" id="boton_modo_oscuro" title="Cambiar modo de color"></button>
             </li>
-        </ul>
-        <ul class="nav ml-auto">
+            
             <li class="nav-item">
                 <form method="get" action="/buscar" class="nav-item d-inline-flex">
                     <input name="q" type="text" placeholder="Buscar" class="form-control"/>
-                    <input type="submit" class="btn btn-success form-control ml-1" value="Buscar">
+                    <button type="submit" class="btn btn-success form-control ml-1 w-auto"><i class="fas fa-search"></i></button>
                 </form>
             </li>
         </ul>
@@ -96,6 +98,10 @@
     if(!window.localStorage.getItem("oscuro")){
         window.localStorage.setItem("oscuro","off");
     }
+    
+    //envia un request al servidor de archivos para "despertarlo"
+    var fecha = new Date();
+    $.get("https://files-erik-tech.azurewebsites.net/despertar.php",{entrada:fecha.getTime()})
 </script>
 
 @RenderSection("Scripts", required: false)

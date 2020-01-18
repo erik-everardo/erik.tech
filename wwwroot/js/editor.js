@@ -7,13 +7,13 @@ var vista_p = "";
 var vista_previa_tiempo_real = document.getElementById("vista_previa_tiempo_real");
 
 //referencia row barra
-var rowBarra = document.getElementById("row-barra");
+var barraNavegacion = document.getElementById("barra-navegacion");
 var grupoBotonesFormato = document.getElementById("botones_formato_editor");
 
 function ajustarDimensionesCuerpoEditor() {
     cuerpo_textarea.style.height =
         (window.innerHeight -
-            (rowBarra.offsetHeight +
+            (barraNavegacion.offsetHeight +
                 titulo.offsetHeight +
                 grupoBotonesFormato.offsetHeight) - 60) + "px";
     vista_previa_tiempo_real.style.maxHeight = cuerpo_textarea.style.height;

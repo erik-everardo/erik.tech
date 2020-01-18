@@ -4,32 +4,30 @@
 @{
     Layout = null;
 }
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Origen</th>
-        <th>Descargar</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var imagen in Model.ListaImagenes)
-    {
-        <tr>
-            <td>@imagen.nombre</td>
-            @if (imagen.externa)
-            {
-                <td><i class="fas fa-external-link-square-alt"></i></td>
-            }
-            else
-            {
-                <td><i class="fas fa-server"></i></td>
-            }
-            <td>
-                <a href="@imagen.url" download="true"><i class="fas fa-download"></i></a>
-            </td>
-        </tr>
-    }
-    </tbody>
-    
-</table>
+@if (!Model.fuePost)
+{
+    <div class="list-group">
+        @foreach (var imagen in Model.ListaImagenes)
+        {
+            <a href="#" class="list-group-item list-group-item-action list-group-item-light" 
+               onclick='vistaPreviaImagen("@imagen.url")'>
+            
+                <div class="d-flex justify-content-between">
+                    <span class="display-5">@imagen.nombre</span>
+                    @if (imagen.externa)
+                    {
+                        <i class="fas fa-external-link-square-alt" title="Imagen externa"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-user" title="Imagen propia"></i>
+                    }
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger w-auto" onclick='eliminarImagen(@imagen.Id)'>Eliminar</button>
+                </div>
+            
+            </a>
+        }
+    </div>
+}

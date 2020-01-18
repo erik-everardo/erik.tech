@@ -23,7 +23,7 @@
 
 <div class="container" id="container_login">
     <partial name="_CookieConsentPartial"/>
-    <main role="main">
+    <main role="main" class="d-flex justify-content-center">
         @RenderBody()
     </main>
 </div>
@@ -47,7 +47,12 @@
             integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
         </script>
 </environment>
-<script src="~/js/site.js" asp-append-version="true"></script>
+<script>
+    //si jamas habia sido guardada la variable de modo oscuro, la crea
+    if(!window.localStorage.getItem("oscuro")){
+        window.localStorage.setItem("oscuro","off");
+    }
+</script>
 
 @RenderSection("Scripts", required: false)
 </body>

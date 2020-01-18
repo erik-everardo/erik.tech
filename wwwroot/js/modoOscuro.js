@@ -2,13 +2,10 @@
 Modo oscuro
 Incluye las funciones para cambiar a modo oscuro y claro y asigna el modo al cargar la pagina
 */
-
-//referencias
-var tabsCapaEditor = document.getElementById("nav-tab-capa-editor");
-
-
 function cambiarAModoOscuro() {
     modoOscuro = true;
+    alert("modo oscuro no disponible ahora");
+    /*
     if (barra.classList.contains("navbar-light"))
         barra.classList.remove("navbar-light");
     if (barra.classList.contains("bg-light"))
@@ -29,10 +26,12 @@ function cambiarAModoOscuro() {
     if (titulo.classList.contains("bg-light"))
         titulo.classList.remove("bg-light");
     titulo.classList.add("bg-dark");
+    */
 }
 
 function cambiarAModoClaro() {
     modoOscuro = false;
+    /*
     if (barra.classList.contains("navbar-dark"))
         barra.classList.remove("navbar-dark");
     if (barra.classList.contains("bg-dark"))
@@ -53,9 +52,10 @@ function cambiarAModoClaro() {
     if (titulo.classList.contains("bg-dark"))
         titulo.classList.remove("bg-dark");
     titulo.classList.add("bg-light");
+    */
 }
 
-function guardarCambiosDeModoOscuro(esModoOscuro) {
+/*function guardarCambiosDeModoOscuro(esModoOscuro) {
     var aEnviar;
     if (esModoOscuro) {
         aEnviar = {
@@ -74,4 +74,4 @@ function guardarCambiosDeModoOscuro(esModoOscuro) {
         };
         $.post("/admin/ModificarAjustes", aEnviar);
     }
-}
+}*/

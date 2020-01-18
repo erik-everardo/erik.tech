@@ -11,17 +11,21 @@ namespace erik_tech.Pages.admin
         {
             _contextApp = contextApp;
         }
-        public void OnPost(int idUsuario, string url, string nombre, bool externa)
+        public void OnPost(int idUsuario, string url, string nombre, bool externa,string password)
         {
-            urlImagen Imagen = new urlImagen()
+            if (_contextApp.cuenta.Find(idUsuario).password.Equals(password))
             {
-                externa = externa,
-                IdUser = idUsuario,
-                url = url,
-                nombre = nombre
-            };
-            _contextApp.Imagenes.Add(Imagen);
-            _contextApp.SaveChanges();
+                urlImagen Imagen = new urlImagen()
+                {
+                    externa = externa,
+                    IdUser = idUsuario,
+                    url = url,
+                    nombre = nombre
+                };
+                _contextApp.Imagenes.Add(Imagen);
+                _contextApp.SaveChanges(); 
+            }
+            
         }
     }
 }

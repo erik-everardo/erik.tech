@@ -119,6 +119,7 @@ function despuesDeEditar(respuesta) {
 }
 
 //funciones para control de ajustes
+/*
 $('#modo_oscuro').on('change', function (ev) {
     if ($('#modo_oscuro').prop('checked')) {
         cambiarAModoOscuro();
@@ -131,7 +132,7 @@ $('#modo_oscuro').on('change', function (ev) {
     }
 
 });
-
+*/
 
 //funciones para abrir y cerrar pantallas (editar,mis articulos, perfil y ajustes)
 function abrir_editor() {

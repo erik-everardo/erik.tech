@@ -32,7 +32,16 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 
-
+#container_login {
+    position: absolute;
+    height: 100%;
+}
+.cuadro_login_signin {
+    background: linear-gradient(rgba(0,0,0,0.1),transparent);
+}
+#barra-navegacion, #barra_index{
+    opacity: 93%;
+}
 #titulo {
     font-family: Arial, Helvetica, sans-serif
 }
@@ -129,13 +138,6 @@ button.accept-policy {
     width: 300px;
 }
 
-#login {
-    margin-left: auto;
-}
-
-.entradas_login {
-    margin: 10px;
-}
 
 #celda_media {
     margin: auto !important;
@@ -154,8 +156,8 @@ button.accept-policy {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding-right: 5px;
-    padding-bottom: 5px;
+    padding-right: 1em;
+    padding-bottom: 1em;
     z-index: 2000;
     
 }
@@ -180,7 +182,7 @@ button.accept-policy {
 }
 #boton_flotante_vista_previa:hover::after{
     content: "Vista previa";
-    margin-left: 5px;
+    margin-left: 1em;
 }
 .oculto{
     display:none;
@@ -194,4 +196,10 @@ button.accept-policy {
 }
 #lista_imagenes{
     overflow: auto;
+}
+
+@media  (max-width: 767px) {
+    .ocultable-sm{
+        display: none;
+    }
 }
