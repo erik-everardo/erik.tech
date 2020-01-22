@@ -215,8 +215,8 @@ function descartarArticuloEnEdicion() {
     //elementos del DOM
 
     //desmarca todas las categorias
-    var categorias_checkboxes = document.getElementsByClassName("categoria");
-    for (var i = 0; i < categorias_checkboxes.length; i++) categorias_checkboxes[i].checked = false;
+    var categoriasCheckboxes = document.getElementsByClassName("categoria");
+    for (var i = 0; i < categoriasCheckboxes.length; i++) categorias_checkboxes[i].checked = false;
 }
 
 function solicitarArticulosHechos() {
