@@ -117,6 +117,3 @@ function resetearVistaPreviaGaleria(){
     document.getElementById("vista_previa_imagen_galeria").innerHTML =
         "<p class='card-text'>Haz clic en un elemento de la derecha</p>";
 }
-function descargarImagen(){
-    d
-}
