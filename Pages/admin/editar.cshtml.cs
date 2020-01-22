@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
 using erik_tech.Clases;
 using erik_tech.Models;
-using erik_tech.Clases;
 using System.Text.Encodings.Web;
 
 namespace erik_tech.Pages
