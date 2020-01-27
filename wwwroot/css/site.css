@@ -203,3 +203,6 @@ button.accept-policy {
         display: none;
     }
 }
+#cuadro_izq_galeria {
+    overflow-y: auto;
+}

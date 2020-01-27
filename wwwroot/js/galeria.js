@@ -28,7 +28,13 @@ $('#btn_agregar_imagen_externa').on('click',function(){
 });
 function solicitarImagenesGaleria(){
     $.get("/admin/Imagenes",{idUsuario:idUsuario},function(respuesta){
-        document.getElementById("lista_imagenes").innerHTML = respuesta;
+        if(respuesta === "") {
+            document.getElementById("lista_imagenes").innerHTML =
+                '<div class="alert alert-info"><i class="fas fa-exclamation"></i> No hay imagenes que mostrar. Comienza subiendo o agregando una imagen.</div>'
+        } else {
+            document.getElementById("lista_imagenes").innerHTML = respuesta;
+        }
+        
     });
 }
 window.addEventListener("resize",definirAlturaListaDeImagenes);
@@ -41,7 +47,7 @@ function definirAlturaListaDeImagenes() {
         document.getElementById("lista_imagenes").style.maxHeight =
             (window.innerHeight - barraNavegacion.offsetHeight - document.getElementById("header_galeria_imagenes").offsetHeight - 8) + "px";
     }
-    
+    document.getElementById("cuadro_izq_galeria").style.maxHeight = document.getElementById("lista_imagenes").style.maxHeight;
 }
 
 //funcion para abrir vista previa de una imagen
@@ -71,6 +77,7 @@ $('#archivo_imagen_propia').on('input',function() {
 });
 function subirImagen(nombre){
     if(inputFile.files.length > 0){
+        document.getElementById("btn_subir_imagen_propia").innerHTML = "<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Subiendo...";
         var formData = new FormData();
         formData.append("archivo",inputFile.files[0]);
         formData.append("accion","galeria");
@@ -89,7 +96,12 @@ function subirImagen(nombre){
                 password:passwordActual,
                 __RequestVerificationToken: tokenDeVerificacion
             },function(){
-                
+                document.getElementById("btn_subir_imagen_propia").innerHTML = "Subir";
+                document.getElementById("vista_previa_imagen_subir").innerHTML = "";
+                inputFile.value = null;
+                campoNombreImagenPropia.value = "";
+                $('#desplegables_agregar_imagen_galeria').collapse('toggle');
+                $('#desplegables_agregar_imagen_galeria').collapse('hide');
                 solicitarImagenesGaleria();
             });
             //alert("imagen subida exitosamente");
