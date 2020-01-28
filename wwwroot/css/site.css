@@ -190,7 +190,7 @@ button.accept-policy {
 .desplegable-grande{
     width:25rem;
 }
-#vista_previa_imagen_carga_externa{
+#vista_previa_imagen_carga_externa,#vista_previa_imagen_subir{
     max-height: 200px;
     overflow: auto;
 }
@@ -204,5 +204,5 @@ button.accept-policy {
     }
 }
 #cuadro_izq_galeria {
-    overflow-y: auto;
+    overflow-y: overlay;
 }
