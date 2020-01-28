@@ -100,8 +100,6 @@ function subirImagen(nombre){
                 document.getElementById("vista_previa_imagen_subir").innerHTML = "";
                 inputFile.value = null;
                 campoNombreImagenPropia.value = "";
-                $('#desplegables_agregar_imagen_galeria').collapse('toggle');
-                $('#desplegables_agregar_imagen_galeria').collapse('hide');
                 solicitarImagenesGaleria();
             });
             //alert("imagen subida exitosamente");
